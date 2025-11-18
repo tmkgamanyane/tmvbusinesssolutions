@@ -21,7 +21,7 @@ const APP_CONFIG = {
     },
     
     production: {
-        get apiBase() { return `${APP_CONFIG._getBaseUrl()}/api`; },
+        get apiBase() { return 'https://tmv-backend.onrender.com/api'; },
         get clientUrl() { return APP_CONFIG._getBaseUrl(); },
         get baseUrl() { return APP_CONFIG._getBaseUrl(); }
     },
