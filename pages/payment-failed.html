@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed - TMV Business Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <style>
+        .failure-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            padding: 20px;
+        }
+
+        .failure-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .failure-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .failure-icon svg {
+            width: 70px;
+            height: 70px;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .failure-card h1 {
+            color: #2d3748;
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .failure-card .subtitle {
+            color: #718096;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .error-info {
+            background: #fff5f5;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+            border: 1px solid #fed7d7;
+        }
+
+        .error-message {
+            color: #c53030;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .troubleshooting {
+            background: #f7fafc;
+            border-left: 4px solid #4299e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .troubleshooting h3 {
+            color: #4299e1;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .troubleshooting ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+        }
+
+        .btn-secondary:hover {
+            background: #fff5f5;
+            transform: translateY(-2px);
+        }
+
+        .contact-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .contact-box h4 {
+            color: #2d3748;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        .contact-box a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="failure-container">
+        <div class="failure-card">
+            <div class="failure-icon">
+                <svg viewBox="0 0 52 52">
+                    <path d="M16 16L36 36M36 16L16 36"/>
+                </svg>
+            </div>
+
+            <h1>❌ Payment Failed</h1>
+            <p class="subtitle">We were unable to process your payment</p>
+
+            <div class="error-info">
+                <div class="error-message" id="errorMessage">
+                    Payment could not be completed. Please try again.
+                </div>
+                <p><strong>Payment ID:</strong> <span id="paymentId">N/A</span></p>
+                <p><strong>Error Code:</strong> <span id="errorCode">PAYMENT_FAILED</span></p>
+            </div>
+
+            <div class="troubleshooting">
+                <h3>💡 Troubleshooting Tips</h3>
+                <ul>
+                    <li><strong>Check your card details:</strong> Ensure card number, expiry date, and CVV are correct</li>
+                    <li><strong>Sufficient funds:</strong> Make sure your account has enough funds available</li>
+                    <li><strong>Card restrictions:</strong> Some cards have online payment restrictions</li>
+                    <li><strong>Bank authorization:</strong> Your bank may have declined the transaction</li>
+                    <li><strong>Network issues:</strong> Check your internet connection and try again</li>
+                </ul>
+            </div>
+
+            <div class="action-buttons">
+                <a href="javascript:history.back()" class="btn btn-primary">Try Again</a>
+                <a href="/" class="btn btn-secondary">Return to Home</a>
+            </div>
+
+            <div class="contact-box">
+                <h4>Need Help?</h4>
+                <p>If you continue to experience issues, please contact our support team:</p>
+                <p>Email: <a href="mailto:support@tmvbusinesssolutions.com">support@tmvbusinesssolutions.com</a></p>
+                <p>Phone: <a href="tel:+27112345678">+27 11 234 5678</a></p>
+                <p>Operating Hours: Mon-Fri, 8:00 AM - 5:00 PM (SAST)</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get error details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentId = urlParams.get('payment_id') || urlParams.get('id') || 'N/A';
+        const errorMessage = urlParams.get('error') || urlParams.get('message');
+        const errorCode = urlParams.get('error_code') || 'PAYMENT_FAILED';
+        
+        // Display error information
+        document.getElementById('paymentId').textContent = paymentId;
+        document.getElementById('errorCode').textContent = errorCode;
+        
+        if (errorMessage) {
+            document.getElementById('errorMessage').textContent = errorMessage;
+        }
+        
+        // Log for debugging
+        console.log('❌ Payment failure page loaded');
+        console.log('Payment ID:', paymentId);
+        console.log('Error:', errorMessage);
+        console.log('Error Code:', errorCode);
+    </script>
+</body>
+</html>

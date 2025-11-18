@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - TMV Business Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease-out 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .success-icon svg {
+            width: 70px;
+            height: 70px;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .success-card h1 {
+            color: #2d3748;
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .success-card .subtitle {
+            color: #718096;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .payment-info {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #718096;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .next-steps {
+            background: #f0fff4;
+            border-left: 4px solid #4CAF50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: #4CAF50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .next-steps ol {
+            margin: 0;
+            padding-left: 20px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f7fafc;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <svg viewBox="0 0 52 52">
+                    <path d="M14 27l7.5 7.5L38 18"/>
+                </svg>
+            </div>
+
+            <h1>🎉 Payment Successful!</h1>
+            <p class="subtitle">Thank you for your payment to TMV Business Solutions</p>
+
+            <div class="payment-info" id="paymentInfo">
+                <div class="info-row">
+                    <span class="info-label">Reference Number:</span>
+                    <span class="info-value" id="referenceNumber">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Payment ID:</span>
+                    <span class="info-value" id="paymentId">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Amount Paid:</span>
+                    <span class="info-value" id="amount">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" style="color: #4CAF50;">✓ Completed</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Date & Time:</span>
+                    <span class="info-value" id="paymentDateTime"></span>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>📋 What Happens Next?</h3>
+                <ol>
+                    <li><strong>Email Confirmation:</strong> Check your inbox for a payment receipt and confirmation email.</li>
+                    <li><strong>Processing:</strong> Your order/registration will be processed within 1-2 business days.</li>
+                    <li><strong>Contact:</strong> Our team will reach out with next steps if required.</li>
+                    <li><strong>Support:</strong> Contact us if you have any questions about your payment.</li>
+                </ol>
+            </div>
+
+            <div class="action-buttons">
+                <a href="/" class="btn btn-primary">Return to Home</a>
+                <a href="/pages/client_login.html" class="btn btn-secondary">Go to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get payment details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const checkoutId = urlParams.get('checkout_id');
+        const paymentId = urlParams.get('payment_id') || urlParams.get('id');
+        const amount = urlParams.get('amount');
+        const currency = urlParams.get('currency') || 'ZAR';
+        const reference = urlParams.get('reference');
+        
+        // Function to fetch payment details from server
+        async function fetchPaymentDetails() {
+            try {
+                // Try to fetch by reference number first (new method)
+                if (reference) {
+                    console.log('🔍 Fetching payment details for reference:', reference);
+                    
+                    const response = await fetch(`/api/payments/reference/${reference}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const payment = data.payment;
+                        
+                        // Display payment information
+                        document.getElementById('referenceNumber').textContent = payment.referenceNumber || 'N/A';
+                        document.getElementById('paymentId').textContent = payment.checkoutId || payment.id || 'N/A';
+                        document.getElementById('amount').textContent = payment.formattedAmount || `${payment.currency} ${(payment.amount / 100).toFixed(2)}`;
+                        document.getElementById('paymentDateTime').textContent = new Date(payment.createdAt).toLocaleString();
+                        
+                        console.log('✅ Payment details loaded by reference:', payment);
+                        
+                        // Send email receipt
+                        await sendEmailReceipt(payment);
+                        return;
+                    }
+                }
+                
+                // Fallback: Try to fetch by checkout ID (legacy method)
+                if (checkoutId) {
+                    console.log('🔍 Fetching payment details for checkout:', checkoutId);
+                    
+                    const response = await fetch(`/api/payments/details/${checkoutId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const payment = data.payment;
+                        
+                        // Display payment information
+                        document.getElementById('referenceNumber').textContent = payment.referenceNumber || 'N/A';
+                        document.getElementById('paymentId').textContent = payment.checkoutId || payment.id || 'N/A';
+                        document.getElementById('amount').textContent = payment.formattedAmount || `${payment.currency} ${(payment.amount / 100).toFixed(2)}`;
+                        document.getElementById('paymentDateTime').textContent = new Date(payment.createdAt).toLocaleString();
+                        
+                        console.log('✅ Payment details loaded by checkout ID:', payment);
+                        
+                        // Send email receipt
+                        await sendEmailReceipt(payment);
+                        return;
+                    }
+                }
+                
+                // Fallback to URL parameters if API fails
+                document.getElementById('referenceNumber').textContent = reference || 'N/A';
+                document.getElementById('paymentId').textContent = checkoutId || paymentId || 'N/A';
+                
+                if (amount) {
+                    const formattedAmount = (parseInt(amount) / 100).toFixed(2);
+                    document.getElementById('amount').textContent = `${currency} ${formattedAmount}`;
+                } else {
+                    document.getElementById('amount').textContent = 'N/A';
+                }
+                
+                document.getElementById('paymentDateTime').textContent = new Date().toLocaleString();
+                
+            } catch (error) {
+                console.error('❌ Error fetching payment details:', error);
+                
+                // Display fallback information
+                document.getElementById('referenceNumber').textContent = reference || 'N/A';
+                document.getElementById('paymentId').textContent = checkoutId || paymentId || 'N/A';
+                document.getElementById('amount').textContent = amount ? `${currency} ${(parseInt(amount) / 100).toFixed(2)}` : 'N/A';
+                document.getElementById('paymentDateTime').textContent = new Date().toLocaleString();
+            }
+        }
+        
+        // Function to send email receipt
+        async function sendEmailReceipt(payment) {
+            try {
+                console.log('📧 Sending email receipt for payment:', payment.referenceNumber);
+                
+                const response = await fetch('/api/payments/send-receipt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        referenceNumber: payment.referenceNumber,
+                        checkoutId: payment.checkoutId,
+                        amount: payment.amount,
+                        currency: payment.currency,
+                        description: payment.description,
+                        createdAt: payment.createdAt
+                    })
+                });
+                
+                if (response.ok) {
+                    console.log('✅ Email receipt sent successfully');
+                } else {
+                    console.warn('⚠️ Failed to send email receipt');
+                }
+            } catch (error) {
+                console.error('❌ Error sending email receipt:', error);
+            }
+        }
+        
+        // Load payment details when page loads
+        document.addEventListener('DOMContentLoaded', fetchPaymentDetails);
+        
+        // Log for debugging
+        console.log('✅ Payment success page loaded');
+        console.log('Checkout ID:', checkoutId);
+        console.log('Payment ID:', paymentId);
+        console.log('Amount:', amount);
+        console.log('Reference:', reference);
+    </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobseeker Portal - TM Vanity Business Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <link rel="stylesheet" href="../styles/jobseeker-auth.css">
+    <script src="../scripts/navigation-utils.js"></script>
+    <script src="../scripts/jobseeker-api.js"></script>
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <a href="https://www.tmvbusinesssolutions.co.za" target="_blank" rel="noopener noreferrer">
+                <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+            </a>
+        </div>
+        
+        <div id="companyName">TM Vanity Business Solutions</div>
+        
+        <div>
+            <a href="../index.html">🏠 Home</a>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <div class="jobseeker-auth-container">
+        <h1 style="text-align: center; color: #333; margin-bottom: 1rem;">Jobseeker Portal</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Join our platform to find your dream job</p>
+        
+        <div id="alert" class="jobseeker-auth-alert" style="display: none;"></div>
+        
+        <div class="jobseeker-auth-toggle">
+            <div class="jobseeker-auth-toggle-btn active" onclick="showLogin()">Login</div>
+            <div class="jobseeker-auth-toggle-btn" onclick="showRegister()">Register</div>
+            <div class="jobseeker-auth-toggle-btn" onclick="showForgotPassword()">Forgot Password</div>
+        </div>
+        
+        <!-- Login Form -->
+        <div id="jobseekerLoginForm" class="jobseeker-auth-form-section active">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">Login to Your Account</h2>
+            
+            <form id="loginForm">
+                <div class="jobseeker-auth-form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                
+                <div class="jobseeker-auth-checkbox-group">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                
+                <button type="submit" id="loginBtn" class="jobseeker-auth-submit-btn">Login</button>
+            </form>
+        </div>
+        
+        <!-- Register Form -->
+        <div id="jobseekerRegisterForm" class="jobseeker-auth-form-section">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">Create Your Account</h2>
+            
+            <form id="registerForm">
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerTitle">Title</label>
+                    <select id="registerTitle" name="title" required>
+                        <option value="">Select Title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Prof">Prof</option>
+                    </select>
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerFirstName">First Name</label>
+                    <input type="text" id="registerFirstName" name="firstName" required>
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerLastName">Last Name</label>
+                    <input type="text" id="registerLastName" name="lastName" required>
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerPhone">Phone Number</label>
+                    <input type="tel" id="registerPhone" name="phone" required>
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerIDNumber">ID Number</label>
+                    <input type="text" id="registerIDNumber" name="idNumber" required maxlength="13">
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" name="password" required minlength="6">
+                </div>
+                
+                <div class="jobseeker-auth-form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <div class="jobseeker-auth-checkbox-group">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the Terms and Conditions and Privacy Policy</label>
+                </div>
+                
+                <button type="submit" id="registerBtn" class="jobseeker-auth-submit-btn">Create Account</button>
+            </form>
+        </div>
+        
+        <!-- Forgot Password Form -->
+        <div id="jobseekerForgotForm" class="jobseeker-auth-form-section">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">Reset Your Password</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Enter your email address and we'll send you a link to reset your password.</p>
+            
+            <form id="forgotPasswordForm">
+                <div class="jobseeker-auth-form-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" name="email" required>
+                </div>
+                
+                <button type="submit" id="forgotBtn" class="jobseeker-auth-submit-btn">Send Reset Link</button>
+            </form>
+            
+            <div class="jobseeker-auth-divider">
+                <span>or</span>
+            </div>
+            
+            <button class="jobseeker-auth-submit-btn" style="background: #6c757d;" onclick="showLogin()">Back to Login</button>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide form sections
+        function showLogin() {
+            document.getElementById('jobseekerLoginForm').classList.add('active');
+            document.getElementById('jobseekerRegisterForm').classList.remove('active');
+            document.getElementById('jobseekerForgotForm').classList.remove('active');
+            document.querySelectorAll('.jobseeker-auth-toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function showRegister() {
+            document.getElementById('jobseekerLoginForm').classList.remove('active');
+            document.getElementById('jobseekerRegisterForm').classList.add('active');
+            document.getElementById('jobseekerForgotForm').classList.remove('active');
+            document.querySelectorAll('.jobseeker-auth-toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function showForgotPassword() {
+            document.getElementById('jobseekerLoginForm').classList.remove('active');
+            document.getElementById('jobseekerRegisterForm').classList.remove('active');
+            document.getElementById('jobseekerForgotForm').classList.add('active');
+            document.querySelectorAll('.jobseeker-auth-toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        // Show alert messages
+        function showAlert(message, type = 'error') {
+            const alertDiv = document.getElementById('alert');
+            alertDiv.textContent = message;
+            alertDiv.className = `jobseeker-auth-alert ${type}`;
+            alertDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const loginData = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+            
+            JobseekerUtils.setLoading('loginBtn', true, 'Login');
+            
+            try {
+                const result = await JobseekerAPI.login(loginData);
+                
+                if (result.success) {
+                    showAlert('Login successful! Redirecting to dashboard...', 'success');
+                    setTimeout(() => {
+                        // Check if profile is complete
+                        if (result.data.user.profileComplete) {
+                            window.location.href = 'jobseeker_dashboard.html';
+                        } else {
+                            window.location.href = 'jobseeker_profile_setup.html';
+                        }
+                    }, 1000);
+                } else {
+                    showAlert(result.data.message || 'Login failed. Please check your credentials.');
+                }
+            } catch (error) {
+                showAlert('Network error. Please make sure the server is running.');
+            }
+            
+            JobseekerUtils.setLoading('loginBtn', false, 'Login');
+        });
+        
+        // Register form submission
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const registerData = {
+                title: formData.get('title'),
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                idNumber: formData.get('idNumber'),
+                password: formData.get('password'),
+                confirmPassword: formData.get('confirmPassword'),
+                agreeTerms: formData.get('agreeTerms')
+            };
+            
+            // Validation
+            if (registerData.password !== registerData.confirmPassword) {
+                showAlert('Passwords do not match!');
+                return;
+            }
+            
+            if (registerData.password.length < 6) {
+                showAlert('Password must be at least 6 characters long!');
+                return;
+            }
+            
+            if (!registerData.agreeTerms) {
+                showAlert('Please agree to the Terms and Conditions!');
+                return;
+            }
+            
+            JobseekerUtils.setLoading('registerBtn', true, 'Create Account');
+            
+            try {
+                const result = await JobseekerAPI.register(registerData);
+                
+                if (result.success) {
+                    showAlert('Registration successful! Please complete your profile.', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'jobseeker_profile_setup.html';
+                    }, 1000);
+                } else {
+                    showAlert(result.data.message || 'Registration failed. Please try again.');
+                }
+            } catch (error) {
+                showAlert('Network error. Please make sure the server is running.');
+            }
+            
+            JobseekerUtils.setLoading('registerBtn', false, 'Create Account');
+        });
+        
+        // Forgot password form submission
+        document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const email = formData.get('email');
+            
+            JobseekerUtils.setLoading('forgotBtn', true, 'Send Reset Link');
+            
+            try {
+                const result = await JobseekerAPI.forgotPassword(email);
+                
+                if (result.success) {
+                    showAlert('Password reset link sent to your email!', 'success');
+                    setTimeout(() => {
+                        showLogin();
+                    }, 2000);
+                } else {
+                    showAlert(result.data.message || 'Failed to send reset link. Please try again.');
+                }
+            } catch (error) {
+                showAlert('Network error. Please make sure the server is running.');
+            }
+            
+            JobseekerUtils.setLoading('forgotBtn', false, 'Send Reset Link');
+        });
+    </script>
+</body>
+</html>

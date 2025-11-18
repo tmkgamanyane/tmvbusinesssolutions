@@ -1,0 +1,364 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #1e40af;
+    --secondary-blue: #3b82f6;
+    --lighter-blue: #60a5fa;
+    --lightest-blue: #dbeafe;
+    --success-green: #10b981;
+    --error-red: #ef4444;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --background: #f3f4f6;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.auth-header {
+    background: var(--primary-blue);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.auth-header h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-header .subtitle {
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.auth-form {
+    display: none;
+    padding: 2rem;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h2 {
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px var(--lightest-blue);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-light);
+    font-size: 0.75rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.checkbox-group a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-light);
+}
+
+.auth-switch a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content h3 {
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* Login Tabs */
+.login-tabs {
+    display: flex;
+    background: var(--background);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.login-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+}
+
+.login-tab:hover {
+    background: white;
+    color: var(--primary-blue);
+}
+
+.login-tab.active {
+    background: white;
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+}
+
+.login-tab[data-tab="admin"].active {
+    color: #1e3a8a;
+    border-bottom-color: #1e3a8a;
+}
+
+.login-tab[data-tab="manager"].active {
+    color: #0f766e;
+    border-bottom-color: #0f766e;
+}
+
+.login-tab[data-tab="hr"].active {
+    color: #7c3aed;
+    border-bottom-color: #7c3aed;
+}
+
+.tab-content {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Role-specific button colors */
+.btn-admin {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+.btn-admin:hover {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+}
+
+.btn-manager {
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+}
+
+.btn-manager:hover {
+    background: linear-gradient(135deg, #0f766e, #0d9488);
+}
+
+.btn-hr {
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+.btn-hr:hover {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+
+.auth-info {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .auth-form h2 {
+        font-size: 1.25rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-form {
+        padding: 1.5rem;
+    }
+    
+    .login-tabs {
+        flex-direction: column;
+    }
+    
+    .login-tab {
+        border-bottom: 1px solid var(--border-color);
+        border-left: 3px solid transparent;
+        text-align: left;
+    }
+    
+    .login-tab.active {
+        border-bottom-color: var(--border-color);
+        border-left-color: var(--primary-blue);
+    }
+    
+    .login-tab[data-tab="admin"].active {
+        border-left-color: #1e3a8a;
+    }
+    
+    .login-tab[data-tab="manager"].active {
+        border-left-color: #0f766e;
+    }
+    
+    .login-tab[data-tab="hr"].active {
+        border-left-color: #7c3aed;
+    }
+}
+

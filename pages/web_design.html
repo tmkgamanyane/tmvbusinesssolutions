@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <header class="header">
+    <div>
+        <a href="https://www.tmvbusinesssolutions.co.za" target="_blank" rel="noopener noreferrer">
+            <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+        </a>
+    </div>
+        
+        <div id="companyName">TM Vanity Business Solutions</div>
+
+        <div>
+            <a href="client_login.html" id="loginButton">Login/Register</a>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav id="navigationMenu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="other.html">Other</a></li>
+            <li>
+                <a href="company_registration.html">Company Registration</a>
+                <!--<ul>
+                    <li><a href="new_company.html">New Company</a></li>
+                    <li><a href="co_operative.html">Co-Operative</a></li>
+                    <li><a href="security_company.html">Security Company</a></li>
+                    <li><a href="personal_liability_company.html">Personal Liability Company</a></li>
+                    <li><a href="holding_company.html">Holding Company</a></li>
+                    <li><a href="ngo.html">NGO</a></li>
+                    <li><a href="npo.html">NPO</a></li>
+                    <li><a href="npc.html">NPC</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="structured_packages.html">Structured Packages</a>
+                <!--<ul>
+                    <li><a href="bronze_package.html">Bronze Package</a></li>
+                    <li><a href="silver_package.html">Silver Package</a></li>
+                    <li><a href="gold_package.html">Gold Package</a></li>
+                    <li><a href="platinum_package.html">Platinum Package</a></li>
+                    <li><a href="diamond_package.html">Diamond Package</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="web_design.html">Web Design</a>
+                <!--<ul>
+                    <li><a href="app_development.html">App Development</a></li>
+                    <li><a href="web_development.html">Web Development</a></li>
+                    <li><a href="e_commerce_development.html">E-Commerce Development</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="it_infrastructure.html">IT Infrastructure</a>                
+            </li>
+            <li>
+                <a href="architectural_services.html">Architectural Services</a>
+                <!--<ul>
+                    <li><a href="residential_plans.html">Residential Plans</a></li>
+                    <li><a href="commercial_plans.html">Commercial Plans</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="sars_services.html">SARS Services</a>
+                <!--<ul>
+                    <li><a href="tax_registration.html">Tax Registration</a></li>
+                    <li><a href="vat_registration.html">Vat Registration</a></li>
+                    <li><a href="tax_vat_returns.html">Tax & Vat Returns</a></li>
+                    <li><a href="tax_vat_compliant.html">Tax & Vat Compliant</a></li>
+                    <li><a href="uif_paye_sdl_registration.html">UIF/PAYE/SDL Registration</a></li>
+                    <li><a href="import_export_license.html">Import & Export License</a></li>
+                    <li><a href="sars_representative.html">SARS Representative</a></li>
+                    <li><a href="custom_registration.html">Custom Registration</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="accounting_services.html">Accounting Services</a>                 
+            </li>   
+            <li>
+                <a href="business_consulting.html">Business Consulting</a>
+                <!--<ul>
+                    <li><a href="business_plans.html">Business Plans</a></li>
+                    <li><a href="business_profiles.html">Business Profiles</a></li>
+                    <li><a href="business_proposal.html">Business Proposal</a></li>
+                    <li><a href="market_research.html">Market Research</a></li>
+                    <li><a href="market_entry_analysis.html">Market Entry Analysis</a></li>
+                    <li><a href="advanced_business_consulting.html">Advanced Business Consulting</a></li>
+                    <li><a href="business_expansion_strategy.html">Business Expansion Strategy</a></li>
+                    <li><a href="competitor_analysis.html">Competitor Analysis</a></li>
+                    <li><a href="revenue_forecast.html">Revenue Forecast</a></li>
+                    <li><a href="growth_optimization.html">Growth Optimization</a></li>
+                    <li><a href="business_scaling_roadmap.html">Business Scaling Roadmap</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="branding_identity.html">Branding & Identity</a>
+                <!--<ul>
+                    <li><a href="professional_logo_design.html">Professional Logo Design</a></li>
+                    <li><a href="business_card_design.html">Business Card Design</a></li>
+                    <li><a href="graphics_design.html">Graphics Design</a></li>
+                    <li><a href="digital_banners.html">Digital Banners</a></li>
+                    <li><a href="pull_up_banners.html">Pull Up Banners</a></li>
+                    <li><a href="flyers.html">Flyers</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                    <li><a href="backdrop.html">Backdrop</a></li>
+                    <li><a href="social_media_branding.html">Social Media Branding</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="marketing_services.html">Marketing Services</a>
+                <!--<ul>
+                    <li><a href="google_ads_setup.html">Google Ads Setup</a></li>
+                    <li><a href="tik_tok_ads_setup.html">Tik Tok Ads Setup</a></li>
+                    <li><a href="facebook_ads_setup.html">Facebook Ads Setup</a></li>
+                    <li><a href="instagram_ads_setup.html">Instagram Ads Setup</a></li>
+                    <li><a href="x_twitter_ads_setup.html">X (Twitter) Ads Setup</a></li>
+                    <li><a href="emails_sms_marketing.html">Emails & SMS Marketing</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="social_media_growth.html">Social Media Growth</a>
+                <!--<ul>
+                    <li><a href="facebook_followers_boosting.html">Facebook Followers Boosting</a></li>
+                    <li><a href="instagram_followers_boosting.html">Instagram Followers Boosting</a></li>
+                    <li><a href="x_twitter_followers_boosting.html">X (Twitter) Followers Boosting</a></li>
+                    <li><a href="social_media_management.html">Social Media Management</a></li>
+                </ul>-->
+            </li>
+             <li>
+                <a href="jobseeker_dashboard.html">Careers</a>                
+            </li>   
+        </ul>
+    </nav>
+
+    <div class="guestname">
+        Welcome, Guest
+    </div>
+
+     <div class="web-design-container">
+        <header class="web-design-page-header">
+            <h1 class="web-design-page-title">Web Design & Development Services</h1>
+        </header>
+
+        <div><p class="web-design-subtitle"><br>Choose from our premium web services with flexible payment options to suit your needs</p></div>
+        
+        <div class="web-design-info-box-container">
+            <!-- App Development Box -->
+            <div class="web-design-info-box medium blue">
+                <div class="web-design-service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3><i class="fas fa-mobile-alt"></i> App Development</h3>
+                <div class="web-design-content-wrapper">
+                    <div class="web-design-features-list">
+                        <ul>
+                            <li>Cross-Platform App (Android+iOS)</li>                    
+                            <li>24/7 Dedicated Support Team</li>                    
+                            <li>E-Com/Booking Integration</li>                    
+                            <li>Full-Scale App Ecosystem</li>                    
+                            <li>AI & Machine Learning</li>                    
+                            <li>User Authentication</li>
+                            <li>Push Notifications</li>                    
+                            <li>Advanced Security</li>                     
+                            <li>Fully Custom App</li>                     
+                            <li>API Integration</li>
+                            <li>Enterprise App</li>                       
+                            <li>Real-Time Data</li>
+                            <li>Contact Form</li>      
+                            <li>Geo-Location</li>     
+                            <li>Multi-Vendor</li>                    
+                            <li>Simple UI</li>
+                            <li>Payments</li>
+                            <li class="web-design-price">Service Fee From R3 000.00/pm</li>
+                            <li class="web-design-price">Once Off Development Fee from R45 000.00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="web-design-payment-options">
+                        <h4><i class="fas fa-credit-card"></i> Choose Payment Options</h4>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-app-dev-option" data-onceoff="45000" data-recurring="3000" data-months="12" data-total="81000">
+                            <label>Option 1: Monthly Subscription</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R45 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>Monthly Recurring:</span>
+                                    <span class="web-design-amount">R3 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-app-dev-option" data-total="81000">
+                            <label>Option 2: Pay Upfront</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R45 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>12 Months x R3 000.00:</span>
+                                    <span class="web-design-amount">R36 000.00</span>
+                                </div>
+                                <div class="web-design-total">
+                                    <span>Total Amount:</span>
+                                    <span class="web-design-amount">R81 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="web-design-buttons">
+                        <button class="web-design-pay-now" onclick="webDesignPayNow('App Development', 'web-design-app-dev-option')">
+                            <i class="fas fa-lock"></i> Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Web Development Box -->
+            <div class="web-design-info-box small green">
+                <div class="web-design-service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
+                <div class="web-design-content-wrapper">
+                    <div class="web-design-features-list">
+                        <ul>
+                            <li>From Static Website To Unlimited Web Pages</li>
+                            <li>Fully Custom Web App/SaaS</li>
+                            <li>Enterprise Security</li>                   
+                            <li>Mobile Responsive</li>
+                            <li>Google Analytics</li>                    
+                            <li>Custom Features</li>
+                            <li>API Integrations</li>                    
+                            <li>Multi-Language</li>                    
+                            <li>Custom UI/UX</li>
+                            <li>AI/Automation</li>
+                            <li>Contact Form</li>
+                            <li>Custom Forms</li>                    
+                            <li>Cloud Hosting</li>
+                            <li>SEO (Basic)</li>
+                            <li>Support</li>                
+                            <li>Blog</li>
+                            <li>SEO</li>                                    
+                            <li class="web-design-price">Monthly Domain & Emails R350.00</li>
+                            <li class="web-design-price">Once Off Development Fee from R8 500.00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="web-design-payment-options">
+                        <h4><i class="fas fa-credit-card"></i> Choose Payment Options</h4>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-web-dev-option" data-onceoff="8500" data-recurring="350" data-months="12" data-total="12700">
+                            <label>Option 1: Monthly Subscription</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R8 500.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>Monthly Recurring:</span>
+                                    <span class="web-design-amount">R350.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-web-dev-option" data-total="12700">
+                            <label>Option 2: Pay Upfront</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R8 500.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>12 Months x R350.00:</span>
+                                    <span class="web-design-amount">R4 200.00</span>
+                                </div>
+                                <div class="web-design-total">
+                                    <span>Total Amount:</span>
+                                    <span class="web-design-amount">R12 700.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="web-design-buttons">
+                        <button class="web-design-pay-now" onclick="webDesignPayNow('Web Development', 'web-design-web-dev-option')">
+                            <i class="fas fa-lock"></i> Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- E-Commerce Development Box -->
+            <div class="web-design-info-box large purple">
+                <div class="web-design-service-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3><i class="fas fa-shopping-cart"></i> E-Commerce Development</h3>
+                <div class="web-design-content-wrapper">
+                    <div class="web-design-features-list">
+                        <ul>                    
+                            <li>Enterprise-Level E-Commerce Platform</li>
+                            <li>Global Payment & Tax Compliance</li>
+                            <li>AI Product Recommendations</li>
+                            <li>Mobile App Integration</li>
+                            <li>24/7 Dedicated Support</li>
+                            <li class="web-design-price">Monthly Domain & Emails R5 000.00</li>    
+                            <li class="web-design-price">Once Off Development Fee from R45 000.00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="web-design-payment-options">
+                        <h4><i class="fas fa-credit-card"></i> Choose Payment Options</h4>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-ecom-dev-option" data-onceoff="45000" data-recurring="5000" data-months="12" data-total="105000">
+                            <label>Option 1: Monthly Subscription</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R45 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>Monthly Recurring:</span>
+                                    <span class="web-design-amount">R5 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-ecom-dev-option" data-total="105000">
+                            <label>Option 2: Pay Upfront</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R45 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>12 Months x R5 000.00:</span>
+                                    <span class="web-design-amount">R60 000.00</span>
+                                </div>
+                                <div class="web-design-total">
+                                    <span>Total Amount:</span>
+                                    <span class="web-design-amount">R105 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="web-design-buttons">
+                        <button class="web-design-pay-now" onclick="webDesignPayNow('E-Commerce Development', 'web-design-ecom-dev-option')">
+                            <i class="fas fa-lock"></i> Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- App & Web Bundle Box -->
+            <div class="web-design-info-box medium orange">
+                <div class="web-design-service-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3><i class="fas fa-layer-group"></i> App & Web Bundle</h3>
+                <div class="web-design-content-wrapper">
+                    <div class="web-design-features-list">
+                        <ul>
+                            <li>App Development</li>
+                            <li>Web Development</li>
+                            <li>Android, IOS & AppGallery</li>
+                            <li>24/7 Support</li>
+                            <li class="web-design-price">Service Fee From R3 500.00/pm</li>
+                            <li class="web-design-price">Once Off Development Fee from R51 000.00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="web-design-payment-options">
+                        <h4><i class="fas fa-credit-card"></i> Choose Payment Options</h4>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-bundle-option" data-onceoff="51000" data-recurring="3500" data-months="12" data-total="93000">
+                            <label>Option 1: Monthly Subscription</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R51 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>Monthly Recurring:</span>
+                                    <span class="web-design-amount">R3 500.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-bundle-option" data-total="93000">
+                            <label>Option 2: Pay Upfront</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R51 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>12 Months x R3 500.00:</span>
+                                    <span class="web-design-amount">R42 000.00</span>
+                                </div>
+                                <div class="web-design-total">
+                                    <span>Total Amount:</span>
+                                    <span class="web-design-amount">R93 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="web-design-buttons">
+                        <button class="web-design-pay-now" onclick="webDesignPayNow('App & Web Bundle', 'web-design-bundle-option')">
+                            <i class="fas fa-lock"></i> Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- App & E-Commerce Bundle Box -->
+            <div class="web-design-info-box large red">
+                <div class="web-design-service-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h3><i class="fas fa-shopping-bag"></i> App & E-Commerce Bundle</h3>
+                <div class="web-design-content-wrapper">
+                    <div class="web-design-features-list">
+                        <ul>
+                            <li>App Development</li>                    
+                            <li>E-Commerce Development</li>
+                            <li>Android, IOS & AppGallery</li>
+                            <li>24/7 Support</li>
+                            <li class="web-design-price">Service Fee From R7 500.00/pm</li>
+                            <li class="web-design-price">Once Off Development Fee from R80 000.00</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="web-design-payment-options">
+                        <h4><i class="fas fa-credit-card"></i> Choose Payment Options</h4>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-ecom-bundle-option" data-onceoff="80000" data-recurring="7500" data-months="12" data-total="170000">
+                            <label>Option 1: Monthly Subscription</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R80 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>Monthly Recurring:</span>
+                                    <span class="web-design-amount">R7 500.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-ecom-bundle-option" data-total="170000">
+                            <label>Option 2: Pay Upfront</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R80 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>12 Months x R7 500.00:</span>
+                                    <span class="web-design-amount">R90 000.00</span>
+                                </div>
+                                <div class="web-design-total">
+                                    <span>Total Amount:</span>
+                                    <span class="web-design-amount">R170 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="web-design-buttons">
+                        <button class="web-design-pay-now" onclick="webDesignPayNow('App & E-Commerce Bundle', 'web-design-ecom-bundle-option')">
+                            <i class="fas fa-lock"></i> Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Customized Bundle Box -->
+            <div class="web-design-info-box small teal">
+                <div class="web-design-service-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3><i class="fas fa-cogs"></i> Customized Bundle</h3>
+                <div class="web-design-content-wrapper">
+                    <div class="web-design-features-list">
+                        <ul>
+                            <li>App Development</li>
+                            <li>Web Development</li>
+                            <li>E-Commerce Development</li>
+                            <li>App & Web Bundle</li>
+                            <li>App & E-Commerce Bundle</li>
+                            <li>Customized Bundle</li>
+                            <li class="web-design-price">Contact us for pricing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="web-design-payment-options">
+                        <h4><i class="fas fa-credit-card"></i> Choose Payment Options</h4>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-custom-option" data-onceoff="100000" data-recurring="10000" data-months="12" data-total="220000">
+                            <label>Option 1: Monthly Subscription</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R100 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>Monthly Recurring:</span>
+                                    <span class="web-design-amount">R10 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="web-design-option" onclick="webDesignSelectOption(this)">
+                            <input type="checkbox" name="web-design-custom-option" data-total="220000">
+                            <label>Option 2: Pay Upfront</label>
+                            <div class="web-design-option-details">
+                                <div class="web-design-once-off">
+                                    <span>Once Off Payment:</span>
+                                    <span class="web-design-amount">R100 000.00</span>
+                                </div>
+                                <div class="web-design-monthly">
+                                    <span>12 Months x R10 000.00:</span>
+                                    <span class="web-design-amount">R120 000.00</span>
+                                </div>
+                                <div class="web-design-total">
+                                    <span>Total Amount:</span>
+                                    <span class="web-design-amount">R220 000.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="web-design-buttons">
+                        <button class="web-design-pay-now" onclick="webDesignPayNow('Customized Bundle', 'web-design-custom-option')">
+                            <i class="fas fa-lock"></i> Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Payment Modal -->
+    <div class="web-design-payment-modal" id="paymentModal">
+        <div class="web-design-payment-modal-content">
+            <span class="web-design-payment-modal-close" onclick="closePaymentModal()">&times;</span>
+            <h2 class="web-design-payment-modal-title">Complete Your Payment</h2>
+            
+            <div class="web-design-payment-summary" id="paymentSummary">
+                <!-- Payment summary will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="web-design-payment-methods">
+                <div class="web-design-payment-method selected" data-method="card">
+                    Credit Card
+                </div>
+                <div class="web-design-payment-method" data-method="eft">
+                    EFT/Bank Transfer
+                </div>
+                <div class="web-design-payment-method" data-method="paypal">
+                    PayPal
+                </div>
+            </div>
+            
+            <!-- Credit Card Form -->
+            <div id="cardPaymentForm">
+                <div class="web-design-payment-form-group">
+                    <label class="web-design-payment-form-label">Card Number</label>
+                    <input type="text" class="web-design-payment-form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
+                    <div class="web-design-payment-error" id="cardNumberError">Please enter a valid card number</div>
+                </div>
+                
+                <div class="web-design-payment-form-row">
+                    <div class="web-design-payment-form-group">
+                        <label class="web-design-payment-form-label">Expiry Date</label>
+                        <input type="text" class="web-design-payment-form-input" placeholder="MM/YY" id="cardExpiry">
+                        <div class="web-design-payment-error" id="cardExpiryError">Please enter a valid expiry date</div>
+                    </div>
+                    
+                    <div class="web-design-payment-form-group">
+                        <label class="web-design-payment-form-label">CVV</label>
+                        <input type="text" class="web-design-payment-form-input" placeholder="123" id="cardCvv">
+                        <div class="web-design-payment-error" id="cardCvvError">Please enter a valid CVV</div>
+                    </div>
+                </div>
+                
+                <div class="web-design-payment-form-group">
+                    <label class="web-design-payment-form-label">Cardholder Name</label>
+                    <input type="text" class="web-design-payment-form-input" placeholder="John Doe" id="cardName">
+                    <div class="web-design-payment-error" id="cardNameError">Please enter cardholder name</div>
+                </div>
+                
+                <button type="button" class="web-design-payment-submit-btn" onclick="processCardPayment()">Pay Now</button>
+            </div>
+            
+            <!-- EFT Payment Instructions -->
+            <div id="eftPaymentForm" class="web-design-payment-instructions">
+                <h4>EFT/Bank Transfer Instructions</h4>
+                <p>Please make a transfer to the following account details:</p>
+                
+                <ul>
+                    <li><strong>Bank:</strong> ABSA</li>
+                    <li><strong>Account Name:</strong> TM Vanity Business Solutions</li>
+                    <li><strong>Account Number:</strong> 1234 5678 9012</li>
+                    <li><strong>Branch Code:</strong> 632 005</li>
+                    <li><strong>Reference:</strong> Your Name + Invoice #INV-<span id="invoiceNumber"></span></li>
+                </ul>
+                
+                <p>Once payment is made, please email proof of payment to <a href="mailto:payments@tmvbusinesssolutions.co.za">payments@tmvbusinesssolutions.co.za</a></p>
+                
+                <button type="button" class="web-design-payment-submit-btn" onclick="confirmEFTPayment()">I've Made the EFT Payment</button>
+            </div>
+            
+            <!-- PayPal Payment Instructions -->
+            <div id="paypalPaymentForm" class="web-design-payment-instructions">
+                <h4>PayPal Payment Instructions</h4>
+                <p>You will be redirected to PayPal to complete your payment.</p>
+                <p>Click the button below to proceed to PayPal:</p>
+                
+                <button type="button" class="web-design-payment-submit-btn" onclick="redirectToPayPal()">Proceed to PayPal</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="web-design-cart-notification" id="web-design-cart-notification">
+        <i class="fas fa-check-circle"></i> Item added to cart successfully!
+    </div>
+
+
+    <footer>
+        <div class="section">
+            <h4>Contact</h4>
+            <p>Tel: 087 123 4567</p>
+            <p>Cell: 081 253 7967</p>
+            <p>Email: <a href="mailto:sales@tmvbusinesssolutions.co.za">sales@tmvbusinesssolutions.co.za</a></p>
+            <p>Email: <a href="mailto:info@tmvbusinesssolutions.co.za">info@tmvbusinesssolutions.co.za</a></p>
+        </div>
+        <div class="section">
+            <h4>Address</h4>
+            <p>186 Frikkie De Beer Street</p>
+            <p>Menlyn Place</p>
+            <p>Menlyn</p>
+            <p>0063</p>
+        </div>
+        <div class="section">
+            <h4>Important Links</h4>
+            <p><a href="legal.html">Legal</a></p>
+            <p><a href="popia_act.html">POPIA Act</a></p>
+            <p><a href="cipc.html">CIPC</a></p>
+            <p><a href="sars.html">SARS</a></p>
+        </div>
+        <div class="section">
+            <h4>Social Media</h4>
+            <p><a href="https://www.facebook.com" target="_blank">Facebook</a></p>
+            <p><a href="https://www.twitter.com" target="_blank">Twitter</a></p>
+            <p><a href="https://www.instagram.com" target="_blank">Instagram</a></p>
+        </div>
+        <div class="section">
+            <h4>Subscribe</h4>
+            <form class="subscribe-form">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Last Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Contact No.">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="../scripts/api.js" defer></script>
+    <script src="../scripts/auth.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
+    <script src="../scripts/auth-check.js"></script>
+
+    <script>
+       let selectedService = null;
+        let selectedOption = null;
+        let selectedPaymentMethod = 'card';
+
+        // Function to select an option
+        function webDesignSelectOption(element) {
+            const options = document.querySelectorAll(`input[name="${element.querySelector('input').name}"]`);
+            options.forEach(opt => {
+                opt.checked = false;
+                opt.parentElement.classList.remove('selected');
+            });
+            
+            element.querySelector('input').checked = true;
+            element.classList.add('selected');
+            
+            selectedOption = element.querySelector('input');
+        }
+
+        // Function to handle pay now
+        function webDesignPayNow(serviceName, optionName) {
+            const selected = document.querySelector(`input[name="${optionName}"]:checked`);
+            
+            if (!selected) {
+                alert('Please select a payment option first.');
+                return;
+            }
+            
+            selectedService = serviceName;
+            selectedOption = selected;
+            
+            openPaymentModal();
+        }
+
+        // Function to open payment modal
+        function openPaymentModal() {
+            if (!selectedService || !selectedOption) {
+                alert('Please select a service and payment option first.');
+                return;
+            }
+
+            // Update payment summary
+            updatePaymentSummary();
+
+            // Generate invoice number
+            document.getElementById('invoiceNumber').textContent = Math.floor(100000 + Math.random() * 900000);
+
+            // Show modal
+            document.getElementById('paymentModal').style.display = 'flex';
+
+            // Reset to card payment by default
+            selectPaymentMethod('card');
+        }
+
+        // Function to close payment modal
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Function to update payment summary
+        function updatePaymentSummary() {
+            const paymentSummary = document.getElementById('paymentSummary');
+            
+            let summaryHTML = '<h3>Order Summary</h3>';
+            summaryHTML += `
+                <div class="web-design-payment-summary-item">
+                    <span>Service:</span>
+                    <span>${selectedService}</span>
+                </div>
+            `;
+            
+            if (selectedOption.getAttribute('data-onceoff')) {
+                summaryHTML += `
+                    <div class="web-design-payment-summary-item">
+                        <span>Once Off Payment:</span>
+                        <span>R${parseInt(selectedOption.getAttribute('data-onceoff')).toLocaleString()}</span>
+                    </div>
+                `;
+            }
+            
+            if (selectedOption.getAttribute('data-recurring')) {
+                summaryHTML += `
+                    <div class="web-design-payment-summary-item">
+                        <span>Monthly Recurring:</span>
+                        <span>R${parseInt(selectedOption.getAttribute('data-recurring')).toLocaleString()}</span>
+                    </div>
+                `;
+            }
+            
+            summaryHTML += `
+                <div class="web-design-payment-summary-item web-design-payment-summary-total">
+                    <span>Total Amount:</span>
+                    <span>R${parseInt(selectedOption.getAttribute('data-total')).toLocaleString()}</span>
+                </div>
+            `;
+
+            paymentSummary.innerHTML = summaryHTML;
+        }
+
+        // Function to select payment method
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+
+            // Update UI
+            document.querySelectorAll('.web-design-payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            document.querySelector(`.web-design-payment-method[data-method="${method}"]`).classList.add('selected');
+
+            // Show appropriate form
+            document.getElementById('cardPaymentForm').style.display = 'none';
+            document.getElementById('eftPaymentForm').style.display = 'none';
+            document.getElementById('paypalPaymentForm').style.display = 'none';
+
+            if (method === 'card') {
+                document.getElementById('cardPaymentForm').style.display = 'block';
+            } else if (method === 'eft') {
+                document.getElementById('eftPaymentForm').style.display = 'block';
+            } else if (method === 'paypal') {
+                document.getElementById('paypalPaymentForm').style.display = 'block';
+            }
+        }
+
+        // Function to process card payment
+        // Function to process card payment with enhanced Yoco integration
+        function processCardPayment() {
+            if (!selectedService || !selectedOption) {
+                alert('Please select a web design service before proceeding to payment.');
+                return;
+            }
+
+            // Get total amount in cents for Yoco (values are already in cents)
+            const totalAmount = parseInt(selectedOption.getAttribute('data-total'));
+            const amountInCents = totalAmount; // Already in cents from data attributes
+            
+            // Prepare service description
+            const description = `Web Design: ${selectedService}`;
+            
+            // Prepare metadata
+            const metadata = {
+                service_type: 'web_design',
+                service_name: selectedService,
+                onceoff_amount: selectedOption.getAttribute('data-onceoff') || null,
+                recurring_amount: selectedOption.getAttribute('data-recurring') || null,
+                months: selectedOption.getAttribute('data-months') || null,
+                total_amount: totalAmount,
+                customer_type: 'website_customer',
+                page_source: 'web_design_page'
+            };
+
+            console.log('🚀 Starting Yoco payment for Web Design:', {
+                amount: amountInCents,
+                description,
+                metadata
+            });
+
+            // Close current modal and redirect to Yoco checkout
+            closePaymentModal();
+            
+            // Use the enhanced payment gateway (redirects to Yoco)
+            if (window.yocoPayment) {
+                window.yocoPayment.openPaymentModal({
+                    amount: amountInCents,
+                    currency: 'ZAR',
+                    description: description,
+                    metadata: metadata,
+                    onSuccess: function(result) {
+                        console.log('✅ Yoco checkout created, redirecting...', result);
+                        // Reset selections after successful checkout creation
+                        resetSelectionsAfterPayment();
+                    },
+                    onError: function(error) {
+                        console.error('❌ Payment failed:', error);
+                        alert('Payment failed: ' + error.message + '\nPlease try again or contact support.');
+                    }
+                });
+            } else {
+                console.error('❌ Yoco payment gateway not loaded');
+                alert('Payment system not available. Please refresh the page and try again.');
+            }
+        }
+
+        // Helper function to reset selections after payment
+        function resetSelectionsAfterPayment() {
+            // Reset selections
+            document.querySelectorAll('.web-design-option input').forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.parentElement.classList.remove('selected');
+            });
+
+            // Reset variables
+            selectedService = null;
+            selectedOption = null;
+            
+            console.log('✅ Selections reset after payment');
+        }
+
+        // Function to confirm EFT payment
+        function confirmEFTPayment() {
+            const totalAmount = parseInt(selectedOption.getAttribute('data-total'));
+            alert(`Thank you for confirming your EFT payment of R${totalAmount.toLocaleString()}. We will process your order once payment is received. Please email proof of payment to payments@tmvbusinesssolutions.co.za`);
+            closePaymentModal();
+
+            // Reset selections
+            document.querySelectorAll('.web-design-option input').forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.parentElement.classList.remove('selected');
+            });
+            
+            selectedService = null;
+            selectedOption = null;
+        }
+
+        // Function to redirect to PayPal
+        function redirectToPayPal() {
+            const totalAmount = parseInt(selectedOption.getAttribute('data-total'));
+            alert(`You would now be redirected to PayPal to complete your payment of R${totalAmount.toLocaleString()}. This is a simulation.`);
+            closePaymentModal();
+
+            // Reset selections
+            document.querySelectorAll('.web-design-option input').forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.parentElement.classList.remove('selected');
+            });
+            
+            selectedService = null;
+            selectedOption = null;
+        }
+
+        // Payment method selection
+        document.querySelectorAll('.web-design-payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                const methodType = this.getAttribute('data-method');
+                selectPaymentMethod(methodType);
+            });
+        });
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const paymentModal = document.getElementById('paymentModal');
+            if (event.target === paymentModal) {
+                closePaymentModal();
+            }
+        };
+    </script>
+
+    <!-- Enhanced Yoco Payment Integration -->
+    <script src="../assets/payment-modal.js"></script>   
+</body>
+</html>

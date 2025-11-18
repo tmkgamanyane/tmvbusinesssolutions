@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users & Permissions - TMV Business Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <style>
+        .user-management-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .users-grid {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .user-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .user-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .user-info h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+
+        .user-info p {
+            margin: 3px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .role-administrator {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .role-management {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .role-hr_recruitment {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .edit-btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .edit-btn:hover {
+            background: #1565c0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 100%;
+            padding: 30px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .permissions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .permission-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1976d2;
+        }
+
+        .permission-section h3 {
+            margin: 0 0 15px 0;
+            color: #1976d2;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .permission-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .permission-item label {
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            user-select: none;
+        }
+
+        .permission-item label:hover {
+            color: #1976d2;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .btn-save {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-save:hover {
+            background: #43a047;
+        }
+
+        .btn-cancel {
+            background: #757575;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-cancel:hover {
+            background: #616161;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .user-role-info {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .user-role-info p {
+            margin: 5px 0;
+            color: #856404;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-management-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h1>Manage Users & Permissions</h1>
+            <button onclick="window.location.href='admin_dashboard.html'" style="padding: 10px 20px; background: #666; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                ← Back to Dashboard
+            </button>
+        </div>
+
+        <div id="usersContainer" class="users-grid">
+            <div class="loading">Loading users...</div>
+        </div>
+    </div>
+
+    <!-- Edit Permissions Modal -->
+    <div id="permissionsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit User Permissions</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+
+            <div class="user-role-info" id="userRoleInfo">
+                <p><strong>User:</strong> <span id="modalUserName"></span></p>
+                <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
+                <p><strong>Role:</strong> <span id="modalUserRole"></span></p>
+            </div>
+
+            <div class="permissions-grid">
+                <!-- Job Posting Permissions -->
+                <div class="permission-section">
+                    <h3>📝 Job Posting</h3>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canCreatePost">
+                        <label for="perm_canCreatePost">Create Post</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canWritePost">
+                        <label for="perm_canWritePost">Write Post</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canEditPost">
+                        <label for="perm_canEditPost">Edit Post</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canDeletePost">
+                        <label for="perm_canDeletePost">Delete Post</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canAssignPost">
+                        <label for="perm_canAssignPost">Assign Post</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canTransferPost">
+                        <label for="perm_canTransferPost">Transfer Post</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canWithdrawPost">
+                        <label for="perm_canWithdrawPost">Withdraw Post</label>
+                    </div>
+                </div>
+
+                <!-- Application Management -->
+                <div class="permission-section">
+                    <h3>👥 Applications</h3>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canViewApplications">
+                        <label for="perm_canViewApplications">View Applications</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canReviewApplications">
+                        <label for="perm_canReviewApplications">Review Applications</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canShortlistCandidates">
+                        <label for="perm_canShortlistCandidates">Shortlist Candidates</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canRejectCandidates">
+                        <label for="perm_canRejectCandidates">Reject Candidates</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canScheduleInterviews">
+                        <label for="perm_canScheduleInterviews">Schedule Interviews</label>
+                    </div>
+                </div>
+
+                <!-- Reporting -->
+                <div class="permission-section">
+                    <h3>📊 Reporting</h3>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportApplied">
+                        <label for="perm_canPullReportApplied">Report: Applied Candidates</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportShortlisted">
+                        <label for="perm_canPullReportShortlisted">Report: Shortlisted</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportRejected">
+                        <label for="perm_canPullReportRejected">Report: Rejected</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportFull">
+                        <label for="perm_canPullReportFull">Report: Full Report</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canExportReports">
+                        <label for="perm_canExportReports">Export Reports</label>
+                    </div>
+                </div>
+
+                <!-- Admin Functions -->
+                <div class="permission-section">
+                    <h3>⚙️ Administration</h3>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canAddUsers">
+                        <label for="perm_canAddUsers">Add Users</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canDeleteUsers">
+                        <label for="perm_canDeleteUsers">Delete Users</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canResetPasswords">
+                        <label for="perm_canResetPasswords">Reset Passwords</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canManageSettings">
+                        <label for="perm_canManageSettings">Manage Settings</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canManagePermissions">
+                        <label for="perm_canManagePermissions">Manage Permissions</label>
+                    </div>
+                </div>
+
+                <!-- Analytics -->
+                <div class="permission-section">
+                    <h3>📈 Analytics</h3>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canViewAnalytics">
+                        <label for="perm_canViewAnalytics">View Analytics</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canViewAllJobs">
+                        <label for="perm_canViewAllJobs">View All Jobs</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canMonitorPerformance">
+                        <label for="perm_canMonitorPerformance">Monitor Performance</label>
+                    </div>
+                </div>
+
+                <!-- Management -->
+                <div class="permission-section">
+                    <h3>👔 Management</h3>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canAssignTasks">
+                        <label for="perm_canAssignTasks">Assign Tasks</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canApproveJobs">
+                        <label for="perm_canApproveJobs">Approve Jobs</label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="perm_canManageTeam">
+                        <label for="perm_canManageTeam">Manage Team</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-save" onclick="savePermissions()">Save Permissions</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/admin_manage_users.js"></script>
+</body>
+</html>

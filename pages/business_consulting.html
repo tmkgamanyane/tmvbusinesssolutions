@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Consulting</title>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">    
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <header class="header">
+    <div>
+        <a href="https://www.tmvbusinesssolutions.co.za" target="_blank" rel="noopener noreferrer">
+            <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+        </a>
+    </div>
+        <div id="companyName">TM Vanity Business Solutions</div>
+        <div>
+            <a href="client_login.html" id="loginButton">Login/Register</a>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav id="navigationMenu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="other.html">Other</a></li>
+            <li><a href="company_registration.html">Company Registration</a></li>
+            <li><a href="structured_packages.html">Structured Packages</a></li>
+            <li><a href="web_design.html">Web Design</a></li>
+            <li><a href="it_infrastructure.html">IT Infrastructure</a></li>
+            <li><a href="architectural_services.html">Architectural Services</a></li>
+            <li><a href="sars_services.html">SARS Services</a></li>
+            <li><a href="accounting_services.html">Accounting Services</a></li>
+            <li><a href="business_consulting.html">Business Consulting</a></li>
+            <li><a href="branding_identity.html">Branding & Identity</a></li>
+            <li><a href="marketing_services.html">Marketing Services</a></li>
+            <li><a href="social_media_growth.html">Social Media Growth</a></li>
+             <li><a href="jobseeker_dashboard.html">Careers</a></li>   
+        </ul>
+    </nav>
+
+    <div class="guestname">
+        Welcome, Guest
+    </div>
+
+     <div class="business-consulting-container">
+        <h1 class="business-consulting-title">Business Consulting Services</h1>
+        
+        <div class="business-consulting-grid">
+            <!-- Custom Business Plan -->
+            <div class="business-consulting-box">
+                <div class="business-consulting-header">
+                    <div class="business-consulting-title">Custom Business Plan</div>
+                </div>
+                <div class="business-consulting-body">
+                    <div class="business-consulting-description">
+                        Get a tailored business plan designed specifically for your company's needs and goals. Our experts will work with you to create a comprehensive roadmap for success.
+                    </div>
+                    
+                    <div class="business-consulting-included-features" id="businessPlanFeatures">
+                        <div class="business-consulting-included-title">What's Included in Your Business Plan:</div>
+                        <div class="business-consulting-features-grid">
+                            <div class="business-consulting-feature-item">Executive Summary</div>
+                            <div class="business-consulting-feature-item">Market Analysis & Research</div>
+                            <div class="business-consulting-feature-item">Financial Projections (3-5 years)</div>
+                            <div class="business-consulting-feature-item">Revenue Forecasting</div>
+                            <div class="business-consulting-feature-item">Cash Flow Analysis</div>
+                            <div class="business-consulting-feature-item">Competitive Analysis</div>
+                            <div class="business-consulting-feature-item">Marketing Strategy</div>
+                            <div class="business-consulting-feature-item">Operations Plan</div>
+                            <div class="business-consulting-feature-item">Risk Assessment</div>
+                            <div class="business-consulting-feature-item">Growth Strategy & Milestones</div>
+                            <div class="business-consulting-feature-item">Investment Requirements</div>
+                            <div class="business-consulting-feature-item">Break-even Analysis</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="business-consulting-footer">
+                    <div class="business-consulting-checkbox-container">
+                        <input type="checkbox" id="service1" class="business-consulting-checkbox" onchange="toggleBusinessPlanFeatures()">
+                        <label for="service1" class="business-consulting-checkbox-label">Select Business Plan</label>
+                    </div>
+                    <button class="business-consulting-request-quote-btn" id="requestQuoteBtn" onclick="openQuoteModal()">Quote Me</button>
+                </div>
+            </div>
+            
+            <!-- Beneficial Ownership -->
+            <div class="business-consulting-box">
+                <div class="business-consulting-header">
+                    <div class="business-consulting-title">Beneficial Ownership</div>
+                </div>
+                <div class="business-consulting-body">
+                    <div class="business-consulting-description">
+                        Register and document the beneficial owners of your company as required by regulations. Ensure compliance and transparency in your business structure.
+                    </div>
+                </div>
+                <div class="business-consulting-footer">
+                    <div class="business-consulting-price">R650</div>
+                    <div class="business-consulting-checkbox-container">
+                        <input type="checkbox" id="service2" class="business-consulting-checkbox" data-price="650" onchange="updateTotal()">
+                        <label for="service2" class="business-consulting-checkbox-label">Select</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CSD Registration -->
+            <div class="business-consulting-box">
+                <div class="business-consulting-header">
+                    <div class="business-consulting-title">CSD Registration</div>
+                </div>
+                <div class="business-consulting-body">
+                    <div class="business-consulting-description">
+                        Central Supplier Database registration to enable your business to supply goods and services to government institutions and agencies.
+                    </div>
+                </div>
+                <div class="business-consulting-footer">
+                    <div class="business-consulting-price">R350</div>
+                    <div class="business-consulting-checkbox-container">
+                        <input type="checkbox" id="service3" class="business-consulting-checkbox" data-price="350" onchange="updateTotal()">
+                        <label for="service3" class="business-consulting-checkbox-label">Select</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- B-BBEE Certificate -->
+            <div class="business-consulting-box">
+                <div class="business-consulting-header">
+                    <div class="business-consulting-title">B-BBEE Certificate</div>
+                </div>
+                <div class="business-consulting-body">
+                    <div class="business-consulting-description">
+                        Obtain your Broad-Based Black Economic Empowerment certificate to enhance your business's competitiveness and meet procurement requirements.
+                    </div>
+                </div>
+                <div class="business-consulting-footer">
+                    <div class="business-consulting-price">R450</div>
+                    <div class="business-consulting-checkbox-container">
+                        <input type="checkbox" id="service4" class="business-consulting-checkbox" data-price="450" onchange="updateTotal()">
+                        <label for="service4" class="business-consulting-checkbox-label">Select</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SARS Tax Clearance -->
+            <div class="business-consulting-box">
+                <div class="business-consulting-header">
+                    <div class="business-consulting-title">SARS Tax Clearance</div>
+                </div>
+                <div class="business-consulting-body">
+                    <div class="business-consulting-description">
+                        Assistance with obtaining your Tax Clearance Certificate from the South African Revenue Service, confirming your tax compliance status.
+                    </div>
+                </div>
+                <div class="business-consulting-footer">
+                    <div class="business-consulting-price">R550</div>
+                    <div class="business-consulting-checkbox-container">
+                        <input type="checkbox" id="service5" class="business-consulting-checkbox" data-price="550" onchange="updateTotal()">
+                        <label for="service5" class="business-consulting-checkbox-label">Select</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COIDA Registration -->
+            <div class="business-consulting-box">
+                <div class="business-consulting-header">
+                    <div class="business-consulting-title">COIDA Registration</div>
+                </div>
+                <div class="business-consulting-body">
+                    <div class="business-consulting-description">
+                        Register with the Compensation Fund and obtain your Letter of Good Standing, which is mandatory for businesses with employees.
+                    </div>
+                </div>
+                <div class="business-consulting-footer">
+                    <div class="business-consulting-price">R780</div>
+                    <div class="business-consulting-checkbox-container">
+                        <input type="checkbox" id="service6" class="business-consulting-checkbox" data-price="780" onchange="updateTotal()">
+                        <label for="service6" class="business-consulting-checkbox-label">Select</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Total Section -->
+        <div class="business-consulting-cart-container">
+            <h2 class="business-consulting-cart-title">Total</h2>
+            <div class="business-consulting-cart-items" id="cartItems">
+                <div class="business-consulting-empty-cart">No services selected yet</div>
+            </div>
+            <div class="business-consulting-cart-total">
+                <div>Total:</div>
+                <div id="cartTotal">R0</div>
+            </div>
+            <div class="business-consulting-cart-buttons">
+                <button class="business-consulting-pay-btn" onclick="openPaymentModal()">Pay</button>
+            </div>
+            <div class="business-consulting-success-message" id="successMessage">
+                Your request has been submitted successfully!
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quote Modal -->
+    <div class="business-consulting-modal" id="quoteModal">
+        <div class="business-consulting-modal-content">
+            <h2 class="business-consulting-modal-title">Request a Custom Business Plan Quote</h2>
+            <div class="business-consulting-form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+            <div class="business-consulting-form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="business-consulting-form-group">
+                <label for="businessDescription">Business Description</label>
+                <textarea id="businessDescription" placeholder="Please describe your business and requirements"></textarea>
+            </div>
+            <div class="business-consulting-modal-buttons">
+                <button class="business-consulting-cancel-btn" onclick="closeQuoteModal()">Cancel</button>
+                <button class="business-consulting-submit-btn" onclick="submitQuoteRequest()">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="business-consulting-payment-modal" id="paymentModal">
+        <div class="business-consulting-payment-modal-content">
+            <span class="business-consulting-payment-modal-close" onclick="closePaymentModal()">&times;</span>
+            <h2 class="business-consulting-payment-modal-title">Complete Your Payment</h2>
+            
+            <div class="business-consulting-payment-summary" id="paymentSummary">
+                <!-- Payment summary will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="business-consulting-payment-methods">
+                <div class="business-consulting-payment-method selected" data-method="card">
+                    Credit Card
+                </div>
+                <div class="business-consulting-payment-method" data-method="eft">
+                    EFT/Bank Transfer
+                </div>
+                <div class="business-consulting-payment-method" data-method="paypal">
+                    PayPal
+                </div>
+            </div>
+            
+            <!-- Credit Card Form -->
+            <div id="cardPaymentForm">
+                <div class="business-consulting-payment-form-group">
+                    <label class="business-consulting-payment-form-label">Card Number</label>
+                    <input type="text" class="business-consulting-payment-form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
+                    <div class="business-consulting-payment-error" id="cardNumberError">Please enter a valid card number</div>
+                </div>
+                
+                <div class="business-consulting-payment-form-row">
+                    <div class="business-consulting-payment-form-group">
+                        <label class="business-consulting-payment-form-label">Expiry Date</label>
+                        <input type="text" class="business-consulting-payment-form-input" placeholder="MM/YY" id="cardExpiry">
+                        <div class="business-consulting-payment-error" id="cardExpiryError">Please enter a valid expiry date</div>
+                    </div>
+                    
+                    <div class="business-consulting-payment-form-group">
+                        <label class="business-consulting-payment-form-label">CVV</label>
+                        <input type="text" class="business-consulting-payment-form-input" placeholder="123" id="cardCvv">
+                        <div class="business-consulting-payment-error" id="cardCvvError">Please enter a valid CVV</div>
+                    </div>
+                </div>
+                
+                <div class="business-consulting-payment-form-group">
+                    <label class="business-consulting-payment-form-label">Cardholder Name</label>
+                    <input type="text" class="business-consulting-payment-form-input" placeholder="John Doe" id="cardName">
+                    <div class="business-consulting-payment-error" id="cardNameError">Please enter cardholder name</div>
+                </div>
+                
+                <button type="button" class="business-consulting-payment-submit-btn" onclick="processCardPayment()">Pay Now</button>
+            </div>
+            
+            <!-- EFT Payment Instructions -->
+            <div id="eftPaymentForm" class="business-consulting-payment-instructions">
+                <h4>EFT/Bank Transfer Instructions</h4>
+                <p>Please make a transfer to the following account details:</p>
+                <ul>
+                    <li><strong>Bank:</strong> ABSA</li>
+                    <li><strong>Account Name:</strong> TM Vanity Business Solutions</li>
+                    <li><strong>Account Number:</strong> 1234 5678 9012</li>
+                    <li><strong>Branch Code:</strong> 632 005</li>
+                    <li><strong>Reference:</strong> Your Name + Invoice #INV-<span id="invoiceNumber"></span></li>
+                </ul>
+                <p>Once payment is made, please email proof of payment to <a href="mailto:payments@tmvbusinesssolutions.co.za">payments@tmvbusinesssolutions.co.za</a></p>
+                <button type="button" class="business-consulting-payment-submit-btn" onclick="confirmEFTPayment()">I've Made the EFT Payment</button>
+            </div>
+            
+            <!-- PayPal Payment Instructions -->
+            <div id="paypalPaymentForm" class="business-consulting-payment-instructions">
+                <h4>PayPal Payment Instructions</h4>
+                <p>You will be redirected to PayPal to complete your payment.</p>
+                <p>Click the button below to proceed to PayPal:</p>
+                <button type="button" class="business-consulting-payment-submit-btn" onclick="redirectToPayPal()">Proceed to PayPal</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="section">
+            <h4>Contact</h4>
+            <p>Tel: 087 123 4567</p>
+            <p>Cell: 081 253 7967</p>
+            <p>Email: <a href="mailto:sales@tmvbusinesssolutions.co.za">sales@tmvbusinesssolutions.co.za</a></p>
+            <p>Email: <a href="mailto:info@tmvbusinesssolutions.co.za">info@tmvbusinesssolutions.co.za</a></p>
+        </div>
+        <div class="section">
+            <h4>Address</h4>
+            <p>186 Frikkie De Beer Street</p>
+            <p>Menlyn Place</p>
+            <p>Menlyn</p>
+            <p>0063</p>
+        </div>
+        <div class="section">
+            <h4>Important Links</h4>
+            <p><a href="legal.html">Legal</a></p>
+            <p><a href="https://popia.co.za/" target="_blank" rel="noopener noreferrer">POPIA Act</a></p>
+            <p><a href="https://www.cipc.co.za/" target="_blank" rel="noopener noreferrer">CIPC</a></p>
+            <p><a href="https://www.sars.gov.za/" target="_blank" rel="noopener noreferrer">SARS</a></p>
+        </div>
+        <div class="section">
+            <h4>Social Media</h4>
+            <p><a href="https://www.facebook.com/profile.php?id=61570883496340" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+            <p><a href="https://x.com/tmvbizsolutions" target="_blank" rel="noopener noreferrer">Twitter</a></p>
+            <p><a href="#">Instagram</a></p>
+        </div>
+        <div class="section">
+            <h4>Subscribe</h4>
+            <form class="subscribe-form">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Last Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Contact No.">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="../scripts/api.js" defer></script>
+    <script src="../scripts/auth.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
+    <script src="../scripts/auth-check.js"></script>
+
+    <script>
+         let cart = [];
+        let cartTotal = 0;
+        let selectedPaymentMethod = 'card';
+        
+        // Function to toggle business plan features visibility
+        function toggleBusinessPlanFeatures() {
+            const checkbox = document.getElementById('service1');
+            const featuresSection = document.getElementById('businessPlanFeatures');
+            
+            if (checkbox.checked) {
+                featuresSection.style.display = 'block';
+            } else {
+                featuresSection.style.display = 'none';
+            }
+            
+            updateTotal();
+        }
+        
+        // Function to update total when checkboxes change
+        function updateTotal() {
+            cart = [];
+            cartTotal = 0;
+            
+            // Get all checked checkboxes
+            const checkboxes = document.querySelectorAll('.business-consulting-checkbox:checked');
+            
+            checkboxes.forEach(checkbox => {
+                const serviceId = checkbox.id;
+                const serviceElement = checkbox.closest('.business-consulting-box');
+                const serviceName = serviceElement.querySelector('.business-consulting-title').textContent;
+                const servicePrice = parseInt(checkbox.getAttribute('data-price') || 0);
+                
+                cart.push({
+                    id: serviceId,
+                    name: serviceName,
+                    price: servicePrice
+                });
+                
+                cartTotal += servicePrice;
+            });
+            
+            // Update total display
+            displayTotal();
+        }
+        
+        // Function to display total
+        function displayTotal() {
+            const cartItemsElement = document.getElementById('cartItems');
+            const cartTotalElement = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = '<div class="business-consulting-empty-cart">No services selected yet</div>';
+            } else {
+                cartItemsElement.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'business-consulting-cart-item';
+                    cartItemElement.innerHTML = `
+                        <div>${item.name}</div>
+                        <div>R${item.price}</div>
+                    `;
+                    cartItemsElement.appendChild(cartItemElement);
+                });
+            }
+            
+            cartTotalElement.textContent = `R${cartTotal}`;
+        }
+        
+        // Function to open payment modal
+        function openPaymentModal() {
+            if (cart.length === 0) {
+                alert('Please select at least one service before proceeding to payment.');
+                return;
+            }
+            
+            // Update payment summary
+            updatePaymentSummary();
+            
+            // Generate invoice number
+            document.getElementById('invoiceNumber').textContent = Math.floor(100000 + Math.random() * 900000);
+            
+            // Show modal
+            document.getElementById('paymentModal').style.display = 'flex';
+            
+            // Reset to card payment by default
+            selectPaymentMethod('card');
+        }
+        
+        // Function to close payment modal
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+        
+        // Function to update payment summary
+        function updatePaymentSummary() {
+            const paymentSummary = document.getElementById('paymentSummary');
+            let summaryHTML = '<h3>Order Summary</h3>';
+            
+            cart.forEach(item => {
+                summaryHTML += `
+                    <div class="business-consulting-payment-summary-item">
+                        <span>${item.name}</span>
+                        <span>R${item.price}</span>
+                    </div>
+                `;
+            });
+            
+            summaryHTML += `
+                <div class="business-consulting-payment-summary-item business-consulting-payment-summary-total">
+                    <span>Total Amount</span>
+                    <span>R${cartTotal}</span>
+                </div>
+            `;
+            
+            paymentSummary.innerHTML = summaryHTML;
+        }
+        
+        // Function to select payment method
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // Update UI
+            document.querySelectorAll('.business-consulting-payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            document.querySelector(`.business-consulting-payment-method[data-method="${method}"]`).classList.add('selected');
+            
+            // Show appropriate form
+            document.getElementById('cardPaymentForm').style.display = 'none';
+            document.getElementById('eftPaymentForm').style.display = 'none';
+            document.getElementById('paypalPaymentForm').style.display = 'none';
+            
+            if (method === 'card') {
+                document.getElementById('cardPaymentForm').style.display = 'block';
+            } else if (method === 'eft') {
+                document.getElementById('eftPaymentForm').style.display = 'block';
+            } else if (method === 'paypal') {
+                document.getElementById('paypalPaymentForm').style.display = 'block';
+            }
+        }
+        
+        // Function to process card payment
+        // Function to process card payment with enhanced Yoco integration
+        function processCardPayment() {
+            if (cart.length === 0) {
+                alert('Please select at least one service before proceeding to payment.');
+                return;
+            }
+
+            // Calculate total in cents for Yoco
+            const amountInCents = cartTotal * 100;
+            
+            // Prepare service description
+            const serviceNames = cart.map(item => item.service).join(', ');
+            const description = `Business Consulting: ${serviceNames}`;
+            
+            // Prepare metadata
+            const metadata = {
+                service_type: 'business_consulting',
+                services: cart.map(item => ({
+                    name: item.service,
+                    price: item.price
+                })),
+                total_services: cart.length,
+                customer_type: 'website_customer',
+                page_source: 'business_consulting_page'
+            };
+
+            console.log('🚀 Starting Yoco payment for Business Consulting:', {
+                amount: amountInCents,
+                description,
+                metadata
+            });
+
+            // Close current modal and redirect to Yoco checkout
+            closePaymentModal();
+            
+            // Use the enhanced payment gateway (redirects to Yoco)
+            if (window.yocoPayment) {
+                window.yocoPayment.openPaymentModal({
+                    amount: amountInCents,
+                    currency: 'ZAR',
+                    description: description,
+                    metadata: metadata,
+                    onSuccess: function(result) {
+                        console.log('✅ Yoco checkout created, redirecting...', result);
+                        // Reset cart after successful checkout creation
+                        resetCartAfterPayment();
+                    },
+                    onError: function(error) {
+                        console.error('❌ Payment failed:', error);
+                        alert('Payment failed: ' + error.message + '\nPlease try again or contact support.');
+                    }
+                });
+            } else {
+                console.error('❌ Yoco payment gateway not loaded');
+                alert('Payment system not available. Please refresh the page and try again.');
+            }
+        }
+
+        // Helper function to reset cart after payment
+        function resetCartAfterPayment() {
+            // Uncheck all service checkboxes
+            document.querySelectorAll('.business-consulting-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Clear cart array and total
+            cart = [];
+            cartTotal = 0;
+
+            // Update total display
+            updateTotal();
+            
+            console.log('✅ Cart reset after payment');
+        }
+        
+        // Function to confirm EFT payment
+        function confirmEFTPayment() {
+            alert('Thank you for confirming your EFT payment. We will process your order once payment is received. Please email proof of payment to payments@tmvbusinesssolutions.co.za');
+            closePaymentModal();
+            
+            // Uncheck all service checkboxes
+            document.querySelectorAll('.business-consulting-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Update total display
+            updateTotal();
+        }
+        
+        // Function to redirect to PayPal
+        function redirectToPayPal() {
+            alert('You would now be redirected to PayPal to complete your payment. This is a simulation.');
+            closePaymentModal();
+            
+            // Uncheck all service checkboxes
+            document.querySelectorAll('.business-consulting-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Update total display
+            updateTotal();
+        }
+        
+        // Function to open quote modal
+        function openQuoteModal() {
+            const businessPlanCheckbox = document.getElementById('service1');
+            if (!businessPlanCheckbox.checked) {
+                alert('Please select the Business Plan option first.');
+                businessPlanCheckbox.checked = true;
+                toggleBusinessPlanFeatures();
+                return;
+            }
+            
+            document.getElementById('quoteModal').style.display = 'flex';
+        }
+        
+        // Function to close quote modal
+        function closeQuoteModal() {
+            document.getElementById('quoteModal').style.display = 'none';
+        }
+        
+        // Function to submit quote request
+        async function submitQuoteRequest() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const description = document.getElementById('businessDescription').value;
+            
+            if (!name || !email || !description) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Disable submit button during request
+            const submitBtn = document.querySelector('.business-consulting-submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                console.log('🚀 Sending business plan quote request...');
+                
+                // Build API URL dynamically to work with www and non-www
+                const apiBaseUrl = window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')
+                    ? 'http://localhost:3000'
+                    : `${window.location.protocol}//${window.location.hostname}`;
+                
+                // Send quote request to Business Plan endpoint
+                const response = await fetch(`${apiBaseUrl}/api/consultation/business-plan`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        businessDescription: description
+                    })
+                });
+
+                console.log('📡 Response status:', response.status);
+                const result = await response.json();
+                console.log('📋 Response data:', result);
+
+                if (response.ok) {
+                    // Show success message
+                    closeQuoteModal();
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.style.display = 'block';
+                    successMessage.textContent = 'Your business plan quote request has been submitted successfully! Our business consulting team will contact you shortly with a detailed quote.';
+                    
+                    // Clear form
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('businessDescription').value = '';
+                    
+                    // Hide success message after 6 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 6000);
+                    
+                    console.log('✅ Business plan quote request submitted successfully');
+                } else {
+                    throw new Error(result.message || 'Failed to submit quote request');
+                }
+                
+            } catch (error) {
+                console.error('❌ Error submitting quote request:', error);
+                alert('Failed to submit quote request. Please try again or contact us directly.');
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+        
+        // Payment method selection
+        document.querySelectorAll('.business-consulting-payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                const methodType = this.getAttribute('data-method');
+                selectPaymentMethod(methodType);
+            });
+        });
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const quoteModal = document.getElementById('quoteModal');
+            const paymentModal = document.getElementById('paymentModal');
+            
+            if (event.target === quoteModal) {
+                closeQuoteModal();
+            }
+            
+            if (event.target === paymentModal) {
+                closePaymentModal();
+            }
+        };
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+        });
+    </script>
+
+    <!-- Enhanced Yoco Payment Integration -->
+    <script src="../assets/payment-modal.js"></script>
+</body>
+</html>

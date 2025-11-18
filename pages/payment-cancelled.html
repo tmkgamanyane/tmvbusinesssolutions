@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - TMV Business Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <style>
+        .cancelled-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
+            padding: 20px;
+        }
+
+        .cancelled-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cancelled-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cancelled-icon svg {
+            width: 70px;
+            height: 70px;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .cancelled-card h1 {
+            color: #2d3748;
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .cancelled-card .subtitle {
+            color: #718096;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: #fff8e1;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+            border: 1px solid #ffcc02;
+        }
+
+        .options {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .options h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .options ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #ffa726;
+            border: 2px solid #ffa726;
+        }
+
+        .btn-secondary:hover {
+            background: #fff8e1;
+            transform: translateY(-2px);
+        }
+
+        .contact-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .contact-box h4 {
+            color: #2d3748;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        .contact-box a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="cancelled-container">
+        <div class="cancelled-card">
+            <div class="cancelled-icon">
+                <svg viewBox="0 0 52 52">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                    <path d="M26 6v16"/>
+                    <path d="M6 32h40"/>
+                </svg>
+            </div>
+
+            <h1>⏸️ Payment Cancelled</h1>
+            <p class="subtitle">Your payment has been cancelled and no charges were made</p>
+
+            <div class="info-box">
+                <p><strong>No worries!</strong> You cancelled the payment process and your card has not been charged.</p>
+                <p><strong>Session ID:</strong> <span id="sessionId">N/A</span></p>
+                <p><strong>Cancelled:</strong> <span id="cancelledTime"></span></p>
+            </div>
+
+            <div class="options">
+                <h3>🤔 What would you like to do next?</h3>
+                <ul>
+                    <li><strong>Try again:</strong> Return to complete your payment</li>
+                    <li><strong>Different payment method:</strong> Use a different card or payment option</li>
+                    <li><strong>Contact support:</strong> Get help with payment issues</li>
+                    <li><strong>Browse services:</strong> Continue exploring our offerings</li>
+                    <li><strong>Save for later:</strong> Return when you're ready to purchase</li>
+                </ul>
+            </div>
+
+            <div class="action-buttons">
+                <a href="javascript:history.back()" class="btn btn-primary">Try Payment Again</a>
+                <a href="/" class="btn btn-secondary">Browse Services</a>
+            </div>
+
+            <div class="contact-box">
+                <h4>Need Assistance?</h4>
+                <p>If you experienced any issues during the payment process, our team is here to help:</p>
+                <p>Email: <a href="mailto:support@tmvbusinesssolutions.com">support@tmvbusinesssolutions.com</a></p>
+                <p>Phone: <a href="tel:+27112345678">+27 11 234 5678</a></p>
+                <p>Operating Hours: Mon-Fri, 8:00 AM - 5:00 PM (SAST)</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get session details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id') || urlParams.get('id') || 'N/A';
+        
+        // Display information
+        document.getElementById('sessionId').textContent = sessionId;
+        document.getElementById('cancelledTime').textContent = new Date().toLocaleString();
+        
+        // Log for debugging
+        console.log('⏸️ Payment cancelled page loaded');
+        console.log('Session ID:', sessionId);
+    </script>
+</body>
+</html>

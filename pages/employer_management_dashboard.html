@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Dashboard - TMV Business Solutions</title>
+    <link rel="stylesheet" href="../styles/employer_management_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="../logos/TMV_Logo.png" alt="TMV Logo" class="logo">
+                <h1>Management Dashboard</h1>
+            </div>
+            <div class="user-section">
+                <div class="user-info">
+                    <i class="fas fa-user-tie"></i>
+                    <span id="userName">Manager</span>
+                    <span class="role-badge management">Management</span>
+                </div>
+                <button id="logoutBtn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Main Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-link active" data-section="overview">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#job-posting" class="nav-link" data-section="job-posting">
+                    <i class="fas fa-edit"></i>
+                    <span>📝 Job Posting</span>
+                </a>
+                <a href="#review-jobs" class="nav-link" data-section="review-jobs">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>✅ Review Jobs</span>
+                </a>
+                <a href="#applications" class="nav-link" data-section="applications">
+                    <i class="fas fa-users"></i>
+                    <span>👥 Applications</span>
+                </a>
+                <a href="#reporting" class="nav-link" data-section="reporting">
+                    <i class="fas fa-file-alt"></i>
+                    <span>📊 Reporting</span>
+                </a>
+                <a href="#analytics" class="nav-link" data-section="analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>📈 Analytics</span>
+                </a>
+                <a href="#management" class="nav-link" data-section="management">
+                    <i class="fas fa-briefcase"></i>
+                    <span>👔 Management</span>
+                </a>
+                <a href="#team" class="nav-link" data-section="team">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Team Overview</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fas fa-chart-line"></i> Team Overview</h2>
+                        <p>Monitor team performance and workflow</p>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon tasks">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="activeTasks">0</h3>
+                            <p>Active Tasks</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pendingJobs">0</h3>
+                            <p>Pending Approvals</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon team">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="teamSize">0</h3>
+                            <p>Team Members</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon completed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="completedTasks">0</h3>
+                            <p>Completed This Week</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                    <div class="action-grid">
+                        <button class="action-card" onclick="managementDashboard.openAssignTaskModal()">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Assign New Task</span>
+                        </button>
+                        <button class="action-card" onclick="managementDashboard.showSection('jobs')">
+                            <i class="fas fa-check-square"></i>
+                            <span>Review Jobs</span>
+                        </button>
+                        <button class="action-card" onclick="managementDashboard.showSection('team')">
+                            <i class="fas fa-users"></i>
+                            <span>View Team</span>
+                        </button>
+                        <button class="action-card" onclick="managementDashboard.showSection('analytics')">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>View Reports</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Task Management Section -->
+            <section id="tasks" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fas fa-tasks"></i> Task Management</h2>
+                        <p>Assign and monitor tasks</p>
+                    </div>
+                    <button id="assignTaskBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Assign New Task
+                    </button>
+                </div>
+
+                <!-- Task Filters -->
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All Tasks</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="in_progress">In Progress</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+
+                <!-- Tasks Grid -->
+                <div id="tasksContainer" class="tasks-grid">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i> Loading tasks...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Job Approvals Section -->
+            <section id="jobs" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fas fa-briefcase"></i> Job Approvals</h2>
+                        <p>Review and approve job postings</p>
+                    </div>
+                </div>
+
+                <!-- Pending Jobs -->
+                <div id="pendingJobsContainer" class="jobs-grid">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i> Loading pending jobs...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Overview Section -->
+            <section id="team" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fas fa-users"></i> Team Overview</h2>
+                        <p>View team members and their performance statistics</p>
+                    </div>
+                </div>
+
+                <!-- Team Statistics Summary -->
+                <div class="stats-grid" style="margin-bottom: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalTeamMembers">0</h3>
+                            <p>Total Team Members</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalTasksAssigned">0</h3>
+                            <p>Total Tasks Assigned</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalJobsManaged">0</h3>
+                            <p>Total Jobs Managed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalApplicationsHandled">0</h3>
+                            <p>Applications Handled</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Members Grid with Detailed Stats -->
+                <div id="teamContainer" class="team-grid">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i> Loading team data...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fas fa-chart-bar"></i> Performance Analytics</h2>
+                        <p>Team performance metrics and insights</p>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-chart-line"></i> Task Completion Rate</h3>
+                        <div class="metric-display">
+                            <span class="metric-value" id="completionRate">0%</span>
+                            <p>Tasks completed on time this month</p>
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-clock"></i> Average Response Time</h3>
+                        <div class="metric-display">
+                            <span class="metric-value" id="avgResponseTime">0h</span>
+                            <p>Average time to complete tasks</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Job Posting Section -->
+<section id="job-posting" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-edit"></i> 📝 Job Posting Management</h2>
+            <p>Create, edit, and manage job postings</p>
+        </div>
+        <button class="btn btn-primary" id="createJobBtn">
+            <i class="fas fa-plus"></i> Create New Job
+        </button>
+    </div>
+
+    <!-- Job Posting Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="createPostCard" onclick="managementDashboard.showCreateJobModal()">
+            <i class="fas fa-plus-circle"></i>
+            <h3>Create Post</h3>
+            <p>Create new job postings directly</p>
+            <span class="badge badge-success">Manager</span>
+        </div>
+        <div class="action-card" id="writePostCard" onclick="managementDashboard.showWritePostModal()">
+            <i class="fas fa-pen"></i>
+            <h3>Write Post (Messages)</h3>
+            <p>Send instructions & specs to team</p>
+            <span class="badge badge-info">Communication</span>
+        </div>
+        <div class="action-card" id="managePostsCard" onclick="managementDashboard.showManagePosts()">
+            <i class="fas fa-cog"></i>
+            <h3>Manage Posts</h3>
+            <p>View, edit & delete all team posts</p>
+            <span class="badge badge-primary">Full Control</span>
+        </div>
+        <div class="action-card" id="withdrawPostCard" onclick="managementDashboard.showWithdrawOptions()">
+            <i class="fas fa-archive"></i>
+            <h3>Withdraw to Drafts</h3>
+            <p>Move posts to drafts for later</p>
+            <span class="badge badge-warning">Archive</span>
+        </div>
+    </div>
+
+    <!-- Job Posting Tabs -->
+    <div class="job-tabs" style="margin: 2rem 0 1rem 0;">
+        <button class="job-tab" data-tab="active" onclick="managementDashboard.switchJobTab('active')">
+            <i class="fas fa-briefcase"></i> Active Jobs
+        </button>
+        <button class="job-tab active" data-tab="pending" onclick="managementDashboard.switchJobTab('pending')">
+            <i class="fas fa-clock"></i> Pending Approval
+        </button>
+        <button class="job-tab" data-tab="drafts" onclick="managementDashboard.switchJobTab('drafts')">
+            <i class="fas fa-archive"></i> Drafts/Withdrawn
+        </button>
+        <button class="job-tab" data-tab="team" onclick="managementDashboard.switchJobTab('team')">
+            <i class="fas fa-users"></i> Team Jobs (All)
+        </button>
+    </div>
+
+    <!-- Jobs List Container -->
+    <div class="jobs-list-container">
+        <div id="jobPostingsContainer" class="jobs-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading jobs...
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Review Jobs Section -->
+<section id="review-jobs" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-clipboard-check"></i> ✅ Job Review History</h2>
+            <p>View all approved and declined job postings</p>
+        </div>
+    </div>
+
+    <!-- Review Stats -->
+    <div class="stats-grid" style="margin-bottom: 2rem;">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #d1fae5;">
+                <i class="fas fa-check-circle" style="color: #10b981;"></i>
+            </div>
+            <div class="stat-details">
+                <h3 id="reviewApprovedCount">0</h3>
+                <p>Approved Jobs</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #fee2e2;">
+                <i class="fas fa-times-circle" style="color: #ef4444;"></i>
+            </div>
+            <div class="stat-details">
+                <h3 id="reviewRejectedCount">0</h3>
+                <p>Declined Jobs</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: #fff3cd;">
+                <i class="fas fa-clock" style="color: #ff9800;"></i>
+            </div>
+            <div class="stat-details">
+                <h3 id="reviewPendingCount">0</h3>
+                <p>Pending Review</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Filter Tabs -->
+    <div class="job-tabs" style="margin: 2rem 0 1rem 0;">
+        <button class="job-tab active" data-review-tab="all" onclick="managementDashboard.switchReviewTab('all')">
+            <i class="fas fa-list"></i> All Reviews
+        </button>
+        <button class="job-tab" data-review-tab="approved" onclick="managementDashboard.switchReviewTab('approved')">
+            <i class="fas fa-check-circle"></i> Approved
+        </button>
+        <button class="job-tab" data-review-tab="rejected" onclick="managementDashboard.switchReviewTab('rejected')">
+            <i class="fas fa-times-circle"></i> Declined
+        </button>
+    </div>
+
+    <!-- Review History Container -->
+    <div class="jobs-list-container">
+        <div id="reviewJobsContainer" class="jobs-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading review history...
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Applications Section -->
+<section id="applications" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-users"></i> 👥 Application Management</h2>
+            <p>Review and manage job applications</p>
+        </div>
+    </div>
+
+    <!-- Application Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="viewApplicationsCard">
+            <i class="fas fa-eye"></i>
+            <h3>View Applications</h3>
+            <p>View all applications</p>
+            <span class="permission-badge">canViewApplications</span>
+        </div>
+        <div class="action-card" id="reviewApplicationsCard">
+            <i class="fas fa-clipboard-check"></i>
+            <h3>Review Applications</h3>
+            <p>Review candidate submissions</p>
+            <span class="permission-badge">canReviewApplications</span>
+        </div>
+        <div class="action-card" id="shortlistCandidatesCard">
+            <i class="fas fa-star"></i>
+            <h3>Shortlist Candidates</h3>
+            <p>Shortlist qualified candidates</p>
+            <span class="permission-badge">canShortlistCandidates</span>
+        </div>
+        <div class="action-card" id="rejectCandidatesCard">
+            <i class="fas fa-times-circle"></i>
+            <h3>Reject Candidates</h3>
+            <p>Decline applications</p>
+            <span class="permission-badge">canRejectCandidates</span>
+        </div>
+        <div class="action-card" id="scheduleInterviewsCard">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>Schedule Interviews</h3>
+            <p>Schedule candidate interviews</p>
+            <span class="permission-badge">canScheduleInterviews</span>
+        </div>
+    </div>
+
+    <!-- Applications List -->
+    <div class="applications-container">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Applications</button>
+            <button class="filter-tab" data-filter="pending">Pending Review</button>
+            <button class="filter-tab" data-filter="shortlisted">Shortlisted</button>
+            <button class="filter-tab" data-filter="rejected">Rejected</button>
+        </div>
+        <div id="applicationsListContainer" class="applications-list">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading applications...
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reporting Section -->
+<section id="reporting" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-file-alt"></i> 📊 Reporting & Exports</h2>
+            <p>Generate and export recruitment reports</p>
+        </div>
+    </div>
+
+    <!-- Reporting Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="reportAppliedCard">
+            <i class="fas fa-file-download"></i>
+            <h3>Report Applied Candidates</h3>
+            <p>Export all applicants report</p>
+            <span class="permission-badge">canPullReportApplied</span>
+        </div>
+        <div class="action-card" id="reportShortlistedCard">
+            <i class="fas fa-star"></i>
+            <h3>Report Shortlisted</h3>
+            <p>Export shortlisted candidates</p>
+            <span class="permission-badge">canPullReportShortlisted</span>
+        </div>
+        <div class="action-card" id="reportRejectedCard">
+            <i class="fas fa-times-circle"></i>
+            <h3>Report Rejected</h3>
+            <p>Export rejected candidates</p>
+            <span class="permission-badge">canPullReportRejected</span>
+        </div>
+        <div class="action-card" id="reportFullCard">
+            <i class="fas fa-file-alt"></i>
+            <h3>Full Report</h3>
+            <p>Comprehensive recruitment report</p>
+            <span class="permission-badge">canPullReportFull</span>
+        </div>
+        <div class="action-card" id="exportReportsCard">
+            <i class="fas fa-file-export"></i>
+            <h3>Export Reports</h3>
+            <p>Export data to CSV/Excel</p>
+            <span class="permission-badge">canExportReports</span>
+        </div>
+    </div>
+
+    <!-- Report Preview -->
+    <div class="report-preview-container">
+        <h3>Recent Reports</h3>
+        <div id="reportsListContainer" class="reports-list">
+            <p style="text-align: center; color: #64748b; padding: 2rem;">
+                Click on a report type above to generate
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Management Section -->
+<section id="management" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-briefcase"></i> 👔 Management Tools</h2>
+            <p>Task assignment and team management</p>
+        </div>
+    </div>
+
+    <!-- Management Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="assignTasksCard">
+            <i class="fas fa-tasks"></i>
+            <h3>Assign Tasks</h3>
+            <p>Assign tasks to team members</p>
+            <span class="permission-badge">canAssignTasks</span>
+        </div>
+        <div class="action-card" id="approveJobsCard">
+            <i class="fas fa-check-circle"></i>
+            <h3>Approve Jobs</h3>
+            <p>Approve job postings</p>
+            <span class="permission-badge">canApproveJobs</span>
+        </div>
+        <div class="action-card" id="manageTeamCard">
+            <i class="fas fa-users-cog"></i>
+            <h3>Manage Team</h3>
+            <p>Manage team members</p>
+            <span class="permission-badge">canManageTeam</span>
+        </div>
+    </div>
+
+    <!-- Task Management -->
+    <div class="management-container">
+        <h3>Team Tasks</h3>
+        <div class="task-filters">
+            <button class="filter-btn active" data-filter="all">All Tasks</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="in-progress">In Progress</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+        <div id="managementTasksContainer" class="tasks-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading tasks...
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Approvals -->
+    <div class="approvals-container" style="margin-top: 2rem;">
+        <h3>Pending Job Approvals</h3>
+        <div id="pendingJobsContainer" class="jobs-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading pending jobs...
+            </div>
+        </div>
+    </div>
+</section>
+        </main>
+    </div>
+
+    <!-- Edit Permissions Modal -->
+    <div id="permissionsModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-shield"></i> Edit User Permissions</h2>
+                <span class="close-permissions">&times;</span>
+            </div>
+
+            <div class="user-info-banner">
+                <div class="user-info-row">
+                    <strong>User:</strong> <span id="modalUserName"></span>
+                </div>
+                <div class="user-info-row">
+                    <strong>Email:</strong> <span id="modalUserEmail"></span>
+                </div>
+                <div class="user-info-row">
+                    <strong>Role:</strong> <span id="modalUserRole" class="role-badge"></span>
+                </div>
+            </div>
+
+            <div class="permissions-grid">
+                <!-- Job Posting Permissions -->
+                <div class="permission-section">
+                    <h3><i class="fas fa-briefcase"></i> Job Posting</h3>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canCreatePost">
+                        <span>Create Post</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canWritePost">
+                        <span>Write Post</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canEditPost">
+                        <span>Edit Post</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canDeletePost">
+                        <span>Delete Post</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canAssignPost">
+                        <span>Assign Post</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canTransferPost">
+                        <span>Transfer Post</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canWithdrawPost">
+                        <span>Withdraw Post</span>
+                    </label>
+                </div>
+
+                <!-- Application Management -->
+                <div class="permission-section">
+                    <h3><i class="fas fa-users"></i> Applications</h3>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canViewApplications">
+                        <span>View Applications</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canReviewApplications">
+                        <span>Review Applications</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canShortlistCandidates">
+                        <span>Shortlist Candidates</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canRejectCandidates">
+                        <span>Reject Candidates</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canScheduleInterviews">
+                        <span>Schedule Interviews</span>
+                    </label>
+                </div>
+
+                <!-- Reporting -->
+                <div class="permission-section">
+                    <h3><i class="fas fa-chart-bar"></i> Reporting</h3>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportApplied">
+                        <span>Report: Applied Candidates</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportShortlisted">
+                        <span>Report: Shortlisted</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportRejected">
+                        <span>Report: Rejected</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canPullReportFull">
+                        <span>Report: Full Report</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canExportReports">
+                        <span>Export Reports</span>
+                    </label>
+                </div>
+
+                <!-- Analytics -->
+                <div class="permission-section">
+                    <h3><i class="fas fa-chart-line"></i> Analytics</h3>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canViewAnalytics">
+                        <span>View Analytics</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canViewAllJobs">
+                        <span>View All Jobs</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canMonitorPerformance">
+                        <span>Monitor Performance</span>
+                    </label>
+                </div>
+
+                <!-- Management -->
+                <div class="permission-section">
+                    <h3><i class="fas fa-user-tie"></i> Management</h3>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canAssignTasks">
+                        <span>Assign Tasks</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canApproveJobs">
+                        <span>Approve Jobs</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" id="perm_canManageTeam">
+                        <span>Manage Team</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelPermissions">Cancel</button>
+                <button type="button" class="btn-primary" id="savePermissions">
+                    <i class="fas fa-save"></i> Save Permissions
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Task Modal -->
+    <div id="assignTaskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-tasks"></i> Assign New Task</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="assignTaskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title *</label>
+                    <input type="text" id="taskTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" name="description" rows="4"></textarea>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="assignTo">Assign To (Management / HR / Admin) *</label>
+                        <select id="assignTo" name="assignedToId" required>
+                            <option value="">Select Team Member</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority *</label>
+                        <select id="priority" name="priority" required>
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" id="dueDate" name="dueDate">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="cancelAssignTask">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-check"></i> Assign Task
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Job Details Modal -->
+    <div id="jobDetailsModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-briefcase"></i> Job Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div id="jobDetailsContent" class="job-details">
+                <!-- Job details will be inserted here -->
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="cancelJobReview">Cancel</button>
+                <button type="button" class="btn-danger" id="rejectJobBtn">
+                    <i class="fas fa-times"></i> Reject
+                </button>
+                <button type="button" class="btn-primary" id="approveJobBtn">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Job Modal (Manager Direct Post) -->
+    <!-- Create Job Modal (Manager) - Full Form matching employer_dashboard.html -->
+    <div id="createJobModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus-circle"></i> Create New Job Posting</h2>
+                <span class="close" onclick="managementDashboard.closeCreateJobModal()">&times;</span>
+            </div>
+            <form id="createJobForm">
+                <input type="hidden" id="job-id">
+                
+                <div class="form-group">
+                    <label for="jobTitle">Job Title *</label>
+                    <input type="text" id="jobTitle" name="title" required>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="jobType">Job Type *</label>
+                        <select id="jobType" name="jobType" required>
+                            <option value="">Select Type</option>
+                            <option value="Permanent">Permanent</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Freelancer">Freelancer</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobDepartment">Department</label>
+                        <select id="jobDepartment" name="department">
+                            <option value="">Select Department</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Architecture">Architecture</option>
+                            <option value="Consulting">Consulting</option>
+                            <option value="Finance & Accounts">Finance & Accounts</option>
+                            <option value="Information Technology (IT)">Information Technology (IT)</option>
+                            <option value="Innovation & Design">Innovation & Design</option>
+                            <option value="Marketing & Branding">Marketing & Branding</option>
+                            <option value="Security & Automation">Security & Automation</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="jobProvince">Province *</label>
+                        <select id="jobProvince" name="province" required>
+                            <option value="">Select Province</option>
+                            <option value="Gauteng">Gauteng</option>
+                            <option value="Western Cape">Western Cape</option>
+                            <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                            <option value="Eastern Cape">Eastern Cape</option>
+                            <option value="Free State">Free State</option>
+                            <option value="Limpopo">Limpopo</option>
+                            <option value="Mpumalanga">Mpumalanga</option>
+                            <option value="North West">North West</option>
+                            <option value="Northern Cape">Northern Cape</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobCity">City</label>
+                        <input type="text" id="jobCity" name="city">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobDescription">Job Description *</label>
+                    <textarea id="jobDescription" name="description" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobRequirements">Requirements</label>
+                    <textarea id="jobRequirements" name="requirements" rows="5"></textarea>
+                    <small>List qualifications, skills, and experience required</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobResponsibilities">Responsibilities</label>
+                    <textarea id="jobResponsibilities" name="responsibilities" rows="5"></textarea>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="jobSalaryMin">Minimum Salary</label>
+                        <input type="number" id="jobSalaryMin" name="salaryMin" min="0" step="1000" placeholder="e.g., 15000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobSalaryMax">Maximum Salary</label>
+                        <input type="number" id="jobSalaryMax" name="salaryMax" min="0" step="1000" placeholder="e.g., 25000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobSalaryPeriod">Salary Period</label>
+                        <select id="jobSalaryPeriod" name="salaryPeriod">
+                            <option value="month">Per Month</option>
+                            <option value="year">Per Year</option>
+                            <option value="hour">Per Hour</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="jobExperience">Experience Required</label>
+                        <input type="text" id="jobExperience" name="experience" placeholder="e.g., 2-5 years">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobEducation">Education Level</label>
+                        <input type="text" id="jobEducation" name="education" placeholder="e.g., Bachelor's Degree">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="closingDate">Closing Date</label>
+                        <input type="date" id="closingDate" name="closingDate">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobStatus">Status</label>
+                    <select id="jobStatus" name="status">
+                        <option value="Active">Active</option>
+                        <option value="Draft">Draft</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="background:#e3f2fd;padding:15px;border-radius:8px;margin:15px 0;">
+                    <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                        <input type="checkbox" id="autoApprove" name="autoApprove" checked>
+                        <span><strong>🚀 Manager Privilege:</strong> Auto-approve this job (bypass HR approval)</span>
+                    </label>
+                    <small style="display:block;margin-top:8px;color:#666;">As a manager, your jobs are automatically approved and published immediately</small>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="managementDashboard.closeCreateJobModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-check"></i> Create Job Posting
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Write Post (Manager Messages) Modal -->
+    <div id="writePostModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-pen"></i> Write Post - Send Instructions to Team</h2>
+                <span class="close" onclick="managementDashboard.closeWritePostModal()">&times;</span>
+            </div>
+            <form id="writePostForm">
+                <div class="info-banner" style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <i class="fas fa-info-circle" style="color: #1976d2;"></i>
+                    <span style="color: #1565c0;">Use this to send job specs, instructions, or tasks to your team. They'll see this in their dashboard.</span>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="messageType">Message Type *</label>
+                        <select id="messageType" name="messageType" required>
+                            <option value="">Select Type</option>
+                            <option value="job_spec">Job Specification</option>
+                            <option value="instruction">General Instruction</option>
+                            <option value="task">Task Assignment</option>
+                            <option value="announcement">Team Announcement</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="messagePriority">Priority *</label>
+                        <select id="messagePriority" name="priority" required>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="messageRecipient">Send To *</label>
+                    <select id="messageRecipient" name="recipientId" required>
+                        <option value="all">All Team Members</option>
+                        <option value="" disabled>--- Individual Members ---</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="messageSubject">Subject/Title *</label>
+                    <input type="text" id="messageSubject" name="subject" required placeholder="e.g., New Software Developer Role - Full Spec">
+                </div>
+                <div class="form-group">
+                    <label for="messageContent">Message Content *</label>
+                    <textarea id="messageContent" name="content" rows="10" required placeholder="Write your instructions, job specifications, or task details here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="messageDueDate">Due Date (optional)</label>
+                    <input type="date" id="messageDueDate" name="dueDate">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="managementDashboard.closeWritePostModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Manage Posts Modal -->
+    <div id="managePostsModal" class="modal">
+        <div class="modal-content extra-large">
+            <div class="modal-header">
+                <h2><i class="fas fa-cog"></i> Manage All Job Posts</h2>
+                <span class="close" onclick="managementDashboard.closeManagePostsModal()">&times;</span>
+            </div>
+            <div class="manage-posts-filters" style="padding: 1rem; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem;">
+                <input type="text" id="searchPosts" placeholder="Search jobs by title, company, or location..." style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+            </div>
+            <div id="managePostsContainer" class="manage-posts-grid">
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin"></i> Loading all posts...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Job Modal -->
+    <div id="editJobModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Job Posting</h2>
+                <span class="close" onclick="managementDashboard.closeEditJobModal()">&times;</span>
+            </div>
+            <form id="editJobForm">
+                <input type="hidden" id="editJobId" name="jobId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="editJobTitle">Job Title *</label>
+                        <input type="text" id="editJobTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editJobType">Job Type *</label>
+                        <select id="editJobType" name="jobType" required>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Temporary">Temporary</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editLocation">Location *</label>
+                        <input type="text" id="editLocation" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editSalary">Salary Range</label>
+                        <input type="text" id="editSalary" name="salary">
+                    </div>
+                    <div class="form-group">
+                        <label for="editClosingDate">Closing Date *</label>
+                        <input type="date" id="editClosingDate" name="closingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCompanyName">Company Name *</label>
+                        <input type="text" id="editCompanyName" name="companyName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editJobDescription">Job Description *</label>
+                    <textarea id="editJobDescription" name="description" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editJobRequirements">Requirements *</label>
+                    <textarea id="editJobRequirements" name="requirements" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editJobResponsibilities">Responsibilities</label>
+                    <textarea id="editJobResponsibilities" name="responsibilities" rows="4"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="managementDashboard.closeEditJobModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../scripts/employer_management_dashboard.js?v=20251023-WORKFLOW-FIX"></script>
+    <script src="../scripts/management_dashboard_extended.js?v=20251023-WORKFLOW-FIX"></script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Debugger - TMV Business Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+
+        .result.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+
+        .result-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-content {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .quick-logins {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quick-login-btn {
+            padding: 1rem;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            color: #667eea;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .quick-login-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .role-badge.admin {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        .role-badge.management {
+            background: #0f766e;
+            color: white;
+        }
+
+        .role-badge.hr {
+            background: #7c3aed;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Employer Login Debugger</h1>
+        <p class="subtitle">Test your employer portal login and see detailed response information</p>
+
+        <div class="quick-logins">
+            <button class="quick-login-btn" onclick="quickLogin('admin')">
+                Quick Login<span class="role-badge admin">Admin</span>
+            </button>
+            <button class="quick-login-btn" onclick="quickLogin('management')">
+                Quick Login<span class="role-badge management">Manager</span>
+            </button>
+            <button class="quick-login-btn" onclick="quickLogin('hr')">
+                Quick Login<span class="role-badge hr">HR</span>
+            </button>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="admin@tmvbusiness.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+
+            <button type="submit" class="btn" id="loginBtn">
+                🚀 Test Login
+            </button>
+        </form>
+
+        <div id="result" class="result">
+            <div class="result-title" id="resultTitle"></div>
+            <div class="result-content" id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = (window.location.hostname.includes('localhost') || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:3000/api'
+            : `${window.location.protocol}//${window.location.hostname}/api`;
+
+        // Quick login presets
+        const quickLoginData = {
+            admin: { email: 'admin@tmvbusiness.com', password: 'Admin123456' },
+            management: { email: 'manager@tmvbusiness.com', password: 'Manager123456' },
+            hr: { email: 'hr@tmvbusiness.com', password: 'HR123456' }
+        };
+
+        function quickLogin(type) {
+            const data = quickLoginData[type];
+            document.getElementById('email').value = data.email;
+            document.getElementById('password').value = data.password;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await testLogin();
+        });
+
+        async function testLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const resultDiv = document.getElementById('result');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultContent = document.getElementById('resultContent');
+            const loginBtn = document.getElementById('loginBtn');
+
+            // Reset result
+            resultDiv.style.display = 'none';
+            loginBtn.disabled = true;
+            loginBtn.textContent = '⏳ Testing...';
+
+            try {
+                const response = await fetch(`${API_BASE}/employer/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                resultDiv.style.display = 'block';
+
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultTitle.textContent = '✅ Login Successful!';
+                    
+                    let dashboardUrl = '/pages/employer_dashboard.html';
+                    let roleName = 'HR & Recruitment';
+                    
+                    if (data.user && data.user.EmployerProfile) {
+                        const role = data.user.EmployerProfile.role;
+                        if (role === 'administrator') {
+                            dashboardUrl = '/pages/employer_admin_dashboard.html';
+                            roleName = 'Administrator';
+                        } else if (role === 'management') {
+                            dashboardUrl = '/pages/employer_management_dashboard.html';
+                            roleName = 'Management';
+                        }
+                    }
+
+                    resultContent.innerHTML = `
+<strong>USER INFORMATION:</strong>
+Name: ${data.user.name}
+Email: ${data.user.email}
+Role: ${roleName}
+Access Level: ${data.user.accessLevel}
+Department: ${data.user.department || 'N/A'}
+
+<strong>PERMISSIONS:</strong>
+${Object.entries(data.user.permissions || {})
+    .map(([key, value]) => `  ${key}: ${value ? '✅ Yes' : '❌ No'}`)
+    .join('\n')}
+
+<strong>DASHBOARD REDIRECT:</strong>
+${dashboardUrl}
+
+<strong>FULL RESPONSE:</strong>
+${JSON.stringify(data, null, 2)}
+                    `;
+
+                    // Show redirect button
+                    setTimeout(() => {
+                        const redirectBtn = document.createElement('button');
+                        redirectBtn.className = 'btn';
+                        redirectBtn.style.marginTop = '1rem';
+                        redirectBtn.textContent = `🚀 Go to ${roleName} Dashboard`;
+                        redirectBtn.onclick = () => window.location.href = dashboardUrl;
+                        resultDiv.appendChild(redirectBtn);
+                    }, 500);
+
+                } else {
+                    resultDiv.className = 'result error';
+                    resultTitle.textContent = '❌ Login Failed';
+                    resultContent.innerHTML = `
+<strong>ERROR MESSAGE:</strong>
+${data.message || 'Unknown error'}
+
+<strong>HTTP STATUS:</strong>
+${response.status} ${response.statusText}
+
+<strong>FULL RESPONSE:</strong>
+${JSON.stringify(data, null, 2)}
+
+<strong>TROUBLESHOOTING:</strong>
+1. Check if the user exists in the database
+2. Verify the password is correct
+3. Ensure the user has 'employer' role
+4. Check if the account is active (isActive = true)
+5. Verify EmployerProfile exists for this user
+                    `;
+                }
+
+            } catch (error) {
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result error';
+                resultTitle.textContent = '❌ Connection Error';
+                resultContent.innerHTML = `
+<strong>ERROR:</strong>
+${error.message}
+
+<strong>POSSIBLE CAUSES:</strong>
+1. Server is not running on port 3000
+2. Network connectivity issue
+3. CORS configuration problem
+4. Server crashed or returned invalid response
+
+<strong>CHECKS:</strong>
+• Is the server running? Check terminal for "Server running on port 3000"
+• Can you access https://tmvbusinesssolutions.co.za in browser?
+• Check browser console for CORS errors
+                `;
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = '🚀 Test Login';
+            }
+        }
+
+        // Check server status on load
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`${API_BASE}/test`);
+                if (response.ok) {
+                    console.log('✅ Server is running and accessible');
+                }
+            } catch (error) {
+                alert('⚠️ Warning: Cannot connect to server at https://tmvbusinesssolutions.co.za\n\nPlease ensure the server is running.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful - TMV Business Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease-out 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .success-icon svg {
+            width: 60px;
+            height: 60px;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            animation: checkmark 0.5s ease-out 0.6s both;
+        }
+
+        @keyframes checkmark {
+            0% {
+                stroke-dasharray: 100;
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dasharray: 100;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .success-card h1 {
+            color: #2d3748;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .success-card .subtitle {
+            color: #718096;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .registration-info {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #718096;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .next-steps {
+            background: #fff5f5;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .next-steps ol {
+            margin: 0;
+            padding-left: 20px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .next-steps li {
+            margin-bottom: 10px;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f7fafc;
+            transform: translateY(-2px);
+        }
+
+        .contact-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .contact-box h4 {
+            color: #2d3748;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        .contact-box a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .success-card {
+                padding: 40px 25px;
+            }
+
+            .success-card h1 {
+                font-size: 26px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <svg viewBox="0 0 52 52">
+                    <path d="M14 27l7.5 7.5L38 18"/>
+                </svg>
+            </div>
+
+            <h1>🎉 Registration Successful!</h1>
+            <p class="subtitle">Thank you for registering with TMV Business Solutions</p>
+
+            <div class="registration-info" id="registrationInfo">
+                <div class="info-row">
+                    <span class="info-label">Payment ID:</span>
+                    <span class="info-value" id="paymentId">
+                        <span class="loading-spinner"></span>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Registration Number:</span>
+                    <span class="info-value" id="registrationNumber">
+                        <span class="loading-spinner"></span>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" style="color: #48bb78;">✓ Payment Confirmed</span>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>📋 What Happens Next?</h3>
+                <ol>
+                    <li><strong>Email Confirmation:</strong> Check your inbox for a detailed confirmation email with your registration details.</li>
+                    <li><strong>Team Review:</strong> Our team will review your registration within 1-2 business days.</li>
+                    <li><strong>Account Setup:</strong> We'll set up your client portal and send you login credentials.</li>
+                    <li><strong>Onboarding Call:</strong> We'll schedule a call to discuss your services and next steps.</li>
+                    <li><strong>Get Started:</strong> Begin your journey with TMV Business Solutions!</li>
+                </ol>
+            </div>
+
+            <div class="action-buttons">
+                <a href="/" class="btn btn-primary">Return to Home</a>
+                <a href="/pages/employer_dashboard.html" class="btn btn-secondary">Go to Dashboard</a>
+            </div>
+
+            <div class="contact-box">
+                <h4>Need Immediate Assistance?</h4>
+                <p>Email: <a href="mailto:info@tmvbusinesssolutions.com">info@tmvbusinesssolutions.com</a></p>
+                <p>Phone: <a href="tel:+27112345678">+27 11 234 5678</a></p>
+                <p>Operating Hours: Mon-Fri, 8:00 AM - 5:00 PM (SAST)</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get payment ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentId = urlParams.get('paymentId');
+
+        if (paymentId) {
+            document.getElementById('paymentId').textContent = paymentId;
+            
+            // Fetch payment details to get registration number
+            fetch(`/api/payments/verify-payment/${paymentId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.payment) {
+                        // Try to get registration number from metadata or payment record
+                        const metadata = data.payment.metadata || {};
+                        const registrationNumber = metadata.registrationId || 
+                                                 `REG-${paymentId}` || 
+                                                 'Processing...';
+                        
+                        document.getElementById('registrationNumber').textContent = registrationNumber;
+                        
+                        console.log('✅ Payment details loaded:', data.payment);
+                    } else {
+                        document.getElementById('registrationNumber').textContent = `REG-${paymentId}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching payment details:', error);
+                    document.getElementById('registrationNumber').textContent = `REG-${paymentId}`;
+                });
+        } else {
+            // No payment ID in URL
+            document.getElementById('paymentId').textContent = 'N/A';
+            document.getElementById('registrationNumber').textContent = 'N/A';
+            console.warn('⚠️ No payment ID found in URL');
+        }
+
+        // Log page view for analytics
+        console.log('📄 Registration success page loaded');
+        console.log('Payment ID:', paymentId);
+    </script>
+</body>
+</html>

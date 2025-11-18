@@ -1,0 +1,239 @@
+<!-- Job Posting Section -->
+<section id="job-posting" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-edit"></i> 📝 Job Posting Management</h2>
+            <p>Create, edit, and manage job postings</p>
+        </div>
+        <button class="btn btn-primary" id="createJobBtn">
+            <i class="fas fa-plus"></i> Create New Job
+        </button>
+    </div>
+
+    <!-- Job Posting Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="createPostCard">
+            <i class="fas fa-plus-circle"></i>
+            <h3>Create Post</h3>
+            <p>Create new job postings</p>
+            <span class="permission-badge">canCreatePost</span>
+        </div>
+        <div class="action-card" id="writePostCard">
+            <i class="fas fa-pen"></i>
+            <h3>Write Post</h3>
+            <p>Write job descriptions</p>
+            <span class="permission-badge">canWritePost</span>
+        </div>
+        <div class="action-card" id="editPostCard">
+            <i class="fas fa-edit"></i>
+            <h3>Edit Post</h3>
+            <p>Edit existing job posts</p>
+            <span class="permission-badge">canEditPost</span>
+        </div>
+        <div class="action-card" id="deletePostCard">
+            <i class="fas fa-trash-alt"></i>
+            <h3>Delete Post</h3>
+            <p>Remove job postings</p>
+            <span class="permission-badge">canDeletePost</span>
+        </div>
+        <div class="action-card" id="assignPostCard">
+            <i class="fas fa-user-plus"></i>
+            <h3>Assign Post</h3>
+            <p>Assign jobs to recruiters</p>
+            <span class="permission-badge">canAssignPost</span>
+        </div>
+        <div class="action-card" id="transferPostCard">
+            <i class="fas fa-exchange-alt"></i>
+            <h3>Transfer Post</h3>
+            <p>Transfer job ownership</p>
+            <span class="permission-badge">canTransferPost</span>
+        </div>
+        <div class="action-card" id="withdrawPostCard">
+            <i class="fas fa-ban"></i>
+            <h3>Withdraw Post</h3>
+            <p>Withdraw job postings</p>
+            <span class="permission-badge">canWithdrawPost</span>
+        </div>
+    </div>
+
+    <!-- Jobs List -->
+    <div class="jobs-list-container">
+        <h3>Active Job Postings</h3>
+        <div id="jobPostingsContainer" class="jobs-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading jobs...
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Applications Section -->
+<section id="applications" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-users"></i> 👥 Application Management</h2>
+            <p>Review and manage job applications</p>
+        </div>
+    </div>
+
+    <!-- Application Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="viewApplicationsCard">
+            <i class="fas fa-eye"></i>
+            <h3>View Applications</h3>
+            <p>View all applications</p>
+            <span class="permission-badge">canViewApplications</span>
+        </div>
+        <div class="action-card" id="reviewApplicationsCard">
+            <i class="fas fa-clipboard-check"></i>
+            <h3>Review Applications</h3>
+            <p>Review candidate submissions</p>
+            <span class="permission-badge">canReviewApplications</span>
+        </div>
+        <div class="action-card" id="shortlistCandidatesCard">
+            <i class="fas fa-star"></i>
+            <h3>Shortlist Candidates</h3>
+            <p>Shortlist qualified candidates</p>
+            <span class="permission-badge">canShortlistCandidates</span>
+        </div>
+        <div class="action-card" id="rejectCandidatesCard">
+            <i class="fas fa-times-circle"></i>
+            <h3>Reject Candidates</h3>
+            <p>Decline applications</p>
+            <span class="permission-badge">canRejectCandidates</span>
+        </div>
+        <div class="action-card" id="scheduleInterviewsCard">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>Schedule Interviews</h3>
+            <p>Schedule candidate interviews</p>
+            <span class="permission-badge">canScheduleInterviews</span>
+        </div>
+    </div>
+
+    <!-- Applications List -->
+    <div class="applications-container">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Applications</button>
+            <button class="filter-tab" data-filter="pending">Pending Review</button>
+            <button class="filter-tab" data-filter="shortlisted">Shortlisted</button>
+            <button class="filter-tab" data-filter="rejected">Rejected</button>
+        </div>
+        <div id="applicationsListContainer" class="applications-list">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading applications...
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reporting Section -->
+<section id="reporting" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-file-alt"></i> 📊 Reporting & Exports</h2>
+            <p>Generate and export recruitment reports</p>
+        </div>
+    </div>
+
+    <!-- Reporting Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="reportAppliedCard">
+            <i class="fas fa-file-download"></i>
+            <h3>Report Applied Candidates</h3>
+            <p>Export all applicants report</p>
+            <span class="permission-badge">canPullReportApplied</span>
+        </div>
+        <div class="action-card" id="reportShortlistedCard">
+            <i class="fas fa-star"></i>
+            <h3>Report Shortlisted</h3>
+            <p>Export shortlisted candidates</p>
+            <span class="permission-badge">canPullReportShortlisted</span>
+        </div>
+        <div class="action-card" id="reportRejectedCard">
+            <i class="fas fa-times-circle"></i>
+            <h3>Report Rejected</h3>
+            <p>Export rejected candidates</p>
+            <span class="permission-badge">canPullReportRejected</span>
+        </div>
+        <div class="action-card" id="reportFullCard">
+            <i class="fas fa-file-alt"></i>
+            <h3>Full Report</h3>
+            <p>Comprehensive recruitment report</p>
+            <span class="permission-badge">canPullReportFull</span>
+        </div>
+        <div class="action-card" id="exportReportsCard">
+            <i class="fas fa-file-export"></i>
+            <h3>Export Reports</h3>
+            <p>Export data to CSV/Excel</p>
+            <span class="permission-badge">canExportReports</span>
+        </div>
+    </div>
+
+    <!-- Report Preview -->
+    <div class="report-preview-container">
+        <h3>Recent Reports</h3>
+        <div id="reportsListContainer" class="reports-list">
+            <p style="text-align: center; color: #64748b; padding: 2rem;">
+                Click on a report type above to generate
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Management Section -->
+<section id="management" class="content-section">
+    <div class="section-header">
+        <div>
+            <h2><i class="fas fa-briefcase"></i> 👔 Management Tools</h2>
+            <p>Task assignment and team management</p>
+        </div>
+    </div>
+
+    <!-- Management Actions -->
+    <div class="action-cards-grid">
+        <div class="action-card" id="assignTasksCard">
+            <i class="fas fa-tasks"></i>
+            <h3>Assign Tasks</h3>
+            <p>Assign tasks to team members</p>
+            <span class="permission-badge">canAssignTasks</span>
+        </div>
+        <div class="action-card" id="approveJobsCard">
+            <i class="fas fa-check-circle"></i>
+            <h3>Approve Jobs</h3>
+            <p>Approve job postings</p>
+            <span class="permission-badge">canApproveJobs</span>
+        </div>
+        <div class="action-card" id="manageTeamCard">
+            <i class="fas fa-users-cog"></i>
+            <h3>Manage Team</h3>
+            <p>Manage team members</p>
+            <span class="permission-badge">canManageTeam</span>
+        </div>
+    </div>
+
+    <!-- Task Management -->
+    <div class="management-container">
+        <h3>Team Tasks</h3>
+        <div class="task-filters">
+            <button class="filter-btn active" data-filter="all">All Tasks</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="in-progress">In Progress</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+        <div id="managementTasksContainer" class="tasks-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading tasks...
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Approvals -->
+    <div class="approvals-container" style="margin-top: 2rem;">
+        <h3>Pending Job Approvals</h3>
+        <div id="pendingJobsContainer" class="jobs-grid">
+            <div class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i> Loading pending jobs...
+            </div>
+        </div>
+    </div>
+</section>

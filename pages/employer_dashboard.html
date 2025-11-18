@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard - TMV Business Solutions</title>
+    <link rel="stylesheet" href="../styles/employer_dashboard.css?v=20250122-TASK-MANAGEMENT">
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="header-left">
+                <h1>TMV Business Solutions</h1>
+                <span class="company-name" id="companyName">Company Portal</span>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name" id="userName">Welcome</span>
+                    <span class="role-badge hr" id="roleBadge">HR & Recruitment</span>
+                </div>
+                <button onclick="employerDashboard.logout()" class="btn-logout">Logout</button>
+            </div>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Navigation -->
+    <nav class="dashboard-nav">
+        <button class="nav-btn active" onclick="employerDashboard.showSection('overview')">
+            📊 Overview
+        </button>
+        <button class="nav-btn" onclick="employerDashboard.showSection('jobs')">
+            💼 My Jobs
+        </button>
+        <button class="nav-btn" onclick="employerDashboard.showSection('post-job')">
+            ➕ Post Job
+        </button>
+        <button class="nav-btn" id="nav-pending-approvals" style="display: none;" onclick="employerDashboard.showSection('pending-approvals')">
+            ⏳ Pending Approvals
+        </button>
+        <button class="nav-btn" onclick="employerDashboard.showSection('applications')">
+            📋 Applications
+        </button>
+        <button class="nav-btn" onclick="employerDashboard.showSection('jobseekers')">
+            👨‍💼 Talent Pool
+        </button>
+        <button class="nav-btn" id="nav-tasks" onclick="employerDashboard.showSection('tasks')">
+            ✅ My Tasks
+        </button>
+        <button class="nav-btn" id="nav-users" style="display: none;" onclick="employerDashboard.showSection('users')">
+            👥 Manage Users
+        </button>
+        <button class="nav-btn" onclick="employerDashboard.showSection('profile')">
+            👤 My Profile
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        
+        <!-- Overview Section -->
+        <section id="overview-section" class="dashboard-section active">
+            <h2>Dashboard Overview</h2>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💼</div>
+                    <div class="stat-content">
+                        <h3 id="stat-active-jobs">0</h3>
+                        <p>Active Jobs</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">📨</div>
+                    <div class="stat-content">
+                        <h3 id="stat-total-applications">0</h3>
+                        <p>Total Applications</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="stat-pending-applications">0</h3>
+                        <p>Pending Applications</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍💼</div>
+                    <div class="stat-content">
+                        <h3 id="stat-total-jobseekers">0</h3>
+                        <p>Registered Jobseekers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Applications -->
+            <div class="recent-section">
+                <h3>Recent Applications</h3>
+                <div id="recent-applications" class="applications-list">
+                    <p class="no-data">No recent applications</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Jobs Section -->
+        <section id="jobs-section" class="dashboard-section">
+            <div class="section-header">
+                <h2>My Jobs</h2>
+                <button onclick="employerDashboard.showSection('post-job')" class="btn-primary">
+                    ➕ Post New Job
+                </button>
+                <button onclick="employerDashboard.loadJobs()" class="btn-success" style="margin-left: 10px;">
+                    🔄 Refresh Jobs
+                </button>
+            </div>
+            
+            <div class="jobs-filters">
+                <select id="jobs-status-filter" onchange="employerDashboard.filterJobs()">
+                    <option value="">All Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Draft">Draft</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Filled">Filled</option>
+                </select>
+            </div>
+
+            <div id="jobs-list" class="jobs-grid">
+                <p class="no-data">Loading jobs...</p>
+            </div>
+        </section>
+
+        <!-- Post Job Section -->
+        <section id="post-job-section" class="dashboard-section">
+            <h2 id="job-form-title">Post New Job</h2>
+            
+            <form id="job-form" class="job-form">
+                <input type="hidden" id="job-id">
+                
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="job-title">Job Title *</label>
+                        <input type="text" id="job-title" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="job-type">Job Type *</label>
+                        <select id="job-type" required>
+                            <option value="">Select Type</option>
+                            <option value="Permanent">Permanent</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Freelancer">Freelancer</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job-department">Department</label>
+                        <select id="job-department">
+                            <option value="">Select Department</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Architecture">Architecture</option>
+                            <option value="Consulting">Consulting</option>
+                            <option value="Finance & Accounts">Finance & Accounts</option>
+                            <option value="Information Technology (IT)">Information Technology (IT)</option>
+                            <option value="Innovation & Design">Innovation & Design</option>
+                            <option value="Marketing & Branding">Marketing & Branding</option>
+                            <option value="Security & Automation">Security & Automation</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="job-province">Province</label>
+                        <select id="job-province">
+                            <option value="">Select Province</option>
+                            <option value="Gauteng">Gauteng</option>
+                            <option value="Western Cape">Western Cape</option>
+                            <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                            <option value="Eastern Cape">Eastern Cape</option>
+                            <option value="Free State">Free State</option>
+                            <option value="Limpopo">Limpopo</option>
+                            <option value="Mpumalanga">Mpumalanga</option>
+                            <option value="North West">North West</option>
+                            <option value="Northern Cape">Northern Cape</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job-city">City</label>
+                        <input type="text" id="job-city">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="job-description">Job Description *</label>
+                    <textarea id="job-description" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="job-requirements">Requirements</label>
+                    <textarea id="job-requirements" rows="5"></textarea>
+                    <small>List qualifications, skills, and experience required</small>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="job-responsibilities">Responsibilities</label>
+                    <textarea id="job-responsibilities" rows="5"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="job-salary-min">Minimum Salary</label>
+                        <input type="number" id="job-salary-min" min="0" step="1000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job-salary-max">Maximum Salary</label>
+                        <input type="number" id="job-salary-max" min="0" step="1000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job-salary-period">Salary Period</label>
+                        <select id="job-salary-period">
+                            <option value="month">Per Month</option>
+                            <option value="year">Per Year</option>
+                            <option value="hour">Per Hour</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="job-experience">Experience Required</label>
+                        <input type="text" id="job-experience" placeholder="e.g., 2-5 years">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job-education">Education Level</label>
+                        <input type="text" id="job-education" placeholder="e.g., Bachelor's Degree">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job-closing-date">Closing Date</label>
+                        <input type="date" id="job-closing-date">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="job-status">Status</label>
+                        <select id="job-status">
+                            <option value="Active">Active</option>
+                            <option value="Draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">
+                        <span id="btn-submit-text">Post Job</span>
+                    </button>
+                    <button type="button" onclick="employerDashboard.cancelJobForm()" class="btn-secondary">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Pending Approvals Section (Managers Only) -->
+        <section id="pending-approvals-section" class="dashboard-section" style="display: none;">
+            <h2>Pending Job Approvals</h2>
+            
+            <div class="section-header">
+                <p>Review and approve job posts created by HR personnel</p>
+            </div>
+
+            <div id="pending-jobs-list" class="jobs-grid">
+                <p class="no-data">Loading pending approvals...</p>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section id="applications-section" class="dashboard-section">
+            <h2>Job Applications</h2>
+            
+            <div class="applications-filters">
+                <select id="app-job-filter" onchange="employerDashboard.filterApplications()">
+                    <option value="">All Jobs</option>
+                </select>
+                
+                <select id="app-status-filter" onchange="employerDashboard.filterApplications()">
+                    <option value="">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="reviewed">Reviewed</option>
+                    <option value="shortlisted">Shortlisted</option>
+                    <option value="invited">Invited</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+
+            <div id="applications-list" class="applications-table-container">
+                <p class="no-data">No applications yet</p>
+            </div>
+        </section>
+
+        <!-- Jobseekers / Talent Pool Section -->
+        <section id="jobseekers-section" class="dashboard-section">
+            <h2>Talent Pool - Registered Jobseekers</h2>
+            
+            <div class="section-header">
+                <p>Browse all registered jobseekers on the platform</p>
+                <button class="btn btn-primary" onclick="employerDashboard.loadJobseekers()" style="padding: 8px 16px;">
+                    🔄 Refresh List
+                </button>
+            </div>
+
+            <div id="jobseekers-stats" style="margin: 20px 0; padding: 15px; background: #f5f5f5; border-radius: 8px; display: none;">
+                <strong>Total Jobseekers:</strong> <span id="jobseekers-count">0</span> |
+                <strong>With Complete Profile:</strong> <span id="jobseekers-with-profile">0</span> |
+                <strong>Without Profile:</strong> <span id="jobseekers-without-profile">0</span>
+            </div>
+
+            <div id="jobseekers-list" class="table-container">
+                <p class="no-data">Loading jobseekers...</p>
+            </div>
+        </section>
+
+        <!-- My Tasks Section (HR Staff) -->
+        <section id="tasks-section" class="dashboard-section">
+            <h2>✅ My Assigned Tasks</h2>
+            
+            <div class="section-header">
+                <p>Tasks assigned to you by management - Track progress and collaborate</p>
+            </div>
+
+            <!-- Task Status Tabs -->
+            <div class="task-tabs">
+                <button class="task-tab active" data-status="pending" onclick="employerDashboard.switchTaskTab('pending')">
+                    ⏳ Pending <span id="task-count-pending" class="badge">0</span>
+                </button>
+                <button class="task-tab" data-status="in_progress" onclick="employerDashboard.switchTaskTab('in_progress')">
+                    🔄 In Progress <span id="task-count-in_progress" class="badge">0</span>
+                </button>
+                <button class="task-tab" data-status="completed" onclick="employerDashboard.switchTaskTab('completed')">
+                    ✅ Completed <span id="task-count-completed" class="badge">0</span>
+                </button>
+                <button class="task-tab" data-status="returned" onclick="employerDashboard.switchTaskTab('returned')">
+                    ↩️ Returned <span id="task-count-returned" class="badge">0</span>
+                </button>
+            </div>
+
+            <!-- Tasks Grid -->
+            <div id="tasks-list" class="tasks-grid">
+                <p class="no-data">Loading your tasks...</p>
+            </div>
+        </section>
+
+        <!-- Task Details Modal -->
+        <div id="task-modal" class="modal">
+            <div class="modal-content task-modal-content">
+                <div class="modal-header">
+                    <h3 id="task-modal-title">Task Details</h3>
+                    <button class="close-modal" onclick="employerDashboard.closeTaskModal()">&times;</button>
+                </div>
+                <div class="modal-body task-modal-body">
+                    <!-- Task Info -->
+                    <div class="task-info-section">
+                        <div class="task-meta">
+                            <span class="task-priority" id="task-modal-priority"></span>
+                            <span class="task-status-badge" id="task-modal-status"></span>
+                        </div>
+                        <p><strong>Assigned by:</strong> <span id="task-modal-assigned-by"></span></p>
+                        <p><strong>Due Date:</strong> <span id="task-modal-due-date"></span></p>
+                        <p><strong>Description:</strong></p>
+                        <div id="task-modal-description" class="task-description"></div>
+                    </div>
+
+                    <!-- Task Status Update -->
+                    <div class="task-actions-section">
+                        <h4>Update Status</h4>
+                        <div class="status-buttons">
+                            <button class="btn btn-primary" onclick="employerDashboard.updateTaskStatus('in_progress')">
+                                🔄 Start Working
+                            </button>
+                            <button class="btn btn-success" onclick="employerDashboard.updateTaskStatus('completed')">
+                                ✅ Mark Complete
+                            </button>
+                            <button class="btn btn-warning" onclick="employerDashboard.returnTask()">
+                                ↩️ Return to Manager
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Task Notes -->
+                    <div class="task-notes-section">
+                        <h4>📝 Notes & Updates</h4>
+                        <textarea id="task-notes" rows="4" placeholder="Add notes, updates, or questions about this task..."></textarea>
+                        <button class="btn btn-secondary" onclick="employerDashboard.saveTaskNotes()">
+                            💾 Save Notes
+                        </button>
+                    </div>
+
+                    <!-- Task Checklist -->
+                    <div class="task-checklist-section">
+                        <h4>✓ Task Checklist</h4>
+                        <div id="task-checklist" class="checklist-items">
+                            <!-- Checklist items will be added here -->
+                        </div>
+                        <div class="add-checklist-item">
+                            <input type="text" id="new-checklist-item" placeholder="Add a checklist item...">
+                            <button class="btn btn-sm btn-primary" onclick="employerDashboard.addChecklistItem()">
+                                ➕ Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Management Section (Admin Only) -->
+        <section id="users-section" class="dashboard-section">
+            <h2>HR User Management</h2>
+            
+            <div class="section-header">
+                <p>Manage HR staff members and their permissions</p>
+            </div>
+
+            <div id="users-list" class="users-table-container">
+                <p class="no-data">Loading users...</p>
+            </div>
+        </section>
+
+        <!-- My Profile Section -->
+        <section id="profile-section" class="dashboard-section">
+            <h2>My Profile</h2>
+            
+            <form id="profile-form" class="profile-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="profile-department">Department</label>
+                        <select id="profile-department">
+                            <option value="">Select Department</option>
+                            <option value="HR">Human Resources</option>
+                            <option value="Admin">Administration</option>
+                            <option value="Management">Management</option>
+                            <option value="Recruitment">Recruitment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile-contact">Contact Number</label>
+                        <input type="tel" id="profile-contact">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="profile-job-title">Job Title</label>
+                    <input type="text" id="profile-job-title" placeholder="e.g., HR Manager, Recruitment Specialist">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Profile</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Alert Modal -->
+    <div id="alertModal" class="modal">
+        <div class="modal-content">
+            <h3 id="alertTitle">Notice</h3>
+            <p id="alertMessage"></p>
+            <button onclick="closeAlert()" class="btn-primary">OK</button>
+        </div>
+    </div>
+
+    <!-- Candidate Details Modal -->
+    <div id="candidateModal" class="modal modal-large">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Candidate Profile</h3>
+                <button onclick="closeCandidateModal()" class="btn-close">&times;</button>
+            </div>
+            <div id="candidateDetails" class="modal-body">
+                <!-- Candidate details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Permissions Modal -->
+    <div id="permissionsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit User Permissions</h3>
+                <button onclick="closePermissionsModal()" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-user-id">
+                
+                <div class="user-info-section" style="background:#f5f5f5;padding:15px;border-radius:8px;margin-bottom:20px;">
+                    <h4 id="edit-user-name" style="margin:0 0 10px 0;color:#333;">User Name</h4>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                        <div>
+                            <strong>Email:</strong> <span id="edit-user-email"></span>
+                        </div>
+                        <div>
+                            <strong>Department:</strong> <span id="edit-user-department"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-user-role">HR Role</label>
+                    <select id="edit-user-role">
+                        <option value="Administrator">Administrator (Full Access)</option>
+                        <option value="Recruitment">Recruitment</option>
+                        <option value="Management">Management</option>
+                        <option value="Human Resource">Human Resource</option>
+                    </select>
+                </div>
+
+                <div style="margin:20px 0;padding:10px;background:#e3f2fd;border-left:4px solid #2196F3;border-radius:4px;">
+                    <strong>Quick Permission Presets:</strong>
+                    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+                        <button type="button" class="btn-small btn-secondary" onclick="employerDashboard.applyPreset('full')">
+                            👑 Full Access
+                        </button>
+                        <button type="button" class="btn-small btn-secondary" onclick="employerDashboard.applyPreset('recruitment')">
+                            🎯 Recruitment Staff
+                        </button>
+                        <button type="button" class="btn-small btn-secondary" onclick="employerDashboard.applyPreset('hr')">
+                            👔 HR Staff
+                        </button>
+                        <button type="button" class="btn-small btn-secondary" onclick="employerDashboard.applyPreset('readonly')">
+                            👁️ View Only
+                        </button>
+                    </div>
+                </div>
+
+                <div class="permissions-section">
+                    <h4 style="margin-bottom:15px;">Individual Permissions:</h4>
+                    
+                    <div class="form-group checkbox-group">
+                        <label style="display:flex;align-items:center;">
+                            <input type="checkbox" id="edit-can-post-jobs">
+                            <span>
+                                <strong>Can Post Jobs</strong>
+                                <small style="display:block;color:#666;">Create and publish job postings</small>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label style="display:flex;align-items:center;">
+                            <input type="checkbox" id="edit-can-manage-applications">
+                            <span>
+                                <strong>Can Manage Applications</strong>
+                                <small style="display:block;color:#666;">Review, shortlist, and process candidate applications</small>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label style="display:flex;align-items:center;">
+                            <input type="checkbox" id="edit-can-manage-users">
+                            <span>
+                                <strong>Can Manage Users (Admin Only)</strong>
+                                <small style="display:block;color:#666;">Grant/revoke permissions and manage user accounts</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button onclick="employerDashboard.saveUserPermissions()" class="btn-primary">💾 Save Changes</button>
+                    <button onclick="closePermissionsModal()" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/employer_dashboard.js?v=20251023-WORKFLOW-FIX"></script>
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARS Services - TM Vanity Business Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <header class="header">
+    <div>
+        <a href="https://www.tmvbusinesssolutions.co.za" target="_blank" rel="noopener noreferrer">
+            <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+        </a>
+    </div>
+        
+        <div id="companyName">TM Vanity Business Solutions</div>
+        <div>
+            <a href="client_login.html" id="loginButton">Login/Register</a>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    
+    <nav id="navigationMenu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="other.html">Other</a></li>
+            <li>
+                <a href="company_registration.html">Company Registration</a>
+            </li>
+            <li>
+                <a href="structured_packages.html">Structured Packages</a>
+            </li>
+            <li>
+                <a href="web_design.html">Web Design</a>
+            </li>
+            <li>
+                <a href="it_infrastructure.html">IT Infrastructure</a>                    
+            </li>
+            <li>
+                <a href="architectural_services.html">Architectural Services</a>
+            </li>
+            <li>
+                <a href="sars_services.html">SARS Services</a>
+            </li>
+            <li>
+                <a href="accounting_services.html">Accounting Services</a>                    
+            </li>   
+            <li>
+                <a href="business_consulting.html">Business Consulting</a>
+            </li>
+            <li>
+                <a href="branding_identity.html">Branding & Identity</a>
+            </li>
+            <li>
+                <a href="marketing_services.html">Marketing Services</a>
+            </li>
+            <li>
+                <a href="social_media_growth.html">Social Media Growth</a>
+            </li>
+             <li>
+                <a href="jobseeker_dashboard.html">Careers</a>                    
+            </li>   
+        </ul>
+    </nav>
+
+    <div class="guestname">
+        Welcome, Guest
+    </div>
+
+    <div class="sars-services-container">
+        <div class="sars-services-box">
+            <h2 class="sars-box-title">SARS Services</h2>
+            
+            <div class="sars-service-item" data-service="tax_registration" data-price="450">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="tax_registration" onchange="updateTotal()">
+                    <label for="tax_registration" class="sars-service-name">Tax Registration</label>
+                    <span class="sars-service-price">R450</span>
+                </div>
+                <div class="service-description">
+                    Get your business officially recognized by SARS. This is your fundamental tax number, essential for all operations.                
+                </div>
+            </div>
+
+            <div class="sars-service-item" data-service="vat_registration" data-price="450">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="vat_registration" onchange="updateTotal()">
+                    <label for="vat_registration" class="sars-service-name">Vat Registration</label>
+                    <span class="sars-service-price">R450</span>
+                </div>
+                <div class="service-description">
+                    Unlock business credibility and comply with the law once your turnover reaches the threshold. Allows you to charge and claim back VAT
+                </div>
+            </div>
+
+            <div class="sars-service-item" data-service="tax_and_vat_returns" data-price="800">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="tax_and_vat_returns" onchange="updateTotal()">
+                    <label for="tax_and_vat_returns" class="sars-service-name">Tax & Vat Returns</label>
+                    <span class="sars-service-price">R800</span>
+                </div>
+                <div class="service-description">
+                    Ensure accurate, on-time submissions to avoid penalties. We calculate what you owe or are owed, keeping SARS off your back.
+                </div>
+            </div>
+
+            <div class="sars-service-item" data-service="Tax_and_Vat_compliance" data-price="900">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="Tax_and_Vat_compliance" onchange="updateTotal()">
+                    <label for="Tax_and_Vat_compliance" class="sars-service-name">Tax & Vat Compliant</label>
+                    <span class="sars-service-price">R900</span>
+                </div>
+                <div class="service-description">
+                    Achieve and maintain full compliance. Proactive reviews to ensure you always meet SARS regulations, preventing costly audits and fines.
+                </div>
+            </div>
+
+            <div class="sars-service-item" data-service="uif_paye_sdl_registration" data-price="1000">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="uif_paye_sdl_registration" onchange="updateTotal()">
+                    <label for="uif_paye_sdl_registration" class="sars-service-name">UIF/PAYE/SDL Registration</label>
+                    <span class="sars-service-price">R1000</span>
+                </div>
+                <div class="service-description">
+                    Formalize your hiring process. Legally register as an employer to manage your staff's benefits and statutory contributions.
+                </div>
+            </div>
+
+            <div class="sars-service-item" data-service="import_and_export_license" data-price="700">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="import_and_export_license" onchange="updateTotal()">
+                    <label for="import_and_export_license" class="sars-service-name">Import & Export License</label>
+                    <span class="sars-service-price">R700</span>
+                </div>
+                <div class="service-description">
+                    Open your business to global trade. Obtain the necessary permit to legally buy from international suppliers or sell to overseas markets.
+                </div>
+            </div>
+
+            <div class="sars-service-item" data-service="sars_representative" data-price="2000">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="sars_representative" onchange="updateTotal()">
+                    <label for="sars_representative" class="sars-service-name">SARS Representative</label>
+                    <span class="sars-service-price">R2000</span>
+                </div>
+                <div class="service-description">
+                    Get an expert in your corner. We act as your official liaison with SARS, handling all communications and queries on your behalf.
+                </div>
+            </div>
+
+            <div class="sars-service-item" data-service="custom_registration" data-price="450">
+                <div class="sars-service-header">
+                    <input type="checkbox" class="sars-service-checkbox" id="custom_registration" onchange="updateTotal()">
+                    <label for="custom_registration" class="sars-service-name">Custom Registration</label>
+                    <span class="sars-service-price">R450</span>
+                </div>
+                <div class="service-description">
+                    Simplify your international shipping. Register your business with customs to smoothly clear goods through ports and borders.
+                </div>
+            </div>
+
+            <div class="total-section">
+                <div class="total-label">Total Amount</div>
+                <div class="total-amount" id="totalAmount">R0</div>
+                <button class="sars-pay-now-btn" id="payNowBtn" onclick="openPaymentModal()" disabled>
+                    Pay Now
+                </button>
+            </div>
+        </div>   
+        
+        <div class="sars-banner">
+            <div class="sars-header">
+                <h1><i class="fas fa-file-invoice-dollar"></i> SARS Services Requirements</h1>
+                <p>Everything you need to know about tax registration and compliance in South Africa</p>
+            </div>
+            
+            <div class="sars-content">
+                <div class="sars-item">
+                    <h3><i class="fas fa-file-signature"></i> Tax Registration</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Completed IT77 Form or online registration</li>
+                            <li>Certified copy of ID/Passport of owner/directors</li>
+                            <li>Business address and contact details</li>
+                            <li>Company documents (e.g., CIPC Registration Certificate for companies)</li>
+                            <li>Bank account details (in the business name)</li>
+                            <li>Details of business activities</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+
+                <div class="sars-item">
+                    <h3><i class="fas fa-calculator"></i> VAT Registration</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Valid Tax Reference Number (from tax registration)</li>
+                            <li>Certified ID/Passport of applicant</li>
+                            <li>Proof of banking details (recent statement)</li>
+                            <li>Proof of address (utility bill, lease agreement)</li>
+                            <li>Financial projections OR 3-6 months of bank statements (to prove turnover will exceed R1 million)</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+
+                <div class="sars-item">
+                    <h3><i class="fas fa-tasks"></i> Tax and VAT Returns</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Monthly/periodic financial records (sales and purchases)</li>
+                            <li>All valid tax invoices from suppliers</li>
+                            <li>Bank statements for the period</li>
+                            <li>Payroll records (if applicable)</li>
+                            <li>Previous return documents (for consistency)</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+
+                <div class="sars-item">
+                    <h3><i class="fas fa-check-circle"></i> Maintaining Tax/VAT Compliance</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Organized and complete financial records</li>
+                            <li>Valid tax invoices for all transactions</li>
+                            <li>Regular reconciliation of books</li>
+                            <li>Up-to-date understanding of tax laws</li>
+                            <li>Accurate and timely submission of returns</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+
+                <div class="sars-item">
+                    <h3><i class="fas fa-users"></i> UIF/PAYE/SDL Registration (as an Employer)</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Business Tax Number</li>
+                            <li>Certified ID of the employer/representative</li>
+                            <li>Details of all employees (ID numbers, gross salaries)</li>
+                            <li>Proof of business banking details</li>
+                            <li>Completed EMP101 form</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+
+                <div class="sars-item">
+                    <h3><i class="fas fa-ship"></i> Import and Export License (SARS Customs)</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Business Tax Reference Number</li>
+                            <li>Certified copy of company director's ID</li>
+                            <li>CIPC Registration Documents</li>
+                            <li>Proof of business address</li>
+                            <li>Bank confirmation letter</li>
+                            <li>Specific details about goods to be imported/exported</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+
+                <div class="sars-item">
+                    <h3><i class="fas fa-user-tie"></i> Appointing a SARS Representative (ToR01/02 Form)</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Completed ToR01 (Appointment) and ToR02 (Acceptance) forms</li>
+                            <li>Tax Reference Number of the principal (business owner)</li>
+                            <li>Tax Reference Number of the representative (us/accountant)</li>
+                            <li>Certified ID copies for both parties</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+
+                <div class="sars-item">
+                    <h3><i class="fas fa-passport"></i> Customs Registration (Client Registration)</h3>
+                    <p><strong>Requirements:</strong></p>
+                    <div class="sars-requirements-list">
+                        <ul>
+                            <li>Business Tax Reference Number</li>
+                            <li>CIPC Registration Documents (for companies)</li>
+                            <li>Certified ID of owner/directors</li>
+                            <li>Proof of physical business address</li>
+                            <li>Contact details and information about the nature of intended customs activities</li>
+                        </ul>
+                    </div>
+                    <div class="sars-divider"></div>
+                </div>
+            </div>
+            
+            <div class="sars-footer">
+                <p>For more information, visit the <a href="https://www.sars.gov.za/" target="_blank">SARS official website</a></p>
+                <p>© 2023 TMV Business Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="sars-payment-modal" id="paymentModal">
+        <div class="sars-payment-modal-content">
+            <span class="sars-payment-modal-close" onclick="closePaymentModal()">&times;</span>
+            <h2 class="sars-payment-modal-title">Complete Your Payment</h2>
+            
+            <div class="sars-payment-summary" id="paymentSummary">
+                <!-- Payment summary will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="sars-payment-methods">
+                <div class="sars-payment-method selected" data-method="card">
+                    Credit Card
+                </div>
+                <div class="sars-payment-method" data-method="eft">
+                    EFT/Bank Transfer
+                </div>
+                <div class="sars-payment-method" data-method="paypal">
+                    PayPal
+                </div>
+            </div>
+            
+            <!-- Credit Card Form -->
+            <div id="cardPaymentForm">
+                <div class="sars-payment-form-group">
+                    <label class="sars-payment-form-label">Card Number</label>
+                    <input type="text" class="sars-payment-form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
+                    <div class="sars-payment-error" id="cardNumberError">Please enter a valid card number</div>
+                </div>
+                
+                <div class="sars-payment-form-row">
+                    <div class="sars-payment-form-group">
+                        <label class="sars-payment-form-label">Expiry Date</label>
+                        <input type="text" class="sars-payment-form-input" placeholder="MM/YY" id="cardExpiry">
+                        <div class="sars-payment-error" id="cardExpiryError">Please enter a valid expiry date</div>
+                    </div>
+                    
+                    <div class="sars-payment-form-group">
+                        <label class="sars-payment-form-label">CVV</label>
+                        <input type="text" class="sars-payment-form-input" placeholder="123" id="cardCvv">
+                        <div class="sars-payment-error" id="cardCvvError">Please enter a valid CVV</div>
+                    </div>
+                </div>
+                
+                <div class="sars-payment-form-group">
+                    <label class="sars-payment-form-label">Cardholder Name</label>
+                    <input type="text" class="sars-payment-form-input" placeholder="John Doe" id="cardName">
+                    <div class="sars-payment-error" id="cardNameError">Please enter cardholder name</div>
+                </div>
+                
+                <button type="button" class="sars-payment-submit-btn" onclick="processCardPayment()">Pay Now</button>
+            </div>
+            
+            <!-- EFT Payment Instructions -->
+            <div id="eftPaymentForm" class="sars-payment-instructions">
+                <h4>EFT/Bank Transfer Instructions</h4>
+                <p>Please make a transfer to the following account details:</p>
+                
+                <ul>
+                    <li><strong>Bank:</strong> ABSA</li>
+                    <li><strong>Account Name:</strong> TM Vanity Business Solutions</li>
+                    <li><strong>Account Number:</strong> 1234 5678 9012</li>
+                    <li><strong>Branch Code:</strong> 632 005</li>
+                    <li><strong>Reference:</strong> Your Name + Invoice #INV-<span id="invoiceNumber"></span></li>
+                </ul>
+                
+                <p>Once payment is made, please email proof of payment to <a href="mailto:payments@tmvbusinesssolutions.co.za">payments@tmvbusinesssolutions.co.za</a></p>
+                
+                <button type="button" class="sars-payment-submit-btn" onclick="confirmEFTPayment()">I've Made the EFT Payment</button>
+            </div>
+            
+            <!-- PayPal Payment Instructions -->
+            <div id="paypalPaymentForm" class="sars-payment-instructions">
+                <h4>PayPal Payment Instructions</h4>
+                <p>You will be redirected to PayPal to complete your payment.</p>
+                <p>Click the button below to proceed to PayPal:</p>
+                
+                <button type="button" class="sars-payment-submit-btn" onclick="redirectToPayPal()">Proceed to PayPal</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="section">
+            <h4>Contact</h4>
+            <p>Tel: 087 123 4567</p>
+            <p>Cell: 081 253 7967</p>
+            <p>Email: <a href="mailto:sales@tmvbusinesssolutions.co.za">sales@tmvbusinesssolutions.co.za</a></p>
+            <p>Email: <a href="mailto:info@tmvbusinesssolutions.co.za">info@tmvbusinesssolutions.co.za</a></p>
+        </div>
+        <div class="section">
+            <h4>Address</h4>
+            <p>186 Frikkie De Beer Street</p>
+            <p>Menlyn Place</p>
+            <p>Menlyn</p>
+            <p>0063</p>
+        </div>
+        <div class="section">
+            <h4>Important Links</h4>
+            <p><a href="#">Legal</a></p>
+            <p><a href="#">POPIA Act</a></p>
+            <p><a href="#">CIPC</a></p>
+            <p><a href="#">SARS</a></p>
+        </div>
+        <div class="section">
+            <h4>Social Media</h4>
+            <p><a href="#">Facebook</a></p>
+            <p><a href="#">Twitter</a></p>
+            <p><a href="#">Instagram</a></p>
+        </div>
+        <div class="section">
+            <h4>Subscribe</h4>
+            <form class="subscribe-form">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Last Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Contact No.">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="../scripts/api.js" defer></script>
+    <script src="../scripts/auth.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
+    <script src="../scripts/auth-check.js"></script>
+
+<script>
+        let cart = [];
+        let cartTotal = 0;
+        let selectedPaymentMethod = 'card';
+
+        // Function to update total when checkboxes change
+        function updateTotal() {
+            cart = [];
+            cartTotal = 0;
+
+            // Get all checked checkboxes
+            const checkboxes = document.querySelectorAll('.sars-service-checkbox:checked');
+
+            checkboxes.forEach(checkbox => {
+                const serviceId = checkbox.id;
+                const serviceElement = checkbox.closest('.sars-service-item');
+                const serviceName = serviceElement.querySelector('.sars-service-name').textContent;
+                const servicePrice = parseInt(serviceElement.getAttribute('data-price')) || 0;
+
+                cart.push({
+                    id: serviceId,
+                    name: serviceName,
+                    price: servicePrice
+                });
+
+                cartTotal += servicePrice;
+            });
+
+            // Update total display
+            document.getElementById('totalAmount').textContent = `R${cartTotal}`;
+            
+            // Enable/disable pay button
+            const payBtn = document.getElementById('payNowBtn');
+            payBtn.disabled = cart.length === 0;
+        }
+
+        // Function to open payment modal
+        function openPaymentModal() {
+            if (cart.length === 0) {
+                alert('Please select at least one service before proceeding to payment.');
+                return;
+            }
+
+            // Update payment summary
+            updatePaymentSummary();
+
+            // Generate invoice number
+            document.getElementById('invoiceNumber').textContent = Math.floor(100000 + Math.random() * 900000);
+
+            // Show modal
+            document.getElementById('paymentModal').style.display = 'flex';
+
+            // Reset to card payment by default
+            selectPaymentMethod('card');
+        }
+
+        // Function to close payment modal
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Function to update payment summary
+        function updatePaymentSummary() {
+            const paymentSummary = document.getElementById('paymentSummary');
+            let summaryHTML = '<h3>Order Summary</h3>';
+
+            cart.forEach(item => {
+                summaryHTML += `
+                    <div class="sars-payment-summary-item">
+                        <span>${item.name}</span>
+                        <span>R${item.price}</span>
+                    </div>
+                `;
+            });
+
+            summaryHTML += `
+                <div class="sars-payment-summary-item sars-payment-summary-total">
+                    <span>Total Amount</span>
+                    <span>R${cartTotal}</span>
+                </div>
+            `;
+
+            paymentSummary.innerHTML = summaryHTML;
+        }
+
+        // Function to select payment method
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+
+            // Update UI
+            document.querySelectorAll('.sars-payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            document.querySelector(`.sars-payment-method[data-method="${method}"]`).classList.add('selected');
+
+            // Show appropriate form
+            document.getElementById('cardPaymentForm').style.display = 'none';
+            document.getElementById('eftPaymentForm').style.display = 'none';
+            document.getElementById('paypalPaymentForm').style.display = 'none';
+
+            if (method === 'card') {
+                document.getElementById('cardPaymentForm').style.display = 'block';
+            } else if (method === 'eft') {
+                document.getElementById('eftPaymentForm').style.display = 'block';
+            } else if (method === 'paypal') {
+                document.getElementById('paypalPaymentForm').style.display = 'block';
+            }
+        }
+
+        // Function to process card payment
+        // Function to process card payment with enhanced Yoco integration
+        function processCardPayment() {
+            if (cart.length === 0) {
+                alert('Please select at least one SARS service before proceeding to payment.');
+                return;
+            }
+
+            // Calculate total in cents for Yoco
+            const amountInCents = cartTotal * 100;
+            
+            // Prepare service description
+            const serviceNames = cart.map(item => item.service).join(', ');
+            const description = `SARS Services: ${serviceNames}`;
+            
+            // Prepare metadata
+            const metadata = {
+                service_type: 'sars_services',
+                services: cart.map(item => ({
+                    name: item.service,
+                    price: item.price
+                })),
+                total_services: cart.length,
+                customer_type: 'website_customer',
+                page_source: 'sars_services_page'
+            };
+
+            console.log('🚀 Starting Yoco payment for SARS Services:', {
+                amount: amountInCents,
+                description,
+                metadata
+            });
+
+            // Close current modal and redirect to Yoco checkout
+            closePaymentModal();
+            
+            // Use the enhanced payment gateway (redirects to Yoco)
+            if (window.yocoPayment) {
+                window.yocoPayment.openPaymentModal({
+                    amount: amountInCents,
+                    currency: 'ZAR',
+                    description: description,
+                    metadata: metadata,
+                    onSuccess: function(result) {
+                        console.log('✅ Yoco checkout created, redirecting...', result);
+                        // Reset cart after successful checkout creation
+                        resetCartAfterPayment();
+                    },
+                    onError: function(error) {
+                        console.error('❌ Payment failed:', error);
+                        alert('Payment failed: ' + error.message + '\nPlease try again or contact support.');
+                    }
+                });
+            } else {
+                console.error('❌ Yoco payment gateway not loaded');
+                alert('Payment system not available. Please refresh the page and try again.');
+            }
+        }
+
+        // Helper function to reset cart after payment
+        function resetCartAfterPayment() {
+            // Uncheck all service checkboxes
+            document.querySelectorAll('.sars-service-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Clear cart array and total
+            cart = [];
+            cartTotal = 0;
+
+            // Update total display
+            updateTotal();
+            
+            console.log('✅ Cart reset after payment');
+        }
+
+        // Function to confirm EFT payment
+        function confirmEFTPayment() {
+            alert('Thank you for confirming your EFT payment. We will process your order once payment is received. Please email proof of payment to payments@tmvbusinesssolutions.co.za');
+            closePaymentModal();
+
+            // Uncheck all service checkboxes
+            document.querySelectorAll('.sars-service-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Update total display
+            updateTotal();
+        }
+
+        // Function to redirect to PayPal
+        function redirectToPayPal() {
+            alert('You would now be redirected to PayPal to complete your payment. This is a simulation.');
+            closePaymentModal();
+
+            // Uncheck all service checkboxes
+            document.querySelectorAll('.sars-service-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Update total display
+            updateTotal();
+        }
+
+        // Payment method selection
+        document.querySelectorAll('.sars-payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                const methodType = this.getAttribute('data-method');
+                selectPaymentMethod(methodType);
+            });
+        });
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const paymentModal = document.getElementById('paymentModal');
+            if (event.target === paymentModal) {
+                closePaymentModal();
+            }
+        };
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+        });
+</script>
+
+<!-- Enhanced Yoco Payment Integration -->
+<script src="../assets/payment-modal.js"></script>
+
+</body>
+</html>

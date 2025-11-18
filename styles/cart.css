@@ -1,0 +1,56 @@
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 12px;
+    text-align: right;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-table th:first-child,
+.cart-table td:first-child {
+    text-align: left;
+}
+
+.cart-table thead th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.cart-table tfoot {
+    font-weight: bold;
+    background-color: #f8f9fa;
+}
+
+.cart-table tfoot td {
+    border-top: 2px solid #dee2e6;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0 8px;
+    border-radius: 4px;
+}
+
+.remove-item:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+    font-style: italic;
+}

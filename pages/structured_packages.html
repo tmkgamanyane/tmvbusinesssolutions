@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structured Packages</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <header class="header">
+    <div>
+        <a href="https://www.tmvbusinesssolutions.co.za" target="_blank" rel="noopener noreferrer">
+            <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+        </a>
+    </div>
+        
+        <div id="companyName">TM Vanity Business Solutions</div>
+
+        <div>
+            <a href="client_login.html" id="loginButton">Login/Register</a>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav id="navigationMenu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="other.html">Other</a></li>
+            <li>
+                <a href="company_registration.html">Company Registration</a>
+                <!--<ul>
+                    <li><a href="new_company.html">New Company</a></li>
+                    <li><a href="co_operative.html">Co-Operative</a></li>
+                    <li><a href="security_company.html">Security Company</a></li>
+                    <li><a href="personal_liability_company.html">Personal Liability Company</a></li>
+                    <li><a href="holding_company.html">Holding Company</a></li>
+                    <li><a href="ngo.html">NGO</a></li>
+                    <li><a href="npo.html">NPO</a></li>
+                    <li><a href="npc.html">NPC</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="structured_packages.html">Structured Packages</a>
+                <!--<ul>
+                    <li><a href="bronze_package.html">Bronze Package</a></li>
+                    <li><a href="silver_package.html">Silver Package</a></li>
+                    <li><a href="gold_package.html">Gold Package</a></li>
+                    <li><a href="platinum_package.html">Platinum Package</a></li>
+                    <li><a href="diamond_package.html">Diamond Package</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="web_design.html">Web Design</a>
+                <!--<ul>
+                    <li><a href="app_development.html">App Development</a></li>
+                    <li><a href="web_development.html">Web Development</a></li>
+                    <li><a href="e_commerce_development.html">E-Commerce Development</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="it_infrastructure.html">IT Infrastructure</a>                
+            </li>
+            <li>
+                <a href="architectural_services.html">Architectural Services</a>
+                <!--<ul>
+                    <li><a href="residential_plans.html">Residential Plans</a></li>
+                    <li><a href="commercial_plans.html">Commercial Plans</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="sars_services.html">SARS Services</a>
+                <!--<ul>
+                    <li><a href="tax_registration.html">Tax Registration</a></li>
+                    <li><a href="vat_registration.html">Vat Registration</a></li>
+                    <li><a href="tax_vat_returns.html">Tax & Vat Returns</a></li>
+                    <li><a href="tax_vat_compliant.html">Tax & Vat Compliant</a></li>
+                    <li><a href="uif_paye_sdl_registration.html">UIF/PAYE/SDL Registration</a></li>
+                    <li><a href="import_export_license.html">Import & Export License</a></li>
+                    <li><a href="sars_representative.html">SARS Representative</a></li>
+                    <li><a href="custom_registration.html">Custom Registration</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="accounting_services.html">Accounting Services</a>                 
+            </li>   
+            <li>
+                <a href="business_consulting.html">Business Consulting</a>
+                <!--<ul>
+                    <li><a href="business_plans.html">Business Plans</a></li>
+                    <li><a href="business_profiles.html">Business Profiles</a></li>
+                    <li><a href="business_proposal.html">Business Proposal</a></li>
+                    <li><a href="market_research.html">Market Research</a></li>
+                    <li><a href="market_entry_analysis.html">Market Entry Analysis</a></li>
+                    <li><a href="advanced_business_consulting.html">Advanced Business Consulting</a></li>
+                    <li><a href="business_expansion_strategy.html">Business Expansion Strategy</a></li>
+                    <li><a href="competitor_analysis.html">Competitor Analysis</a></li>
+                    <li><a href="revenue_forecast.html">Revenue Forecast</a></li>
+                    <li><a href="growth_optimization.html">Growth Optimization</a></li>
+                    <li><a href="business_scaling_roadmap.html">Business Scaling Roadmap</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="branding_identity.html">Branding & Identity</a>
+                <!--<ul>
+                    <li><a href="professional_logo_design.html">Professional Logo Design</a></li>
+                    <li><a href="business_card_design.html">Business Card Design</a></li>
+                    <li><a href="graphics_design.html">Graphics Design</a></li>
+                    <li><a href="digital_banners.html">Digital Banners</a></li>
+                    <li><a href="pull_up_banners.html">Pull Up Banners</a></li>
+                    <li><a href="flyers.html">Flyers</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                    <li><a href="backdrop.html">Backdrop</a></li>
+                    <li><a href="social_media_branding.html">Social Media Branding</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="marketing_services.html">Marketing Services</a>
+                <!--<ul>
+                    <li><a href="google_ads_setup.html">Google Ads Setup</a></li>
+                    <li><a href="tik_tok_ads_setup.html">Tik Tok Ads Setup</a></li>
+                    <li><a href="facebook_ads_setup.html">Facebook Ads Setup</a></li>
+                    <li><a href="instagram_ads_setup.html">Instagram Ads Setup</a></li>
+                    <li><a href="x_twitter_ads_setup.html">X (Twitter) Ads Setup</a></li>
+                    <li><a href="emails_sms_marketing.html">Emails & SMS Marketing</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="social_media_growth.html">Social Media Growth</a>
+                <!--<ul>
+                    <li><a href="facebook_followers_boosting.html">Facebook Followers Boosting</a></li>
+                    <li><a href="instagram_followers_boosting.html">Instagram Followers Boosting</a></li>
+                    <li><a href="x_twitter_followers_boosting.html">X (Twitter) Followers Boosting</a></li>
+                    <li><a href="social_media_management.html">Social Media Management</a></li>
+                </ul>-->
+            </li>
+             <li>
+                <a href="jobseeker_dashboard.html">Careers</a>                
+            </li>   
+        </ul>
+    </nav>
+
+    <div class="guestname">
+        Welcome, Guest
+    </div>
+
+   <div class="structured-packages-page-container">
+        <h1 class="structured-packages-page-title">Business Packages</h1>
+        
+        <div class="structured-packages-container">
+            <!-- Bronze Package -->
+            <div class="structured-packages-box bronze">
+                <div class="structured-packages-header">
+                    <h3>Bronze Package</h3>
+                    <div class="structured-packages-price-tag">R1,250</div>
+                </div>
+                <div class="structured-packages-body">
+                    <ul>
+                        <li>Company Registration</li>  
+                        <li>SARS Tax Registration</li>   
+                        <li>B-BBEE Certificate</li>      
+                        <li>Professional Logo Design</li>                                  
+                    </ul>
+                </div>
+                <div class="structured-packages-footer">
+                    <div class="structured-packages-checkbox-container">
+                        <input type="checkbox" class="package-checkbox structured-packages-checkbox" id="bronze-checkbox" data-package="Bronze Package" data-price="1250">
+                        <label for="bronze-checkbox" class="structured-packages-checkbox-label">Select Package</label>
+                    </div>                    
+                </div>
+            </div>
+           
+            <!-- Silver Package -->
+            <div class="structured-packages-box silver">
+                <div class="structured-packages-header">
+                    <h3>Silver Package</h3>
+                    <div class="structured-packages-price-tag">R2,750</div>
+                </div>
+                <div class="structured-packages-body">
+                    <ul>
+                        <li>Company Registration</li>     
+                        <li>SARS Tax Registration</li>
+                        <li>B-BBEE Certificate</li>
+                        <li>Professional Logo Design</li>
+                        <li>Business Profile</li>                                      
+                    </ul>
+                </div>
+                <div class="structured-packages-footer">
+                    <div class="structured-packages-checkbox-container">
+                        <input type="checkbox" class="package-checkbox structured-packages-checkbox" id="silver-checkbox" data-package="Silver Package" data-price="2750">
+                        <label for="silver-checkbox" class="structured-packages-checkbox-label">Select Package</label>
+                    </div>                    
+                </div>
+            </div>
+
+            <!-- Gold Package (Most Popular) -->
+            <div class="structured-packages-box gold popular">
+                <div class="structured-packages-header">
+                    <h3>Gold Package</h3>
+                    <div class="structured-packages-price-tag">R7,750</div>
+                    <div class="structured-packages-ribbon">BEST VALUE</div>
+                </div>
+                <div class="structured-packages-body">
+                    <ul>
+                        <li>Company Registration</li>     
+                        <li>SARS Tax Registration</li>
+                        <li>B-BBEE Certificate</li>
+                        <li>Professional Logo Design</li>
+                        <li>Business Profile</li>
+                        <li>Comprehensive Business Plan</li>                                      
+                    </ul>
+                </div>
+                <div class="structured-packages-footer">
+                    <div class="structured-packages-checkbox-container">
+                        <input type="checkbox" class="package-checkbox structured-packages-checkbox" id="gold-checkbox" data-package="Gold Package" data-price="7750">
+                        <label for="gold-checkbox" class="structured-packages-checkbox-label">Select Package</label>
+                    </div>                    
+                </div>
+            </div>
+
+            <!-- Platinum Package -->
+            <div class="structured-packages-box platinum">
+                <div class="structured-packages-header">
+                    <h3>Platinum Package</h3>
+                    <div class="structured-packages-price-tag">R12,750</div>
+                </div>
+                <div class="structured-packages-body">
+                    <ul>
+                        <li>Company Registration</li>     
+                        <li>SARS Tax Registration</li>
+                        <li>B-BBEE Certificate</li>
+                        <li>Professional Logo Design</li>
+                        <li>Business Profile</li>
+                        <li>Comprehensive Business Plan</li>
+                        <li>Market Research</li>
+                    </ul>
+                </div>
+                <div class="structured-packages-footer">
+                    <div class="structured-packages-checkbox-container">
+                        <input type="checkbox" class="package-checkbox" id="platinum-checkbox" data-package="Platinum Package" data-price="12750">
+                        <label for="platinum-checkbox" class="structured-packages-checkbox-label">Select Package</label>
+                    </div>                    
+                </div>
+            </div>
+
+            <!-- Diamond Package -->
+            <div class="structured-packages-box diamond">
+                <div class="structured-packages-header">
+                    <h3>Diamond Package</h3>
+                    <div class="structured-packages-price-tag">R17,750</div>
+                </div>
+                <div class="structured-packages-body">
+                    <ul>
+                        <li>Company Registration</li>     
+                        <li>SARS Tax Registration</li>
+                        <li>B-BBEE Certificate</li>
+                        <li>Professional Logo Design</li>
+                        <li>Business Profile</li>
+                        <li>Comprehensive Business Plan</li>
+                        <li>Market Research</li>
+                        <li>Digital Marketing</li>
+                        <li>Social Media Growth</li>
+                    </ul>
+                </div>
+                <div class="structured-packages-footer">
+                    <div class="structured-packages-checkbox-container">
+                        <input type="checkbox" class="package-checkbox" id="diamond-checkbox" data-package="Diamond Package" data-price="17750">
+                        <label for="diamond-checkbox" class="structured-packages-checkbox-label">Select Package</label>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="structured-packages-cart-container">
+            <h2 class="structured-packages-cart-title">Your Selection</h2>
+            
+            <div class="structured-packages-cart-items" id="cartItems">
+                <div class="structured-packages-empty-cart-message">
+                    <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                    <p>Your selection is empty</p>
+                    <p>Select packages from above to get started</p>
+                </div>
+            </div>
+            
+            <div class="structured-packages-cart-summary">
+                <div class="structured-packages-cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">R0</span>
+                </div>
+                
+                <div class="structured-packages-cart-buttons">
+                    <button class="structured-packages-pay-now-btn pay-now-btn" id="payNowBtn" onclick="openPaymentModal()" disabled>
+                        <i class="fas fa-lock"></i> Pay Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal (Copied from Business Consulting) -->
+    <div class="business-consulting-payment-modal" id="paymentModal">
+        <div class="business-consulting-payment-modal-content">
+            <span class="business-consulting-payment-modal-close" onclick="closePaymentModal()">&times;</span>
+            <h2 class="business-consulting-payment-modal-title">Complete Your Payment</h2>
+
+            <div class="business-consulting-payment-summary" id="paymentSummary">
+                <!-- Payment summary will be inserted here by JavaScript -->
+            </div>
+
+            <div class="business-consulting-payment-methods">
+                <div class="business-consulting-payment-method selected" data-method="card">
+                    Credit Card
+                </div>
+                <div class="business-consulting-payment-method" data-method="eft">
+                    EFT/Bank Transfer
+                </div>
+                <div class="business-consulting-payment-method" data-method="paypal">
+                    PayPal
+                </div>
+            </div>
+
+            <!-- Credit Card Form -->
+            <div id="cardPaymentForm">
+                <div class="business-consulting-payment-form-group">
+                    <label class="business-consulting-payment-form-label">Card Number</label>
+                    <input type="text" class="business-consulting-payment-form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
+                    <div class="business-consulting-payment-error" id="cardNumberError">Please enter a valid card number</div>
+                </div>
+                <div class="business-consulting-payment-form-row">
+                    <div class="business-consulting-payment-form-group">
+                        <label class="business-consulting-payment-form-label">Expiry Date</label>
+                        <input type="text" class="business-consulting-payment-form-input" placeholder="MM/YY" id="cardExpiry">
+                        <div class="business-consulting-payment-error" id="cardExpiryError">Please enter a valid expiry date</div>
+                    </div>
+                    <div class="business-consulting-payment-form-group">
+                        <label class="business-consulting-payment-form-label">CVV</label>
+                        <input type="text" class="business-consulting-payment-form-input" placeholder="123" id="cardCvv">
+                        <div class="business-consulting-payment-error" id="cardCvvError">Please enter a valid CVV</div>
+                    </div>
+                </div>
+                <div class="business-consulting-payment-form-group">
+                    <label class="business-consulting-payment-form-label">Cardholder Name</label>
+                    <input type="text" class="business-consulting-payment-form-input" placeholder="John Doe" id="cardName">
+                    <div class="business-consulting-payment-error" id="cardNameError">Please enter cardholder name</div>
+                </div>
+                <button type="button" class="business-consulting-payment-submit-btn" onclick="processCardPayment()">Pay Now</button>
+            </div>
+
+            <!-- EFT Payment Instructions -->
+            <div id="eftPaymentForm" class="business-consulting-payment-instructions">
+                <h4>EFT/Bank Transfer Instructions</h4>
+                <p>Please make a transfer to the following account details:</p>
+                <ul>
+                    <li><strong>Bank:</strong> ABSA</li>
+                    <li><strong>Account Name:</strong> TM Vanity Business Solutions</li>
+                    <li><strong>Account Number:</strong> 1234 5678 9012</li>
+                    <li><strong>Branch Code:</strong> 632 005</li>
+                    <li><strong>Reference:</strong> Your Name + Invoice #INV-<span id="invoiceNumber"></span></li>
+                </ul>
+                <p>Once payment is made, please email proof of payment to <a href="mailto:payments@tmvbusinesssolutions.co.za">payments@tmvbusinesssolutions.co.za</a></p>
+                <button type="button" class="business-consulting-payment-submit-btn" onclick="confirmEFTPayment()">I've Made the EFT Payment</button>
+            </div>
+
+            <!-- PayPal Payment Instructions -->
+            <div id="paypalPaymentForm" class="business-consulting-payment-instructions">
+                <h4>PayPal Payment Instructions</h4>
+                <p>You will be redirected to PayPal to complete your payment.</p>
+                <p>Click the button below to proceed to PayPal:</p>
+                <button type="button" class="business-consulting-payment-submit-btn" onclick="redirectToPayPal()">Proceed to PayPal</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="section">
+            <h4>Contact</h4>
+            <p>Tel: 087 123 4567</p>
+            <p>Cell: 081 253 7967</p>
+            <p>Email: <a href="mailto:sales@tmvbusinesssolutions.co.za">sales@tmvbusinesssolutions.co.za</a></p>
+            <p>Email: <a href="mailto:info@tmvbusinesssolutions.co.za">info@tmvbusinesssolutions.co.za</a></p>
+        </div>
+        <div class="section">
+            <h4>Address</h4>
+            <p>186 Frikkie De Beer Street</p>
+            <p>Menlyn Place</p>
+            <p>Menlyn</p>
+            <p>0063</p>
+        </div>
+        <div class="section">
+            <h4>Important Links</h4>
+            <p><a href="legal.html">Legal</a></p>
+            <p><a href="popia_act.html">POPIA Act</a></p>
+            <p><a href="cipc.html">CIPC</a></p>
+            <p><a href="sars.html">SARS</a></p>
+        </div>
+        <div class="section">
+            <h4>Social Media</h4>
+            <p><a href="https://www.facebook.com" target="_blank">Facebook</a></p>
+            <p><a href="https://www.twitter.com" target="_blank">Twitter</a></p>
+            <p><a href="https://www.instagram.com" target="_blank">Instagram</a></p>
+        </div>
+        <div class="section">
+            <h4>Subscribe</h4>
+            <form class="subscribe-form">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Last Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Contact No.">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="../scripts/api.js" defer></script>
+    <script src="../scripts/auth.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
+    <script src="../scripts/auth-check.js"></script>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+        let selectedPaymentMethod = 'card';
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to checkboxes
+            document.querySelectorAll('.package-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotal);
+            });
+            
+            // Add event listeners to payment methods
+            document.querySelectorAll('.business-consulting-payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    const methodType = this.getAttribute('data-method');
+                    selectPaymentMethod(methodType);
+                });
+            });
+            
+            updateTotal();
+        });
+
+        // Function to update total when checkboxes change
+        function updateTotal() {
+            cart = [];
+            cartTotal = 0;
+
+            // Get all checked checkboxes
+            const checkboxes = document.querySelectorAll('.package-checkbox:checked');
+
+            checkboxes.forEach(checkbox => {
+                const packageName = checkbox.getAttribute('data-package');
+                const packagePrice = parseInt(checkbox.getAttribute('data-price') || 0);
+                
+                cart.push({
+                    id: checkbox.id,
+                    name: packageName,
+                    price: packagePrice
+                });
+                
+                cartTotal += packagePrice;
+            });
+
+            // Update total display
+            displayTotal();
+            
+            // Enable/disable pay button
+            document.getElementById('payNowBtn').disabled = cart.length === 0;
+        }
+
+        // Function to display total
+        function displayTotal() {
+            const cartItemsElement = document.getElementById('cartItems');
+            const cartTotalElement = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = `
+                    <div class="structured-packages-empty-cart-message">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>Your selection is empty</p>
+                        <p>Select packages from above to get started</p>
+                    </div>
+                `;
+            } else {
+                cartItemsElement.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'structured-packages-cart-item';
+                    cartItemElement.innerHTML = `
+                        <div class="structured-packages-cart-item-details">
+                            <div class="structured-packages-cart-item-name">${item.name}</div>
+                        </div>
+                        <div class="structured-packages-cart-item-price">R${item.price}</div>
+                        <span class="structured-packages-cart-item-remove" onclick="removeFromCart('${item.id}')">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    `;
+                    cartItemsElement.appendChild(cartItemElement);
+                });
+            }
+
+            cartTotalElement.textContent = `R${cartTotal}`;
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(itemId) {
+            const checkbox = document.getElementById(itemId);
+            if (checkbox) {
+                checkbox.checked = false;
+                updateTotal();
+            }
+        }
+
+        // Function to open payment modal
+        function openPaymentModal() {
+            if (cart.length === 0) {
+                alert('Please select at least one package before proceeding to payment.');
+                return;
+            }
+
+            // Update payment summary
+            updatePaymentSummary();
+
+            // Generate invoice number
+            document.getElementById('invoiceNumber').textContent = Math.floor(100000 + Math.random() * 900000);
+
+            // Show modal
+            document.getElementById('paymentModal').style.display = 'flex';
+
+            // Reset to card payment by default
+            selectPaymentMethod('card');
+        }
+
+        // Function to close payment modal
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Function to update payment summary
+        function updatePaymentSummary() {
+            const paymentSummary = document.getElementById('paymentSummary');
+            let summaryHTML = '<h3>Order Summary</h3>';
+
+            cart.forEach(item => {
+                summaryHTML += `
+                    <div class="business-consulting-payment-summary-item">
+                        <span>${item.name}</span>
+                        <span>R${item.price}</span>
+                    </div>
+                `;
+            });
+
+            summaryHTML += `
+                <div class="business-consulting-payment-summary-item business-consulting-payment-summary-total">
+                    <span>Total Amount</span>
+                    <span>R${cartTotal}</span>
+                </div>
+            `;
+
+            paymentSummary.innerHTML = summaryHTML;
+        }
+
+        // Function to select payment method
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+
+            // Update UI
+            document.querySelectorAll('.business-consulting-payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            document.querySelector(`.business-consulting-payment-method[data-method="${method}"]`).classList.add('selected');
+
+            // Show appropriate form
+            document.getElementById('cardPaymentForm').style.display = 'none';
+            document.getElementById('eftPaymentForm').style.display = 'none';
+            document.getElementById('paypalPaymentForm').style.display = 'none';
+
+            if (method === 'card') {
+                document.getElementById('cardPaymentForm').style.display = 'block';
+            } else if (method === 'eft') {
+                document.getElementById('eftPaymentForm').style.display = 'block';
+            } else if (method === 'paypal') {
+                document.getElementById('paypalPaymentForm').style.display = 'block';
+            }
+        }
+
+        // Function to process card payment
+        // Function to process card payment with enhanced Yoco integration
+        function processCardPayment() {
+            if (cart.length === 0) {
+                alert('Please select at least one package before proceeding to payment.');
+                return;
+            }
+
+            // Calculate total in cents for Yoco
+            const amountInCents = cartTotal * 100;
+            
+            // Prepare service description
+            const packageNames = cart.map(item => item.service).join(', ');
+            const description = `Structured Packages: ${packageNames}`;
+            
+            // Prepare metadata
+            const metadata = {
+                service_type: 'structured_packages',
+                packages: cart.map(item => ({
+                    name: item.service,
+                    price: item.price
+                })),
+                total_packages: cart.length,
+                customer_type: 'website_customer',
+                page_source: 'structured_packages_page'
+            };
+
+            console.log('🚀 Starting Yoco payment for Structured Packages:', {
+                amount: amountInCents,
+                description,
+                metadata
+            });
+
+            // Close current modal and redirect to Yoco checkout
+            closePaymentModal();
+            
+            // Use the enhanced payment gateway (redirects to Yoco)
+            if (window.yocoPayment) {
+                window.yocoPayment.openPaymentModal({
+                    amount: amountInCents,
+                    currency: 'ZAR',
+                    description: description,
+                    metadata: metadata,
+                    onSuccess: function(result) {
+                        console.log('✅ Yoco checkout created, redirecting...', result);
+                        // Reset cart after successful checkout creation
+                        resetCartAfterPayment();
+                    },
+                    onError: function(error) {
+                        console.error('❌ Payment failed:', error);
+                        alert('Payment failed: ' + error.message + '\nPlease try again or contact support.');
+                    }
+                });
+            } else {
+                console.error('❌ Yoco payment gateway not loaded');
+                alert('Payment system not available. Please refresh the page and try again.');
+            }
+        }
+
+        // Helper function to reset cart after payment
+        function resetCartAfterPayment() {
+            // Uncheck all package checkboxes
+            document.querySelectorAll('.package-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Clear cart array and total
+            cart = [];
+            cartTotal = 0;
+
+            // Update total display
+            updateTotal();
+            
+            console.log('✅ Cart reset after payment');
+        }
+
+        // Function to confirm EFT payment
+        function confirmEFTPayment() {
+            alert('Thank you for confirming your EFT payment. We will process your order once payment is received. Please email proof of payment to payments@tmvbusinesssolutions.co.za');
+            closePaymentModal();
+
+            // Uncheck all package checkboxes
+            document.querySelectorAll('.package-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Update total display
+            updateTotal();
+        }
+
+        // Function to redirect to PayPal
+        function redirectToPayPal() {
+            alert('You would now be redirected to PayPal to complete your payment. This is a demonstration.');
+            closePaymentModal();
+
+            // Uncheck all package checkboxes
+            document.querySelectorAll('.package-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Update total display
+            updateTotal();
+        }
+    </script>
+
+    <!-- Enhanced Yoco Payment Integration -->
+    <script src="../assets/payment-modal.js"></script>
+</body>
+</html>

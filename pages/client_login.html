@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/responsive-fixes.css">
+    <link rel="stylesheet" href="../styles/password-toggle-fix.css">
+    <style>
+        /* Login Options Styling */
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .remember-me input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .remember-me label {
+            margin: 0;
+            cursor: pointer;
+            color: #555;
+            font-weight: normal;
+        }
+        
+        .forgot-password-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .forgot-password-link:hover {
+            color: #e0e0e0;
+            text-decoration: underline;
+        }
+        
+        .forgot-password-link:visited {
+            color: #ffffff;
+        }
+        
+        /* Forgot Password Modal Styling */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+        
+        .modal-header p {
+            color: #666;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        /* Mobile responsiveness */
+        @media screen and (max-width: 480px) {
+            .login-options {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            
+            .modal-content {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <header class="header">
+     <div>
+        <a href="https://www.tmvbusinesssolutions.co.za" target="_blank" rel="noopener noreferrer">
+            <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+        </a>
+    </div>
+        
+        <div id="companyName">TM Vanity Business Solutions</div>
+
+        <div>
+            <a href="client_login.html" id="loginButton">Login/Register</a>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav id="navigationMenu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="other.html">Other</a></li>
+            <li>
+                <a href="company_registration.html">Company Registration</a>
+                <!--<ul>
+                    <li><a href="new_company.html">New Company</a></li>
+                    <li><a href="co_operative.html">Co-Operative</a></li>
+                    <li><a href="security_company.html">Security Company</a></li>
+                    <li><a href="personal_liability_company.html">Personal Liability Company</a></li>
+                    <li><a href="holding_company.html">Holding Company</a></li>
+                    <li><a href="ngo.html">NGO</a></li>
+                    <li><a href="npo.html">NPO</a></li>
+                    <li><a href="npc.html">NPC</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="structured_packages.html">Structured Packages</a>
+                <!--<ul>
+                    <li><a href="bronze_package.html">Bronze Package</a></li>
+                    <li><a href="silver_package.html">Silver Package</a></li>
+                    <li><a href="gold_package.html">Gold Package</a></li>
+                    <li><a href="platinum_package.html">Platinum Package</a></li>
+                    <li><a href="diamond_package.html">Diamond Package</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="web_design.html">Web Design</a>
+                <!--<ul>
+                    <li><a href="app_development.html">App Development</a></li>
+                    <li><a href="web_development.html">Web Development</a></li>
+                    <li><a href="e_commerce_development.html">E-Commerce Development</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="it_infrastructure.html">IT Infrastructure</a>                
+            </li>
+            <li>
+                <a href="architectural_services.html">Architectural Services</a>
+                <!--<ul>
+                    <li><a href="residential_plans.html">Residential Plans</a></li>
+                    <li><a href="commercial_plans.html">Commercial Plans</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="sars_services.html">SARS Services</a>
+                <!--<ul>
+                    <li><a href="tax_registration.html">Tax Registration</a></li>
+                    <li><a href="vat_registration.html">Vat Registration</a></li>
+                    <li><a href="tax_vat_returns.html">Tax & Vat Returns</a></li>
+                    <li><a href="tax_vat_compliant.html">Tax & Vat Compliant</a></li>
+                    <li><a href="uif_paye_sdl_registration.html">UIF/PAYE/SDL Registration</a></li>
+                    <li><a href="import_export_license.html">Import & Export License</a></li>
+                    <li><a href="sars_representative.html">SARS Representative</a></li>
+                    <li><a href="custom_registration.html">Custom Registration</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="accounting_services.html">Accounting Services</a>                
+            </li>   
+            <li>
+                <a href="business_consulting.html">Business Consulting</a>
+                <!--<ul>
+                    <li><a href="business_plans.html">Business Plans</a></li>
+                    <li><a href="business_profiles.html">Business Profiles</a></li>
+                    <li><a href="business_proposal.html">Business Proposal</a></li>
+                    <li><a href="market_research.html">Market Research</a></li>
+                    <li><a href="market_entry_analysis.html">Market Entry Analysis</a></li>
+                    <li><a href="advanced_business_consulting.html">Advanced Business Consulting</a></li>
+                    <li><a href="business_expansion_strategy.html">Business Expansion Strategy</a></li>
+                    <li><a href="competitor_analysis.html">Competitor Analysis</a></li>
+                    <li><a href="revenue_forecast.html">Revenue Forecast</a></li>
+                    <li><a href="growth_optimization.html">Growth Optimization</a></li>
+                    <li><a href="business_scaling_roadmap.html">Business Scaling Roadmap</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="branding_identity.html">Branding & Identity</a>
+                <!--<ul>
+                    <li><a href="professional_logo_design.html">Professional Logo Design</a></li>
+                    <li><a href="business_card_design.html">Business Card Design</a></li>
+                    <li><a href="graphics_design.html">Graphics Design</a></li>
+                    <li><a href="digital_banners.html">Digital Banners</a></li>
+                    <li><a href="pull_up_banners.html">Pull Up Banners</a></li>
+                    <li><a href="flyers.html">Flyers</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                    <li><a href="backdrop.html">Backdrop</a></li>
+                    <li><a href="social_media_branding.html">Social Media Branding</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="marketing_services.html">Marketing Services</a>
+                <!--<ul>
+                    <li><a href="google_ads_setup.html">Google Ads Setup</a></li>
+                    <li><a href="tik_tok_ads_setup.html">Tik Tok Ads Setup</a></li>
+                    <li><a href="facebook_ads_setup.html">Facebook Ads Setup</a></li>
+                    <li><a href="instagram_ads_setup.html">Instagram Ads Setup</a></li>
+                    <li><a href="x_twitter_ads_setup.html">X (Twitter) Ads Setup</a></li>
+                    <li><a href="emails_sms_marketing.html">Emails & SMS Marketing</a></li>
+                </ul>-->
+            </li>
+            <li>
+                <a href="social_media_growth.html">Social Media Growth</a>
+                <!--<ul>
+                    <li><a href="facebook_followers_boosting.html">Facebook Followers Boosting</a></li>
+                    <li><a href="instagram_followers_boosting.html">Instagram Followers Boosting</a></li>
+                    <li><a href="x_twitter_followers_boosting.html">X (Twitter) Followers Boosting</a></li>
+                    <li><a href="social_media_management.html">Social Media Management</a></li>
+                </ul>-->
+            </li>
+             <li>
+                <a href="jobseeker_dashboard.html">Careers</a>                
+            </li>   
+        </ul>
+    </nav>
+
+    <div class="guestname">
+        Welcome, Guest
+    </div>
+
+     <div class="auth-container">
+        <div class="auth-header">
+            <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+            <h2>TM Vanity Business Solutions</h2>
+        </div>
+
+        <div class="form-toggle">
+            <button class="toggle-btn active" onclick="showLogin()">Login</button>
+            <button class="toggle-btn" onclick="showRegister()">Register</button>
+            <div class="toggle-slider" id="toggleSlider"></div>
+        </div>
+
+        <div class="form-container">
+            <div id="alert" class="alert"></div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="form active">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="loginPassword" name="password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">👁</button>
+                    </div>
+                </div>
+                
+                <!-- Remember Me and Forgot Password -->
+                <div class="login-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+                    <a href="#" class="forgot-password-link" onclick="openForgotPasswordModal()">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="form">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" name="Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="registerPassword" name="password" required minlength="6">
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">👁</button>
+                    </div>
+                    <div class="requirements">
+                        <ul>
+                            <li>At least 6 characters long</li>
+                            <li>Include uppercase and lowercase letters</li>
+                            <li>Include at least one number</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-container">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">👁</button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+
+            <div class="back-home">
+                <a href="../index.html">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="section">
+            <h4>Contact</h4>
+            <p>Tel: 087 123 4567</p>
+            <p>Cell: 081 253 7967</p>
+            <p>Email: <a href="mailto:sales@tmvbusinesssolutions.co.za">sales@tmvbusinesssolutions.co.za</a></p>
+            <p>Email: <a href="mailto:info@tmvbusinesssolutions.co.za">info@tmvbusinesssolutions.co.za</a></p>
+        </div>
+        <div class="section">
+            <h4>Address</h4>
+            <p>186 Frikkie De Beer Street</p>
+            <p>Menlyn Place</p>
+            <p>Menlyn</p>
+            <p>0063</p>
+        </div>
+        <div class="section">
+            <h4>Important Links</h4>
+            <p><a href="legal.html">Legal</a></p>
+            <p><a href="https://popia.co.za/" target="_blank" rel="noopener noreferrer">POPIA Act</a></p>
+            <p><a href="https://www.cipc.co.za/" target="_blank" rel="noopener noreferrer">CIPC</a></p>
+            <p><a href="https://www.sars.gov.za/" target="_blank" rel="noopener noreferrer">SARS</a></p>
+        </div>
+        <div class="section">
+            <h4>Social Media</h4>
+            <p><a href="https://www.facebook.com/profile.php?id=61570883496340" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+            <p><a href="https://x.com/tmvbizsolutions" target="_blank" rel="noopener noreferrer">Twitter</a></p>
+            <p><a href="#">Instagram</a></p>
+        </div>
+        <div class="section">
+            <h4>Subscribe</h4>
+            <form class="subscribe-form">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Last Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Contact No.">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeForgotPasswordModal()">&times;</button>
+            
+            <div class="modal-header">
+                <h2>Reset Password</h2>
+                <p>Enter your email address and we'll send you a reset link</p>
+            </div>
+            
+            <div id="resetSuccessMessage" class="success-message">
+                Password reset email sent! Check your inbox for further instructions.
+            </div>
+            
+            <div id="resetErrorMessage" class="error-message">
+                Failed to send reset email. Please try again.
+            </div>
+            
+            <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input type="email" id="resetEmail" name="email" required placeholder="Enter your email address">
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Reset Link</button>
+                <button type="button" class="submit-btn" style="background: #6c757d; margin-top: 10px;" onclick="closeForgotPasswordModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts/api.js" defer></script>
+    <script src="../scripts/auth-check-simple.js"></script>
+    <script src="../scripts/login.js" defer></script>
+    
+    <script>
+        // Forgot Password Modal Functions
+        function openForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.add('active');
+            document.getElementById('resetEmail').focus();
+        }
+        
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.remove('active');
+            document.getElementById('forgotPasswordForm').reset();
+            document.getElementById('resetSuccessMessage').style.display = 'none';
+            document.getElementById('resetErrorMessage').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('forgotPasswordModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForgotPasswordModal();
+            }
+        });
+        
+        // Handle forgot password form submission
+        async function handleForgotPassword(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('resetEmail').value;
+            const submitButton = event.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            // Hide previous messages
+            document.getElementById('resetSuccessMessage').style.display = 'none';
+            document.getElementById('resetErrorMessage').style.display = 'none';
+            
+            try {
+                // Dynamic API URL - works with www, non-www, and localhost
+                const apiBaseUrl = (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1'))
+                    ? 'http://localhost:3000'
+                    : `${window.location.protocol}//${window.location.hostname}`;
+                
+                const response = await fetch(`${apiBaseUrl}/api/auth/forgot-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ email })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    document.getElementById('resetSuccessMessage').style.display = 'block';
+                    document.getElementById('forgotPasswordForm').reset();
+                    
+                    // Close modal after 3 seconds
+                    setTimeout(() => {
+                        closeForgotPasswordModal();
+                    }, 3000);
+                } else {
+                    document.getElementById('resetErrorMessage').textContent = data.message || 'Failed to send reset email. Please try again.';
+                    document.getElementById('resetErrorMessage').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Forgot password error:', error);
+                document.getElementById('resetErrorMessage').textContent = 'Network error. Please check your connection and try again.';
+                document.getElementById('resetErrorMessage').style.display = 'block';
+            } finally {
+                // Restore button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        }
+        
+        // Handle Remember Me functionality
+        function handleRememberMe() {
+            const rememberMe = document.getElementById('rememberMe').checked;
+            if (rememberMe) {
+                // Store preference in localStorage
+                localStorage.setItem('rememberMe', 'true');
+            } else {
+                localStorage.removeItem('rememberMe');
+            }
+        }
+        
+        // Check remember me preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const rememberMe = localStorage.getItem('rememberMe');
+            if (rememberMe === 'true') {
+                document.getElementById('rememberMe').checked = true;
+            }
+        });
+        
+        // Add remember me handling to the existing login form
+        document.getElementById('rememberMe').addEventListener('change', handleRememberMe);
+    </script>
+
+
+</body>
+</html>

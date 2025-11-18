@@ -1,0 +1,627 @@
+/* Enhanced Form Validation Styles */
+
+/* Form Validation Indicator */
+.form-validation-indicator {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.validation-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.validation-icon {
+    font-size: 1.1rem;
+}
+
+.validation-text {
+    color: #495057;
+    font-weight: 500;
+}
+
+.validation-status {
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.validation-status.valid {
+    color: #28a745;
+}
+
+.validation-status.invalid {
+    color: #dc3545;
+}
+
+.validation-status.pending {
+    color: #6c757d;
+}
+
+/* Input Validation States */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input.valid,
+textarea.valid,
+select.valid {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+}
+
+input.invalid,
+textarea.invalid,
+select.invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.1rem rgba(220, 53, 69, 0.25);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* Validation Feedback */
+.validation-feedback {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    min-height: 1.2rem;
+}
+
+.validation-feedback.valid .validation-success {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.validation-feedback.invalid .validation-error {
+    color: #dc3545;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.validation-feedback.invalid .validation-error:last-child {
+    margin-bottom: 0;
+}
+
+/* Password Strength Indicator */
+.password-strength-indicator {
+    margin-top: 8px;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.strength-bars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 8px;
+}
+
+.strength-bar {
+    height: 4px;
+    flex: 1;
+    background: #dee2e6;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.strength-bar.active.very-weak {
+    background: #dc3545;
+}
+
+.strength-bar.active.weak {
+    background: #fd7e14;
+}
+
+.strength-bar.active.fair {
+    background: #ffc107;
+}
+
+.strength-bar.active.good {
+    background: #20c997;
+}
+
+.strength-bar.active.strong {
+    background: #28a745;
+}
+
+.strength-text {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.strength-level {
+    font-weight: 600;
+}
+
+.strength-requirements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4px;
+}
+
+.strength-requirements span {
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.strength-requirements span.met {
+    color: #28a745;
+}
+
+.strength-requirements span.unmet {
+    color: #dc3545;
+}
+
+/* Password Toggle */
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #6c757d;
+    padding: 5px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Add right padding to password inputs to make room for toggle button */
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    padding-right: 45px !important;
+}
+
+.password-toggle:hover {
+    background: rgba(0,0,0,0.05);
+    color: #495057;
+}
+
+.password-toggle:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Email Validation Indicator */
+.email-validation-indicator {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 10;
+}
+
+.email-validation-indicator.valid {
+    color: #28a745;
+}
+
+.email-validation-indicator.invalid {
+    color: #dc3545;
+}
+
+/* File Validation Info */
+.file-validation-info {
+    margin-top: 5px;
+    padding: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    color: #6c757d;
+}
+
+.file-validation-info small {
+    line-height: 1.4;
+}
+
+/* Enhanced Input Styling */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    transition: all 0.3s ease;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    width: 100%;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-group label.required::after {
+    content: ' *';
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Validation States for Different Input Types */
+input[type="file"].valid {
+    border-color: #28a745;
+}
+
+input[type="file"].invalid {
+    border-color: #dc3545;
+}
+
+/* Custom Checkbox and Radio Validation */
+.checkbox-group,
+.radio-group {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.checkbox-group.invalid,
+.radio-group.invalid {
+    border-color: #dc3545;
+    background: rgba(220, 53, 69, 0.05);
+}
+
+.checkbox-group.valid,
+.radio-group.valid {
+    border-color: #28a745;
+    background: rgba(40, 167, 69, 0.05);
+}
+
+/* Loading State for Validation */
+.validation-loading {
+    display: inline-block;
+    margin-left: 8px;
+    color: #6c757d;
+}
+
+.validation-loading::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #dee2e6;
+    border-top: 1px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 5px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Validation Summary for Multiple Errors */
+.validation-summary-errors {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #721c24;
+}
+
+.validation-summary-errors h5 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.validation-summary-errors ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.validation-summary-errors li {
+    margin-bottom: 5px;
+}
+
+/* Success Message */
+.validation-success-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #155724;
+}
+
+.validation-success-message .success-icon {
+    color: #28a745;
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+/* Floating Labels Enhancement */
+.floating-label {
+    position: relative;
+}
+
+.floating-label input,
+.floating-label textarea {
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+.floating-label label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: #6c757d;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-size: 1rem;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label,
+.floating-label textarea:focus + label,
+.floating-label textarea:not(:placeholder-shown) + label {
+    top: 3px;
+    font-size: 0.75rem;
+    color: #007bff;
+    font-weight: 600;
+}
+
+.floating-label input.invalid + label,
+.floating-label textarea.invalid + label {
+    color: #dc3545;
+}
+
+.floating-label input.valid + label,
+.floating-label textarea.valid + label {
+    color: #28a745;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-validation-indicator {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .validation-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .validation-status {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .strength-requirements {
+        grid-template-columns: 1fr;
+    }
+
+    .password-toggle,
+    .email-validation-indicator {
+        right: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 12px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+@media (max-width: 480px) {
+    .password-strength-indicator {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+
+    .strength-requirements {
+        font-size: 0.75rem;
+    }
+
+    .validation-feedback {
+        font-size: 0.8rem;
+    }
+
+    .form-validation-indicator {
+        padding: 8px;
+    }
+
+    .validation-summary {
+        font-size: 0.85rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .form-validation-indicator {
+        background: #343a40;
+        border-color: #495057;
+        color: #f8f9fa;
+    }
+
+    .validation-text {
+        color: #adb5bd;
+    }
+
+    .password-strength-indicator,
+    .file-validation-info {
+        background: #343a40;
+        border-color: #495057;
+        color: #adb5bd;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        background: #495057;
+        border-color: #6c757d;
+        color: #f8f9fa;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        background: #495057;
+        border-color: #007bff;
+    }
+
+    .form-group label {
+        color: #adb5bd;
+    }
+
+    .floating-label label {
+        color: #6c757d;
+    }
+
+    .strength-bar {
+        background: #495057;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .password-strength-indicator,
+    .validation-feedback,
+    .form-validation-indicator,
+    .password-toggle,
+    .email-validation-indicator {
+        display: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    input.valid,
+    textarea.valid,
+    select.valid {
+        border-width: 3px;
+        border-color: #000;
+        background: #e6ffe6;
+    }
+
+    input.invalid,
+    textarea.invalid,
+    select.invalid {
+        border-width: 3px;
+        border-color: #ff0000;
+        background: #ffe6e6;
+    }
+
+    .validation-feedback.valid .validation-success {
+        color: #000;
+        font-weight: bold;
+    }
+
+    .validation-feedback.invalid .validation-error {
+        color: #ff0000;
+        font-weight: bold;
+    }
+}
+
+/* Accessibility Enhancements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus management for validation */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Animation for validation state changes */
+.validation-feedback {
+    transform: translateY(-5px);
+    opacity: 0;
+    animation: slideInValidation 0.3s ease-out forwards;
+}
+
+@keyframes slideInValidation {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Custom form layouts */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+/* Validation for dynamically added fields */
+.form-field-added {
+    animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

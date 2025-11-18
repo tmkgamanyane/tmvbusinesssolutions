@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# VS Code Extensions (should not be in project repo)
+extensions/
+
+# Environment variables
+.env
+
+# Database credentials (sensitive)
+*.sql
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Documentation (keep only essential docs)
+*.md.backup

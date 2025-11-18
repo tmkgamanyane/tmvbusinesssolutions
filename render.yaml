@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: tmv-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 3306
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        value: 587
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: YOCO_SECRET_KEY
+        sync: false
+      - key: YOCO_PUBLIC_KEY
+        value: pk_live_cdb8540cen7gg6q11c54
+      - key: CLIENT_URL
+        value: https://tmvbusinesssolutions.co.za
+      - key: BASE_URL
+        value: https://tmvbusinesssolutions.co.za

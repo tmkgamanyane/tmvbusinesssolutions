@@ -1,0 +1,373 @@
+/* ==========================================
+   RESPONSIVE DESIGN FIXES & OPTIMIZATIONS
+   ========================================== */
+
+/* Global responsive improvements */
+* {
+    box-sizing: border-box;
+}
+
+/* Header responsive fixes */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 60px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    position: relative;
+    z-index: 100;
+}
+
+/* Ensure header is above navigation */
+header {
+    position: relative;
+    z-index: 100;
+}
+
+/* Logo sizing improvements */
+header img {
+    height: 28px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Company name responsive */
+#companyName {
+    font-size: clamp(18px, 4vw, 30px);
+    font-weight: bold;
+    color: #fff;
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Login button improvements */
+#loginButton {
+    font-size: clamp(14px, 2.5vw, 16px);
+    padding: 8px 15px;
+    white-space: nowrap;
+}
+
+/* Navigation responsive improvements */
+nav {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    width: 100%;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 50;
+    margin-top: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Desktop Navigation - Horizontal single line */
+nav ul {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 3px;
+    margin: 0;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+nav ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+nav ul li {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+nav ul li a {
+    font-size: 14px !important;
+    font-weight: 700;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Hamburger menu - hidden on desktop */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+    z-index: 1001;
+    position: relative;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Mobile overlay */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.mobile-overlay.active {
+    display: block;
+}
+
+/* Auth container responsive */
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+}
+
+.auth-header img {
+    height: 50px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+}
+
+/* Form responsive improvements */
+.auth-form-group {
+    margin-bottom: 20px;
+}
+
+.auth-form-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.auth-form-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Large Desktop styles (above 1200px) */
+@media screen and (min-width: 1200px) {
+    nav ul li a {
+        font-size: 10px !important;
+        padding: 6px 10px;
+    }
+}
+
+/* Desktop/Laptop styles (769px to 1199px) */
+@media screen and (min-width: 769px) and (max-width: 1199px) {
+    nav ul {
+        gap: 2px;
+        padding: 6px 2px;
+    }
+    
+    nav ul li a {
+        font-size: 10px !important;
+        padding: 6px 8px;
+    }
+}
+
+/* Tablet styles (481px to 768px) - Still horizontal but smaller */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    nav ul {
+        gap: 1px;
+        padding: 4px 1px;
+    }
+    
+    nav ul li a {
+        font-size: 10px !important;
+        padding: 5px 6px;
+    }
+}
+
+/* Mobile styles (up to 480px) - Hamburger menu */
+@media screen and (max-width: 480px) {
+    .header {
+        padding: 8px 15px;
+        position: relative;
+    }
+    
+    header img {
+        height: 40px;
+        max-width: 100px;
+    }
+    
+    #companyName {
+        font-size: clamp(12px, 3vw, 16px);
+        order: 2;
+        flex-grow: 1;
+        text-align: center;
+    }
+    
+    #loginButton {
+        order: 3;
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    
+    .hamburger {
+        display: flex;
+        order: 4;
+        margin-left: 10px;
+    }
+    
+    /* Hamburger animation when active */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    /* Mobile navigation slide-out menu */
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(180deg, #2c3e50, #3498db);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: 80px 0 20px;
+        gap: 0;
+        height: 100%;
+    }
+    
+    nav ul li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    nav ul li a {
+        display: block;
+        width: 100%;
+        padding: 16px 25px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        text-align: left;
+        border-radius: 0;
+        transition: all 0.3s ease;
+    }
+    
+    nav ul li a:hover {
+        background: rgba(255, 255, 255, 0.15);
+        padding-left: 35px;
+        transform: none;
+    }
+    
+    .auth-container {
+        margin: 10px;
+        padding: 0 10px;
+    }
+    
+    .auth-header {
+        padding: 20px 20px 10px;
+    }
+    
+    .auth-header img {
+        height: 35px;
+    }
+}
+
+/* ============================================= */
+/* Password Field Responsive Fixes */
+/* ============================================= */
+
+/* Ensure password fields don't break on small screens */
+@media screen and (max-width: 480px) {
+    .password-container input[type="password"],
+    .password-container input[type="text"] {
+        padding-right: 45px !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+    
+    .password-toggle {
+        right: 10px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Ultra-wide screens - ensure password toggle doesn't get lost */
+@media screen and (min-width: 1600px) {
+    .password-container input[type="password"],
+    .password-container input[type="text"] {
+        padding-right: 50px !important;
+    }
+    
+    .password-toggle {
+        right: 15px !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 20px !important;
+    }
+}

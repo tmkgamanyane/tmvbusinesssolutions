@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobseeker Portal - TM Vanity Business Solutions</title>
+    <link rel="stylesheet" href="../styles/jobseeker_dashboard.css">
+    <link rel="stylesheet" href="../styles/enhanced-application-workflow.css">
+    <link rel="stylesheet" href="../styles/advanced-search-system.css">
+    <link rel="stylesheet" href="../styles/dashboard-analytics.css">
+    <link rel="stylesheet" href="../styles/enhanced-form-validation.css">
+    <script src="../scripts/mobile-responsive.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="jobseeker-dashboard-header">
+        <div class="jobseeker-dashboard-logo">
+            <img src="../logos/TM Vanity Business Solutions Transparent Logo.png" alt="TMV Logo">
+            <h1>TM Vanity Business Solutions</h1>
+        </div>
+        <div class="jobseeker-dashboard-user-info" id="headerUserInfo" style="display: none;">
+            <button class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary" onclick="jobseekerDashboard.showPublicJobs()" style="margin-right: 15px;">
+                🔍 Browse Jobs
+            </button>
+            <span id="userWelcome">Welcome</span>
+            <button class="jobseeker-dashboard-logout-btn" id="logoutBtn">Logout</button>
+        </div>
+            <!-- Hamburger Menu Button -->
+        <button class="hamburger" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Public Jobs Section (Visible to everyone, no login required) -->
+    <div class="jobseeker-jobs-public-section" id="browseJobsPublic">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="color: #333; margin: 0;">Browse Available Jobs</h2>
+                <div id="guestActionsTop" style="display: flex; gap: 10px;">
+                    <button class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary" onclick="jobseekerDashboard.showLogin()">Login</button>
+                    <button class="jobseeker-dashboard-btn jobseeker-dashboard-btn-primary" onclick="jobseekerDashboard.showRegister()">Register</button>
+                </div>
+            </div>
+            
+            <!-- Job Filters -->
+            <div class="jobseeker-job-filters" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                <input type="text" id="jobSearchInputPublic" class="jobseeker-dashboard-input" placeholder="Search jobs by title, company, or location..." style="flex: 1; min-width: 250px;">
+                <select id="jobIndustryFilterPublic" class="jobseeker-dashboard-input" style="min-width: 150px;">
+                    <option value="">All Industries</option>
+                    <option value="IT">IT</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Education">Education</option>
+                    <option value="Other">Other</option>
+                </select>
+                <select id="jobTypeFilterPublic" class="jobseeker-dashboard-input" style="min-width: 150px;">
+                    <option value="">All Types</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Internship">Internship</option>
+                </select>
+                <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-primary" onclick="jobseekerDashboard.filterJobsPublic()">
+                    🔍 Search
+                </button>
+                <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary" onclick="jobseekerDashboard.clearFiltersPublic()">
+                    🔄 Clear
+                </button>
+            </div>
+
+            <!-- Public Jobs Container -->
+            <div class="jobseeker-jobs-container" id="jobsContainerPublic">
+                <!-- Jobs will be loaded here dynamically -->
+                <div style="text-align: center; padding: 40px; color: #666;">
+                    <p>Loading jobs...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="jobseeker-dashboard-container" id="mainContainer" style="display: none;">
+        
+        <!-- Login Form -->
+        <div class="jobseeker-dashboard-form-container" id="loginForm">
+            <div class="jobseeker-dashboard-card">
+                <h2 class="jobseeker-dashboard-title">Login to Your Account</h2>
+                <form id="loginFormElement">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="jobseeker-dashboard-input" required>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="jobseeker-dashboard-input" required>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-checkbox-group">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+                    
+                    <button type="submit" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-primary">Login</button>
+                    
+                    <p class="jobseeker-dashboard-link-text">
+                        Don't have an account? <a href="#" id="showRegister">Register here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="jobseeker-dashboard-form-container" id="registerForm" style="display: none;">
+            <div class="jobseeker-dashboard-card">
+                <h2 class="jobseeker-dashboard-title">Create Your Account</h2>
+                <form id="registerFormElement">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="regName">Name</label>
+                        <input type="text" id="regName" class="jobseeker-dashboard-input" required>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="regSurname">Surname</label>
+                        <input type="text" id="regSurname" class="jobseeker-dashboard-input" required>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input type="email" id="regEmail" class="jobseeker-dashboard-input" required>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" class="jobseeker-dashboard-input" required>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="regConfirmPassword">Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" class="jobseeker-dashboard-input" required>
+                    </div>
+                    
+                    <button type="submit" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-primary">Register</button>
+                    
+                    <p class="jobseeker-dashboard-link-text">
+                        Already registered? <a href="#" id="showLogin">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="jobseeker-dashboard-main" id="dashboard" style="display: none;">
+            
+            <!-- Profile Summary Section (Shown at top after save) -->
+            <div class="jobseeker-dashboard-section jobseeker-profile-summary-container" id="profileSummary" style="display: none;">
+                <div class="jobseeker-profile-summary-header">
+                    <h2 class="jobseeker-dashboard-section-title">📋 Your Profile Summary</h2>
+                    <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary" id="editProfile">
+                        ✏️ Edit Profile
+                    </button>
+                </div>
+                <div class="jobseeker-profile-summary-card">
+                    <div class="jobseeker-profile-images">
+                        <div class="jobseeker-profile-image-item">
+                            <label>Full Picture:</label>
+                            <img id="summaryFullPicture" src="" alt="Full Picture" style="max-width: 150px; display: none;">
+                            <p id="noFullPicture">No picture uploaded</p>
+                        </div>
+                        <div class="jobseeker-profile-image-item">
+                            <label>Half Picture:</label>
+                            <img id="summaryHalfPicture" src="" alt="Half Picture" style="max-width: 150px; display: none;">
+                            <p id="noHalfPicture">No picture uploaded</p>
+                        </div>
+                    </div>
+                    <div class="jobseeker-profile-details">
+                        <div class="jobseeker-profile-detail-row">
+                            <strong>👤 Name:</strong> <span id="summaryFullName">-</span>
+                        </div>
+                        <div class="jobseeker-profile-detail-row">
+                            <strong>⚧ Gender:</strong> <span id="summaryGender">-</span>
+                        </div>
+                        <div class="jobseeker-profile-detail-row">
+                            <strong>🆔 ID Number:</strong> <span id="summaryIdNumber">-</span>
+                        </div>
+                        <div class="jobseeker-profile-detail-row">
+                            <strong>📱 Cell Number:</strong> <span id="summaryCellNumber">-</span>
+                        </div>
+                        <div class="jobseeker-profile-detail-row">
+                            <strong>📍 Location:</strong> <span id="summaryLocation">-</span>
+                        </div>
+                        <div class="jobseeker-profile-detail-row">
+                            <strong>🎓 Qualifications:</strong> <span id="summaryQualifications">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Personal Details Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Personal Details</h3>
+                <div class="jobseeker-dashboard-grid">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" class="jobseeker-dashboard-input">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="fullName">Name & Surname</label>
+                        <input type="text" id="fullName" class="jobseeker-dashboard-input" readonly>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="idNumber">ID Number</label>
+                        <input type="text" id="idNumber" class="jobseeker-dashboard-input" maxlength="13">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pictures Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Profile Pictures</h3>
+                <div class="jobseeker-dashboard-grid">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="fullPicture">Full Picture</label>
+                        <input type="file" id="fullPicture" class="jobseeker-dashboard-input" accept="image/*">
+                        <div id="fullPicturePreview" class="jobseeker-dashboard-image-preview"></div>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="halfPicture">Half Picture</label>
+                        <input type="file" id="halfPicture" class="jobseeker-dashboard-input" accept="image/*">
+                        <div id="halfPicturePreview" class="jobseeker-dashboard-image-preview"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Details Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Contact Details</h3>
+                <div class="jobseeker-dashboard-grid">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="jobseeker-dashboard-input" readonly>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="cellNumber">Cell Number</label>
+                        <input type="tel" id="cellNumber" class="jobseeker-dashboard-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Qualifications Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Qualifications</h3>
+                <div class="jobseeker-dashboard-qualifications-container">
+                    <div class="jobseeker-dashboard-qualification-item" id="qualificationTemplate" style="display: none;">
+                        <div class="jobseeker-dashboard-grid">
+                            <div class="jobseeker-dashboard-form-group">
+                                <label>Qualification Level</label>
+                                <select class="jobseeker-dashboard-input qualification-level">
+                                    <option value="">Select Qualification</option>
+                                    <option value="Matric">Matric</option>
+                                    <option value="Certificate">Certificate</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="Degree">Degree</option>
+                                    <option value="Honours">Honours</option>
+                                    <option value="Masters">Masters</option>
+                                    <option value="Doctorate">Doctorate</option>
+                                </select>
+                            </div>
+                            
+                            <div class="jobseeker-dashboard-form-group">
+                                <label>Name of Institute</label>
+                                <input type="text" class="jobseeker-dashboard-input qualification-institute">
+                            </div>
+                            
+                            <div class="jobseeker-dashboard-form-group">
+                                <label>Date Completed</label>
+                                <input type="date" class="jobseeker-dashboard-input qualification-date">
+                            </div>
+                            
+                            <div class="jobseeker-dashboard-form-group">
+                                <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-danger jobseeker-dashboard-remove-qualification">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary" id="addQualification">+ Add Another Qualification</button>
+            </div>
+
+            <!-- Documentation Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Documentation</h3>
+                <div class="jobseeker-dashboard-grid">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="cvUpload">CV Upload</label>
+                        <input type="file" id="cvUpload" class="jobseeker-dashboard-input" accept=".pdf,.doc,.docx">
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="coverLetterUpload">Cover Letter</label>
+                        <input type="file" id="coverLetterUpload" class="jobseeker-dashboard-input" accept=".pdf,.doc,.docx">
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="idCopyUpload">ID Copy</label>
+                        <input type="file" id="idCopyUpload" class="jobseeker-dashboard-input" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="qualificationDocsUpload">Qualification Documents</label>
+                        <input type="file" id="qualificationDocsUpload" class="jobseeker-dashboard-input" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                    </div>
+                </div>
+                
+                <!-- Documents Table -->
+                <div class="jobseeker-dashboard-table-container">
+                    <h4>Uploaded Documents</h4>
+                    <table class="jobseeker-dashboard-table" id="documentsTable">
+                        <thead>
+                            <tr>
+                                <th>Document Type</th>
+                                <th>File Name</th>
+                                <th>Upload Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="documentsTableBody">
+                            <tr>
+                                <td colspan="4" class="jobseeker-dashboard-no-data">No documents uploaded yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Demographics Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Demographics</h3>
+                <div class="jobseeker-dashboard-grid">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="province">Province</label>
+                        <select id="province" class="jobseeker-dashboard-input">
+                            <option value="">Select Province</option>
+                            <option value="Eastern Cape">Eastern Cape</option>
+                            <option value="Free State">Free State</option>
+                            <option value="Gauteng">Gauteng</option>
+                            <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                            <option value="Limpopo">Limpopo</option>
+                            <option value="Mpumalanga">Mpumalanga</option>
+                            <option value="Northern Cape">Northern Cape</option>
+                            <option value="North West">North West</option>
+                            <option value="Western Cape">Western Cape</option>
+                        </select>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="town">Town</label>
+                        <input type="text" id="town" class="jobseeker-dashboard-input">
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="suburb">Suburb</label>
+                        <input type="text" id="suburb" class="jobseeker-dashboard-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">My Skills</h3>
+                <div class="jobseeker-dashboard-form-group">
+                    <label for="skillsInput">Skills & Competencies</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="skillsInput" class="jobseeker-dashboard-input" placeholder="Type a skill" style="flex: 1;">
+                        <button type="button" id="addSkillBtn" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary">+ Add Skill</button>
+                    </div>
+                </div>
+                <div id="skillsContainer" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <!-- Skills will be added here as badges -->
+                </div>
+            </div>
+
+            <!-- Language Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Language</h3>
+                <div class="jobseeker-dashboard-grid">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="race">Race</label>
+                        <select id="race" class="jobseeker-dashboard-input">
+                            <option value="">Select</option>
+                            <option value="African">African</option>
+                            <option value="Coloured">Coloured</option>
+                            <option value="Indian">Indian</option>
+                            <option value="White">White</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="language">Home Language</label>
+                        <select id="language" class="jobseeker-dashboard-input">
+                            <option value="">Select Language</option>
+                            <option value="Afrikaans">Afrikaans</option>
+                            <option value="English">English</option>
+                            <option value="isiNdebele">isiNdebele</option>
+                            <option value="isiXhosa">isiXhosa</option>
+                            <option value="isiZulu">isiZulu</option>
+                            <option value="Sepedi">Sepedi</option>
+                            <option value="Sesotho">Sesotho</option>
+                            <option value="Setswana">Setswana</option>
+                            <option value="siSwati">siSwati</option>
+                            <option value="Tshivenda">Tshivenda</option>
+                            <option value="Xitsonga">Xitsonga</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transport Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Transport</h3>
+                <div class="jobseeker-dashboard-grid">
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="driversLicense">Driver's License Code</label>
+                        <select id="driversLicense" class="jobseeker-dashboard-input">
+                            <option value="">Select</option>
+                            <option value="None">None</option>
+                            <option value="A">Code A (Motorcycles - Motorbikes and motor tricycles)</option>
+                            <option value="A1">Code A1 (Motorcycles - up to 125cc)</option>
+                            <option value="B">Code B (Light vehicles - up to 3,500kg)</option>
+                            <option value="C">Code C (Heavy vehicles - over 3,500kg)</option>
+                            <option value="C1">Code C1 (Heavy vehicles - between 3,500kg and 16,000kg)</option>
+                            <option value="EB">Code EB (Light vehicle with trailer)</option>
+                            <option value="EC">Code EC (Heavy vehicle with trailer)</option>
+                            <option value="EC1">Code EC1 (Heavy vehicle C1 with trailer)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="jobseeker-dashboard-form-group">
+                        <label for="transport">Do you have your own transport?</label>
+                        <select id="transport" class="jobseeker-dashboard-input">
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Section -->
+            <div class="jobseeker-dashboard-section">
+                <h3 class="jobseeker-dashboard-section-title">Experience</h3>
+                
+                <!-- Experience Template (hidden) -->
+                <div class="jobseeker-dashboard-experience-item" id="experienceTemplate" style="display: none;">
+                    <div class="jobseeker-dashboard-grid" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px; position: relative;">
+                        <div class="jobseeker-dashboard-form-group">
+                            <label>Job Title</label>
+                            <input type="text" class="jobseeker-dashboard-input experience-jobtitle" placeholder="e.g., Acting Quality Team Leader">
+                        </div>
+                        
+                        <div class="jobseeker-dashboard-form-group">
+                            <label>Company</label>
+                            <input type="text" class="jobseeker-dashboard-input experience-company" placeholder="e.g., TYB Health">
+                        </div>
+                        
+                        <div class="jobseeker-dashboard-form-group">
+                            <label>Start Date</label>
+                            <input type="month" class="jobseeker-dashboard-input experience-startdate">
+                        </div>
+                        
+                        <div class="jobseeker-dashboard-form-group">
+                            <label>End Date</label>
+                            <input type="month" class="jobseeker-dashboard-input experience-enddate" placeholder="Leave blank if current">
+                            <small style="color: #666;">Leave blank if currently employed</small>
+                        </div>
+                        
+                        <div class="jobseeker-dashboard-form-group" style="grid-column: 1 / -1;">
+                            <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-danger jobseeker-dashboard-remove-experience">Remove Experience</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Container for experience items -->
+                <div class="jobseeker-dashboard-experiences-container">
+                    <!-- Experiences will be added here -->
+                </div>
+                
+                <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary" id="addExperience">+ Add Experience</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="jobseeker-dashboard-actions">
+                <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-primary" id="saveProfile">💾 Save Profile</button>
+                <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-danger" id="deleteProfile">🗑️ Delete Profile</button>
+            </div>
+
+            <!-- My Profile View Section (Read-only display of saved profile) -->
+            <div class="jobseeker-dashboard-section" id="myProfileSection" style="display: none;">
+                <!-- Profile Header with Edit Button -->
+                <div style="background: linear-gradient(135deg, #2980b9 0%, #3498db 100%); color: white; padding: 30px; border-radius: 12px 12px 0 0; margin-bottom: 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 36px;">
+                                👤
+                            </div>
+                            <div>
+                                <h2 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 600;" id="profileViewFullName">-</h2>
+                                <p style="margin: 0; opacity: 0.9; font-size: 16px;" id="profileViewEmail">-</p>
+                            </div>
+                        </div>
+                        <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary" id="editProfileBtn" style="background: white; color: #2980b9;">
+                            ✏️ Edit Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Personal Information Banner -->
+                <div style="background: #ecf0f1; padding: 20px; display: flex; flex-wrap: wrap; gap: 30px; border-bottom: 1px solid #bdc3c7;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <span style="font-size: 18px;">📱</span>
+                            <strong style="color: #7f8c8d; font-size: 13px;">PHONE</strong>
+                        </div>
+                        <p style="margin: 0; color: #2c3e50; font-size: 15px;" id="profileViewCellNumber">-</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <span style="font-size: 18px;">🆔</span>
+                            <strong style="color: #7f8c8d; font-size: 13px;">ID NUMBER</strong>
+                        </div>
+                        <p style="margin: 0; color: #2c3e50; font-family: monospace; font-size: 15px;" id="profileViewIdNumber">-</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <span style="font-size: 18px;">🌍</span>
+                            <strong style="color: #7f8c8d; font-size: 13px;">LANGUAGE</strong>
+                        </div>
+                        <p style="margin: 0; color: #2c3e50; font-size: 15px;" id="profileViewLanguage">-</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <span style="font-size: 18px;">📍</span>
+                            <strong style="color: #7f8c8d; font-size: 13px;">LOCATION</strong>
+                        </div>
+                        <p style="margin: 0; color: #2c3e50; font-size: 15px;" id="profileViewLocation">-</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <span style="font-size: 18px;">�</span>
+                            <strong style="color: #7f8c8d; font-size: 13px;">TRANSPORT</strong>
+                        </div>
+                        <p style="margin: 0; color: #2c3e50; font-size: 15px;" id="profileViewTransport">-</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <span style="font-size: 18px;">🪪</span>
+                            <strong style="color: #7f8c8d; font-size: 13px;">DRIVER'S LICENSE</strong>
+                        </div>
+                        <p style="margin: 0; color: #2c3e50; font-size: 15px;" id="profileViewDriversLicense">-</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                            <span style="font-size: 18px;">🎨</span>
+                            <strong style="color: #7f8c8d; font-size: 13px;">RACE</strong>
+                        </div>
+                        <p style="margin: 0; color: #2c3e50; font-size: 15px;" id="profileViewRace">-</p>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div style="background: white; padding: 30px;">
+                    
+                    <!-- Skills Section -->
+                    <div style="margin-bottom: 35px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 20px; font-weight: 600; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                            💡 MY SKILLS
+                        </h3>
+                        <div id="profileViewSkills" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <p style="color: #95a5a6; font-style: italic;">No skills added yet</p>
+                        </div>
+                    </div>
+
+                    <!-- Career Path Section -->
+                    <div style="margin-bottom: 35px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 20px; font-weight: 600; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                            🎯 CAREER PATH
+                        </h3>
+                        <div style="margin-bottom: 20px;">
+                            <strong style="color: #7f8c8d; font-size: 14px; display: block; margin-bottom: 8px;">My Next Job Titles</strong>
+                            <div id="profileViewNextJobTitles" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <p style="color: #95a5a6; font-style: italic;">No job titles specified</p>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                <strong style="color: #7f8c8d; font-size: 13px; display: block; margin-bottom: 5px;">JOB TYPE</strong>
+                                <p style="margin: 0; color: #2c3e50;" id="profileViewJobType">-</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                                <strong style="color: #7f8c8d; font-size: 13px; display: block; margin-bottom: 5px;">WILL CONSIDER</strong>
+                                <p style="margin: 0; color: #2c3e50;" id="profileViewJobLocation">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Section -->
+                    <div style="margin-bottom: 35px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 20px; font-weight: 600; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                            � EXPERIENCE
+                        </h3>
+                        <div id="profileViewExperience" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db;">
+                            <div style="display: flex; align-items: start; gap: 15px;">
+                                <div style="background: #3498db; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">
+                                    💼
+                                </div>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 5px 0; color: #2c3e50; font-size: 18px;" id="profileViewCurrentJobTitle">-</h4>
+                                    <p style="margin: 0 0 8px 0; color: #7f8c8d; font-size: 15px;" id="profileViewCurrentCompany">-</p>
+                                    <p style="margin: 0; color: #95a5a6; font-size: 14px;" id="profileViewExperienceDates">-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qualifications Section -->
+                    <div style="margin-bottom: 35px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 20px; font-weight: 600; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                            🎓 QUALIFICATIONS
+                        </h3>
+                        <div id="profileViewQualifications" style="display: flex; flex-direction: column; gap: 12px;">
+                            <p style="color: #95a5a6; font-style: italic;">No qualifications added yet</p>
+                        </div>
+                    </div>
+
+                    <!-- Profile Pictures -->
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 20px; font-weight: 600; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                            📸 PROFILE PICTURES
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div>
+                                <strong style="color: #7f8c8d; display: block; margin-bottom: 10px;">Full Picture:</strong>
+                                <img id="profileViewFullPicture" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;" alt="Full Picture">
+                                <p id="profileViewNoFullPicture" style="color: #95a5a6; font-style: italic;">No picture uploaded</p>
+                            </div>
+                            <div>
+                                <strong style="color: #7f8c8d; display: block; margin-bottom: 10px;">Half Picture:</strong>
+                                <img id="profileViewHalfPicture" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;" alt="Half Picture">
+                                <p id="profileViewNoHalfPicture" style="color: #95a5a6; font-style: italic;">No picture uploaded</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Status -->
+                    <div style="margin-top: 30px; padding: 20px; background: #d4edda; border-left: 4px solid #28a745; border-radius: 8px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span style="font-size: 32px;">✅</span>
+                            <div>
+                                <strong style="color: #155724; font-size: 18px; display: block; margin-bottom: 5px;">Profile Complete</strong>
+                                <p style="margin: 0; color: #155724; font-size: 14px;">
+                                    Your profile has all the required information for job applications.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- My Applications Section -->
+            <div class="jobseeker-dashboard-section" id="myApplicationsSection" style="display: none;">
+                <h3 class="jobseeker-dashboard-section-title">📋 My Job Applications</h3>
+                <div class="jobseeker-dashboard-table-container">
+                    <table class="jobseeker-dashboard-table" id="applicationsTable">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Company</th>
+                                <th>Location</th>
+                                <th>Applied Date</th>
+                                <th>Application Status</th>
+                                <th>Job Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsTableBody">
+                            <tr>
+                                <td colspan="7" class="jobseeker-dashboard-no-data">No applications yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Application Details Modal -->
+            <div id="applicationDetailsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+                <div style="background: white; border-radius: 12px; max-width: 700px; width: 90%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative;">
+                    <button onclick="jobseekerDashboard.closeApplicationModal()" style="position: absolute; top: 1rem; right: 1rem; background: #f3f4f6; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 20px; color: #6b7280;">×</button>
+                    
+                    <h2 style="margin: 0 0 1.5rem 0; color: #111827; font-size: 1.5rem;">Application Details</h2>
+                    
+                    <div id="applicationDetailsContent">
+                        <div style="text-align: center; padding: 2rem; color: #6b7280;">
+                            <div style="font-size: 48px; margin-bottom: 10px;">⏳</div>
+                            <div>Loading application details...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Browse Jobs Section (Now integrated in dashboard) -->
+            <div class="jobseeker-dashboard-section" id="browseJobsSection" style="display: none;">
+                <h3 class="jobseeker-dashboard-section-title">Browse Available Jobs</h3>
+                
+                <!-- Job Filters -->
+                <div class="jobseeker-job-filters">
+                    <input type="text" id="jobSearchInput" class="jobseeker-dashboard-input" placeholder="Search jobs by title, company, or location...">
+                    <select id="jobIndustryFilter" class="jobseeker-dashboard-input">
+                        <option value="">All Industries</option>
+                        <option value="IT">IT</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Education">Education</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <select id="jobTypeFilter" class="jobseeker-dashboard-input">
+                        <option value="">All Types</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                    </select>
+                    <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-primary jobseeker-search-btn" id="searchJobsBtn">
+                        🔍 Search Jobs
+                    </button>
+                    <button type="button" class="jobseeker-dashboard-btn jobseeker-dashboard-btn-secondary jobseeker-clear-btn" id="clearFiltersBtn">
+                        🔄 Clear Filters
+                    </button>
+                </div>
+
+                <!-- Jobs List -->
+                <div class="jobseeker-jobs-container" id="jobsContainer">
+                    <!-- Jobs will be loaded here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="jobseeker-dashboard-modal" id="alertModal" style="display: none;">
+        <div class="jobseeker-dashboard-modal-content">
+            <h3 id="alertTitle">Message</h3>
+            <p id="alertMessage"></p>
+            <button class="jobseeker-dashboard-btn jobseeker-dashboard-btn-primary" id="alertClose">OK</button>
+        </div>
+    </div>
+
+    <script src="../scripts/jobseeker_dashboard.js?v=20251019-QUAL-FIX"></script>
+    <script src="../scripts/enhanced-application-workflow.js"></script>
+    <script src="../scripts/advanced-search-system.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../scripts/dashboard-analytics.js"></script>
+    <script src="../scripts/enhanced-form-validation.js"></script>
+</body>
+</html>

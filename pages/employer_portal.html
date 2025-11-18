@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Portal - TMV Business Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .portal-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .portal-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .portal-card.admin {
+            border-top: 5px solid #3b82f6;
+        }
+
+        .portal-card.manager {
+            border-top: 5px solid #10b981;
+        }
+
+        .portal-card.hr {
+            border-top: 5px solid #8b5cf6;
+        }
+
+        .portal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .portal-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .portal-card p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .portal-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .portal-features li {
+            padding: 0.5rem 0;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+        }
+
+        .portal-features li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .btn-portal {
+            display: inline-block;
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-portal:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .admin .btn-portal {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+
+        .manager .btn-portal {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .hr .btn-portal {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .session-info {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: white;
+            display: none;
+        }
+
+        .session-info.active {
+            display: block;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .info-box h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .portal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <div class="header">
+            <h1>🏢 Employer Portal</h1>
+            <p>Access your role-specific dashboard</p>
+        </div>
+
+        <!-- Session Info (shown when user is logged in) -->
+        <div class="session-info" id="sessionInfo">
+            <p>✓ You are already logged in. You will be redirected to your dashboard...</p>
+            <button class="logout-btn" onclick="logout()">Logout Instead</button>
+        </div>
+
+        <div class="portal-grid">
+            <!-- Admin Portal -->
+            <a href="admin_login.html" class="portal-card admin">
+                <div class="portal-icon">🔐</div>
+                <h2>Administrator</h2>
+                <p>Full system access and user management</p>
+                <ul class="portal-features">
+                    <li>Create & manage users</li>
+                    <li>System settings & configuration</li>
+                    <li>Full analytics & reporting</li>
+                    <li>Security controls</li>
+                </ul>
+                <button class="btn-portal">Admin Login →</button>
+            </a>
+
+            <!-- Manager Portal -->
+            <a href="manager_login.html" class="portal-card manager">
+                <div class="portal-icon">👨‍💼</div>
+                <h2>Management</h2>
+                <p>Oversee operations and approve activities</p>
+                <ul class="portal-features">
+                    <li>Assign tasks to HR team</li>
+                    <li>Approve job postings</li>
+                    <li>View all applications</li>
+                    <li>Access analytics dashboard</li>
+                </ul>
+                <button class="btn-portal">Manager Login →</button>
+            </a>
+
+            <!-- HR Portal -->
+            <a href="hr_login.html" class="portal-card hr">
+                <div class="portal-icon">👥</div>
+                <h2>HR & Recruitment</h2>
+                <p>Post jobs and manage candidate applications</p>
+                <ul class="portal-features">
+                    <li>Post job openings</li>
+                    <li>Review applications</li>
+                    <li>Manage candidate pipeline</li>
+                    <li>Track recruitment metrics</li>
+                </ul>
+                <button class="btn-portal">HR Login →</button>
+            </a>
+        </div>
+
+        <div class="info-box">
+            <h3>🔒 Secure Access</h3>
+            <p>Each portal is role-protected. You will be redirected to the appropriate dashboard after login based on your assigned permissions.</p>
+        </div>
+
+        <div class="back-link">
+            <a href="../index.html">← Back to Main Website</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = (window.location.hostname.includes('localhost') || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:3000/api'
+            : `${window.location.protocol}//${window.location.hostname}/api`;
+        
+        // Logout function
+        async function logout() {
+            try {
+                await fetch(`${API_BASE}/auth/logout`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                window.location.reload();
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        }
+
+        // Auto-redirect if already logged in
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch(`${API_BASE}/auth/employer/me`, {
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.user) {
+                        // Show session info
+                        document.getElementById('sessionInfo').classList.add('active');
+                        
+                        // User is logged in, redirect to appropriate dashboard after 2 seconds
+                        setTimeout(() => {
+                            const role = data.user.role;
+                            if (role === 'administrator') {
+                                window.location.href = 'admin_dashboard.html';
+                            } else if (role === 'management') {
+                                window.location.href = 'employer_management_dashboard.html';
+                            } else if (role === 'hr_recruitment') {
+                                window.location.href = 'employer_dashboard.html';
+                            }
+                        }, 2000);
+                    }
+                }
+            } catch (error) {
+                // User not logged in, stay on portal selection page
+                console.log('Not logged in');
+            }
+        });
+    </script>
+</body>
+</html>
