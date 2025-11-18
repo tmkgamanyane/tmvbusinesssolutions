@@ -6,35 +6,62 @@ services:
     buildCommand: npm install
     startCommand: node server.js
     envVars:
+      # Server Configuration
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
+      
+      # Database Configuration (Afrihost MySQL)
       - key: DB_HOST
-        sync: false
+        sync: false  # Set in Render Dashboard: mysql.afrihost.com or your DB host
       - key: DB_PORT
         value: 3306
       - key: DB_NAME
-        sync: false
+        sync: false  # Set in Render Dashboard: tmvbusinesssolutions
       - key: DB_USER
-        sync: false
+        sync: false  # Set in Render Dashboard: tmvbusinesssolutions
       - key: DB_PASSWORD
-        sync: false
+        sync: false  # Set in Render Dashboard: Moses@1985
+      
+      # Session Security
       - key: SESSION_SECRET
         generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      
+      # Email Configuration (Afrihost SMTP)
       - key: EMAIL_HOST
-        sync: false
+        value: mail.afrihost.com
       - key: EMAIL_PORT
         value: 587
+      - key: EMAIL_SECURE
+        value: false
       - key: EMAIL_USER
-        sync: false
-      - key: EMAIL_PASSWORD
-        sync: false
+        sync: false  # Set in Render Dashboard: architecture@tmvbusinesssolutions.co.za
+      - key: EMAIL_PASS
+        sync: false  # Set in Render Dashboard: your email password
+      
+      # Payment Configuration (Yoco Live)
       - key: YOCO_SECRET_KEY
-        sync: false
+        sync: false  # Set in Render Dashboard: your live secret key
       - key: YOCO_PUBLIC_KEY
         value: pk_live_cdb8540cen7gg6q11c54
+      
+      # Frontend URLs (Afrihost Domain)
       - key: CLIENT_URL
         value: https://tmvbusinesssolutions.co.za
       - key: BASE_URL
         value: https://tmvbusinesssolutions.co.za
+      
+      # Department Emails
+      - key: EMAIL_CAREERS
+        value: careers@tmvbusinesssolutions.co.za
+      - key: EMAIL_IT
+        value: itinfrustructure@tmvbusinesssolutions.co.za
+      - key: EMAIL_ARCHITECTURE
+        value: architecture@tmvbusinesssolutions.co.za
+      - key: EMAIL_BUSINESSPLAN
+        value: businessplan@tmvbusinesssolutions.co.za
+      - key: EMAIL_GENERAL
+        value: enquiries@tmvbusinesssolutions.co.za

@@ -12,7 +12,8 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Proxy API requests to Node.js server on Render.com
-# IMPORTANT: Replace 'your-app-name' with your actual Render app URL after deployment
+# Backend URL: https://tmv-backend.onrender.com
+# This proxies all /api/* requests from Afrihost to Render backend
 RewriteCond %{REQUEST_URI} ^/api/(.*)$ [NC]
 RewriteRule ^api/(.*)$ https://tmv-backend.onrender.com/api/$1 [P,L,QSA]
 
