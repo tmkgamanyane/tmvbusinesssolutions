@@ -1,0 +1,60 @@
+===============================================
+EMAIL TO AFRIHOST SUPPORT
+===============================================
+
+TO: support@afrihost.co.za
+SUBJECT: Enable Remote MySQL and SMTP Access for tmvbusinesssolutions.co.za
+
+---
+
+Hello Afrihost Support Team,
+
+I need to enable remote access for both MySQL database and SMTP email services for my hosting account.
+
+ACCOUNT DETAILS:
+- Domain: tmvbusinesssolutions.co.za
+- Database Name: tmvbusinesssolutions
+- Database User: root (or tmvbusinesssolutions)
+- Email Account: enquiries@tmvbusinesssolutions.co.za
+
+REQUEST 1: Enable Remote MySQL Access
+- Current MySQL Host: mysql.afrihost.com
+- Port: 3306
+- Issue: Getting "ENOTFOUND mysql.afrihost.com" when connecting from external server
+- Needed for: Backend API hosted on Render.com to access the database
+- Please enable remote connections from all IP addresses (0.0.0.0/0)
+
+REQUEST 2: Enable Remote SMTP Access
+- Current SMTP Host: mail.afrihost.com
+- Port: 587 (STARTTLS)
+- Email: enquiries@tmvbusinesssolutions.co.za
+- Issue: Getting "Connection timeout" when sending emails from external server
+- Needed for: Automated emails (user registrations, notifications, contact forms)
+- Please allow remote SMTP connections from all IP addresses
+
+BACKGROUND:
+I'm running a Node.js backend application on Render.com that needs to:
+1. Connect to the MySQL database hosted on Afrihost
+2. Send emails via SMTP using Afrihost's mail server
+
+The application is currently live but cannot access either service due to firewall/remote access restrictions.
+
+SECURITY NOTE:
+- Database is already protected by username/password authentication
+- SMTP requires authentication (username: enquiries@tmvbusinesssolutions.co.za, password: [secure])
+- Both connections use secure protocols (TLS/SSL)
+
+Could you please enable remote access for both services and confirm when complete?
+
+Thank you for your assistance!
+
+Best regards,
+TMV Business Solutions
+tmvbusinesssolutions.co.za
+
+---
+
+ALTERNATIVE: If there's a control panel option to enable this myself (cPanel Remote MySQL / Email settings), 
+please let me know where to find it.
+
+===============================================
