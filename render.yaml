@@ -2,6 +2,7 @@ services:
   - type: web
     name: tmv-backend
     runtime: node
+    region: singapore  # Closest to South Africa with free tier (Cape Town not available on free)
     plan: free
     buildCommand: npm install
     startCommand: node server.js
