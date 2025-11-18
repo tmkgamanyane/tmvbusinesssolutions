@@ -1,0 +1,69 @@
+name: Deploy Frontend to Afrihost
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - '.htaccess'
+      - 'pages/**'
+      - 'scripts/**'
+      - 'styles/**'
+      - 'assets/**'
+      - 'images/**'
+      - 'logos/**'
+      - 'cart/**'
+      - '.github/workflows/deploy-to-afrihost.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: List files to deploy
+        run: |
+          echo "Files to be deployed:"
+          ls -la .htaccess index.html styles.css 2>/dev/null || true
+          ls -la pages/ scripts/ styles/ assets/ images/ logos/ cart/ 2>/dev/null || true
+      
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/node_modules/**
+            **/.gitignore
+            **/package.json
+            **/package-lock.json
+            **/README.md
+            **/server.js
+            **/start.js
+            **/backend/**
+            **/deploy*.ps1
+            **/*.md
+            **/ecosystem.config.json
+            **/render.yaml
+            **/fix_*.js
+            **/migrate_*.js
+            **/run_*.js
+      
+      - name: Deployment complete
+        run: |
+          echo "✅ Frontend deployed to Afrihost!"
+          echo "Visit: https://tmvbusinesssolutions.co.za"
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Deployment failed. Check FTP credentials and server status."
