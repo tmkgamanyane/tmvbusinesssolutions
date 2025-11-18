@@ -10070,54 +10070,65 @@ console.log('✅ Express error handlers initialized');
 // Initialize database and start server
 async function startServer() {
     try {
-        await testConnection();
+        // Try to connect to database, but don't fail if it's unavailable
+        const dbConnected = await testConnection();
         
-        // Sync Database - Using 'force: false' to avoid altering existing tables
-        // This prevents the "Too many keys" error when tables already exist
-        console.log('🔄 Synchronizing database schema...');
-        await sequelize.sync({ alter: false });
-        console.log('✅ Database & tables synchronized!');
-        
-        // Add checklist column to tasks table if it doesn't exist
-        try {
-            console.log('🔄 Checking for checklist column in tasks table...');
-            await sequelize.query(`
-                ALTER TABLE tasks 
-                ADD COLUMN checklist JSON DEFAULT NULL 
-                COMMENT 'Checklist items for task completion'
-            `);
-            console.log('✅ checklist column added to tasks table');
-        } catch (error) {
-            if (error.message && (error.message.includes('Duplicate column') || error.message.includes('duplicate'))) {
-                console.log('  - checklist column already exists');
-            } else {
-                console.log('  ⚠ checklist column error:', error.message.substring(0, 80));
-            }
+        if (dbConnected) {
+            // Sync Database - Using 'force: false' to avoid altering existing tables
+            // This prevents the "Too many keys" error when tables already exist
+            console.log('🔄 Synchronizing database schema...');
+            await sequelize.sync({ alter: false });
+            console.log('✅ Database & tables synchronized!');
+        } else {
+            console.warn('⚠️ Skipping database sync - database not available');
+            console.warn('⚠️ Server will start, but database-dependent features will be unavailable');
         }
         
-        // Run migration to update users.role ENUM
-        await migrateRoleEnum();
-        console.log('✅ Role ENUM migration complete!');
-        
-        // Run migration to update permissions for existing users
-        console.log('🔄 Running permission columns migration...');
-        await migratePermissionColumns();
-        console.log('✅ Permission columns migration complete!');
-        
-        // Run migration for industry → department column
-        console.log('🔄 Migrating industry → department column...');
-        await migrateDepartmentColumn();
-        console.log('✅ Department column migration complete!');
-        
-        // Run migration for approvalStatus column
-        console.log('🔄 Migrating approvalStatus column...');
-        await migrateApprovalStatus();
-        console.log('✅ approvalStatus column migration complete!');
-        
-        // Run migration for referenceNumber column in payments table
-        console.log('🔄 Migrating referenceNumber column in payments table...');
-        await migrateReferenceNumberColumn();
-        console.log('✅ referenceNumber column migration complete!');
+        // Only run migrations if database is connected
+        if (dbConnected) {
+            // Add checklist column to tasks table if it doesn't exist
+            try {
+                console.log('🔄 Checking for checklist column in tasks table...');
+                await sequelize.query(`
+                    ALTER TABLE tasks 
+                    ADD COLUMN checklist JSON DEFAULT NULL 
+                    COMMENT 'Checklist items for task completion'
+                `);
+                console.log('✅ checklist column added to tasks table');
+            } catch (error) {
+                if (error.message && (error.message.includes('Duplicate column') || error.message.includes('duplicate'))) {
+                    console.log('  - checklist column already exists');
+                } else {
+                    console.log('  ⚠ checklist column error:', error.message.substring(0, 80));
+                }
+            }
+            
+            // Run migration to update users.role ENUM
+            await migrateRoleEnum();
+            console.log('✅ Role ENUM migration complete!');
+            
+            // Run migration to update permissions for existing users
+            console.log('🔄 Running permission columns migration...');
+            await migratePermissionColumns();
+            console.log('✅ Permission columns migration complete!');
+            
+            // Run migration for industry → department column
+            console.log('🔄 Migrating industry → department column...');
+            await migrateDepartmentColumn();
+            console.log('✅ Department column migration complete!');
+            
+            // Run migration for approvalStatus column
+            console.log('🔄 Migrating approvalStatus column...');
+            await migrateApprovalStatus();
+            console.log('✅ approvalStatus column migration complete!');
+            
+            // Run migration for referenceNumber column in payments table
+            console.log('🔄 Migrating referenceNumber column in payments table...');
+            await migrateReferenceNumberColumn();
+            console.log('✅ referenceNumber column migration complete!');
+        } else {
+            console.warn('⚠️ Skipping database migrations - database not available');
+        }
         
         // Start Server and keep reference
         const server = app.listen(PORT, '0.0.0.0', () => {
