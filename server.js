@@ -31,7 +31,7 @@ const emailTransporter = nodemailer.createTransport({
     port: parseInt(process.env.EMAIL_PORT) || 587,
     secure: process.env.EMAIL_SECURE === 'true', // Use string comparison for env vars
     auth: {
-        user: process.env.EMAIL_USER || 'architecture@tmvbusinesssolutions.co.za',
+        user: process.env.EMAIL_USER || 'enquiries@tmvbusinesssolutions.co.za',
         pass: process.env.EMAIL_PASS || 'Tshepiso@1985'
     },
     tls: {

@@ -38,7 +38,7 @@ services:
       - key: EMAIL_SECURE
         value: false
       - key: EMAIL_USER
-        sync: false  # Set in Render Dashboard: architecture@tmvbusinesssolutions.co.za
+        sync: false  # Set in Render Dashboard: enquiries@tmvbusinesssolutions.co.za
       - key: EMAIL_PASS
         sync: false  # Set in Render Dashboard: your email password
       
