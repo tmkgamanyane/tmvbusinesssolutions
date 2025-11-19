@@ -712,8 +712,23 @@ app.post('/api/auth/login', async (req, res) => {
             });
         }
 
-        // Find user
-        const user = await User.findOne({ where: { email } });
+        // Find user - with detailed error logging
+        let user;
+        try {
+            console.log('🔍 Attempting to find user with email:', email);
+            user = await User.findOne({ where: { email } });
+            console.log('✅ User lookup successful:', user ? 'User found' : 'User not found');
+        } catch (dbError) {
+            console.error('❌ Database error during user lookup:', {
+                name: dbError.name,
+                message: dbError.message,
+                code: dbError.code,
+                errno: dbError.errno,
+                sql: dbError.sql
+            });
+            throw new Error(`Database query failed: ${dbError.message}`);
+        }
+
         if (!user) {
             return res.status(401).json({ 
                 message: 'Invalid email or password',
@@ -748,10 +763,17 @@ app.post('/api/auth/login', async (req, res) => {
             }
         });
     } catch (error) {
-        console.error('Login error:', error);
+        console.error('❌ Login error:', error);
+        console.error('Error details:', {
+            name: error.name,
+            message: error.message,
+            code: error.code,
+            stack: error.stack
+        });
         res.status(500).json({ 
             message: 'Login failed',
-            error: error.message 
+            error: error.message,
+            details: process.env.NODE_ENV === 'development' ? error : undefined
         });
     }
 });
