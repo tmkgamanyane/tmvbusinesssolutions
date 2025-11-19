@@ -2,7 +2,7 @@ class EmployerAuth {
     constructor() {
         this.API_BASE = (window.location.hostname.includes('localhost') || window.location.hostname === '127.0.0.1')
             ? 'http://localhost:3000/api'
-            : `${window.location.protocol}//${window.location.hostname}/api`;
+            : 'https://tmv-backend.onrender.com/api';
         this.currentLoginType = 'admin';
         this.initializeEventListeners();
         this.setupTabSwitching();

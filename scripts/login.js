@@ -4,7 +4,7 @@ if (typeof window !== 'undefined') {
     // Dynamic API base URL - works with www, non-www, and localhost
     const API_BASE = (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1'))
         ? 'http://localhost:3000/api'
-        : `${window.location.protocol}//${window.location.hostname}/api`;
+        : 'https://tmv-backend.onrender.com/api';
     
     console.log('🔗 Login.js API_BASE:', API_BASE);
 
