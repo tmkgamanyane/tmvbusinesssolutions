@@ -1661,6 +1661,61 @@ app.get('/api/test', (req, res) => {
     res.json({ message: 'Server is running!' });
 });
 
+// Database diagnostic endpoint
+app.get('/api/test-db', async (req, res) => {
+    try {
+        const dbDiagnostics = {
+            timestamp: new Date().toISOString(),
+            environment: {
+                DB_HOST: process.env.DB_HOST || 'Not set',
+                DB_PORT: process.env.DB_PORT || 'Not set',
+                DB_NAME: process.env.DB_NAME || 'Not set',
+                DB_USER: process.env.DB_USER || 'Not set',
+                DB_PASSWORD: process.env.DB_PASSWORD ? '***SET***' : 'Not set',
+            },
+            tests: {}
+        };
+
+        // Test 1: Try to authenticate
+        try {
+            await sequelize.authenticate();
+            dbDiagnostics.tests.authentication = { status: 'SUCCESS', message: 'Connected to database' };
+        } catch (error) {
+            dbDiagnostics.tests.authentication = { status: 'FAILED', error: error.message };
+        }
+
+        // Test 2: Try to query users table
+        try {
+            const userCount = await sequelize.query('SELECT COUNT(*) as count FROM users', { raw: true });
+            dbDiagnostics.tests.users_query = { status: 'SUCCESS', user_count: userCount[0][0].count };
+        } catch (error) {
+            dbDiagnostics.tests.users_query = { status: 'FAILED', error: error.message };
+        }
+
+        // Test 3: Check if tables exist
+        try {
+            const tables = await sequelize.query(`
+                SELECT TABLE_NAME FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = DATABASE()
+            `, { raw: true });
+            dbDiagnostics.tests.tables = { 
+                status: 'SUCCESS', 
+                tables: tables[0].map(t => t.TABLE_NAME) 
+            };
+        } catch (error) {
+            dbDiagnostics.tests.tables = { status: 'FAILED', error: error.message };
+        }
+
+        res.json(dbDiagnostics);
+    } catch (error) {
+        res.status(500).json({
+            status: 'ERROR',
+            error: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+});
+
 // Health check endpoint for production monitoring
 app.get('/api/health', async (req, res) => {
     const health = {
