@@ -2,9 +2,11 @@ services:
   - type: web
     name: tmv-backend
     runtime: node
+    runtimeVersion: 18.17.0
     plan: free
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: npm ci --production
+    startCommand: npm start
+    preDeployCommand: npm ci
     envVars:
       # Server Configuration
       - key: NODE_ENV
