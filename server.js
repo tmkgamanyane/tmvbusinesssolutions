@@ -10326,10 +10326,10 @@ async function startServer() {
         const dbConnected = await testConnection();
         
         if (dbConnected) {
-            // Sync Database - Using 'force: false' to avoid altering existing tables
-            // This prevents the "Too many keys" error when tables already exist
+            // Sync Database - Using 'alter: true' to update existing tables with new columns
+            // This ensures the schema matches the model definitions
             console.log('🔄 Synchronizing database schema...');
-            await sequelize.sync({ alter: false });
+            await sequelize.sync({ alter: true });
             console.log('✅ Database & tables synchronized!');
         } else {
             console.warn('⚠️ Skipping database sync - database not available');
