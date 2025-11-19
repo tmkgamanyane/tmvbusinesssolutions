@@ -1802,6 +1802,181 @@ app.get('/api/health', async (req, res) => {
     res.status(statusCode).json(health);
 });
 
+// Comprehensive API status endpoint for deployment verification
+app.get('/api/status/comprehensive', async (req, res) => {
+    const startTime = Date.now();
+    
+    const status = {
+        timestamp: new Date().toISOString(),
+        server: {
+            status: 'running',
+            uptime: process.uptime(),
+            uptimeFormatted: formatUptime(process.uptime()),
+            nodeVersion: process.version,
+            platform: process.platform,
+            environment: process.env.NODE_ENV || 'development',
+            port: PORT,
+            pid: process.pid
+        },
+        database: {
+            status: 'unknown',
+            host: process.env.DB_HOST || 'Not configured',
+            name: process.env.DB_NAME || 'Not configured',
+            tablesCreated: false,
+            tables: []
+        },
+        email: {
+            status: 'unknown',
+            host: process.env.EMAIL_HOST || 'Not configured',
+            port: process.env.EMAIL_PORT || 'Not configured',
+            configured: false
+        },
+        payment: {
+            status: 'unknown',
+            provider: 'Yoco',
+            mode: YOCO_CONFIG?.mode || 'Not configured',
+            configured: false
+        },
+        apis: {
+            authentication: {
+                register: '/api/auth/register',
+                login: '/api/auth/login',
+                logout: '/api/auth/logout',
+                me: '/api/auth/me'
+            },
+            payments: {
+                createCheckout: '/api/payments/create-checkout',
+                processPayment: '/api/payments/process-payment',
+                status: '/api/payments/status/:checkoutId',
+                publicKey: '/api/payments/public-key'
+            },
+            jobs: {
+                list: '/api/jobs',
+                create: '/api/jobs',
+                applications: '/api/jobs/:id/applications'
+            },
+            architecture: {
+                request: '/api/architecture/request',
+                consultation: '/api/architecture/consultation'
+            }
+        },
+        security: {
+            https: req.protocol === 'https',
+            corsEnabled: true,
+            sessionStore: sessionStore ? 'MySQL' : 'Memory',
+            helmetEnabled: false, // Will be true if helmet is loaded
+            rateLimitEnabled: false // Will be true if rate limiter is loaded
+        },
+        dependencies: {
+            express: require('express/package.json').version,
+            sequelize: require('sequelize/package.json').version,
+            mysql2: require('mysql2/package.json').version,
+            nodemailer: require('nodemailer/package.json').version,
+            bcrypt: require('bcrypt/package.json').version
+        }
+    };
+    
+    // Test database connection
+    try {
+        await sequelize.authenticate();
+        status.database.status = 'connected';
+        status.database.tablesCreated = true;
+        
+        // Get list of tables
+        const [tables] = await sequelize.query(`
+            SELECT TABLE_NAME 
+            FROM information_schema.TABLES 
+            WHERE TABLE_SCHEMA = DATABASE()
+            ORDER BY TABLE_NAME
+        `);
+        status.database.tables = tables.map(t => t.TABLE_NAME);
+        
+        // Get user count
+        const [userCount] = await sequelize.query('SELECT COUNT(*) as count FROM users');
+        status.database.userCount = userCount[0].count;
+        
+    } catch (error) {
+        status.database.status = 'error';
+        status.database.error = error.message;
+    }
+    
+    // Test email configuration
+    try {
+        if (emailTransporter) {
+            await emailTransporter.verify();
+            status.email.status = 'ready';
+            status.email.configured = true;
+        } else {
+            status.email.status = 'not configured';
+        }
+    } catch (error) {
+        status.email.status = 'error';
+        status.email.error = error.message;
+        status.email.configured = false;
+    }
+    
+    // Check payment gateway
+    try {
+        if (YOCO_CONFIG && YOCO_CONFIG.secretKey && YOCO_CONFIG.publicKey) {
+            status.payment.status = 'configured';
+            status.payment.configured = true;
+            status.payment.publicKeyPreview = YOCO_CONFIG.publicKey.substring(0, 20) + '...';
+        } else {
+            status.payment.status = 'not configured';
+            status.payment.configured = false;
+        }
+    } catch (error) {
+        status.payment.status = 'error';
+        status.payment.error = error.message;
+    }
+    
+    // Check security middleware
+    try {
+        require('helmet');
+        status.security.helmetEnabled = true;
+    } catch (e) {
+        status.security.helmetEnabled = false;
+    }
+    
+    try {
+        require('express-rate-limit');
+        status.security.rateLimitEnabled = true;
+    } catch (e) {
+        status.security.rateLimitEnabled = false;
+    }
+    
+    // Calculate response time
+    status.responseTime = `${Date.now() - startTime}ms`;
+    
+    // Overall health status
+    const dbHealthy = status.database.status === 'connected';
+    const emailHealthy = status.email.status === 'ready' || status.email.status === 'not configured';
+    const paymentHealthy = status.payment.status === 'configured' || status.payment.status === 'not configured';
+    
+    status.overall = {
+        healthy: dbHealthy && emailHealthy && paymentHealthy,
+        readyForProduction: dbHealthy && status.email.configured && status.payment.configured && status.security.https
+    };
+    
+    res.json(status);
+});
+
+// Helper function to format uptime
+function formatUptime(seconds) {
+    const days = Math.floor(seconds / 86400);
+    const hours = Math.floor((seconds % 86400) / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+    
+    const parts = [];
+    if (days > 0) parts.push(`${days}d`);
+    if (hours > 0) parts.push(`${hours}h`);
+    if (minutes > 0) parts.push(`${minutes}m`);
+    parts.push(`${secs}s`);
+    
+    return parts.join(' ');
+}
+
 // Debug endpoint to check users
 app.get('/api/debug/users', async (req, res) => {
     try {
