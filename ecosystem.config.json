@@ -2,7 +2,7 @@
   "apps": [{
     "name": "tmvbusinesssolutions",
     "script": "start.js",
-    "cwd": "/path/to/tmvbusinesssolutions",
+    "cwd": ".",
     "instances": 1,
     "exec_mode": "cluster",
     "env": {

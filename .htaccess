@@ -11,16 +11,16 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Proxy API requests to Node.js server on Render.com
-# Backend URL: https://tmv-backend.onrender.com
-# This proxies all /api/* requests from Afrihost to Render backend
+# Proxy API requests to local Node.js server
+# Backend URL: http://localhost:3000
+# This proxies all /api/* requests to local Node.js server running on port 3000
 RewriteCond %{REQUEST_URI} ^/api/(.*)$ [NC]
-RewriteRule ^api/(.*)$ https://tmv-backend.onrender.com/api/$1 [P,L,QSA]
+RewriteRule ^api/(.*)$ http://localhost:3000/api/$1 [P,L,QSA]
 
 # Proxy WebSocket connections for real-time features
 RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteCond %{HTTP:Connection} upgrade [NC]
-RewriteRule ^(.*)$ https://tmv-backend.onrender.com/$1 [P,L]
+RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
 
 # Allow static files to be served directly
 RewriteCond %{REQUEST_FILENAME} -f [OR]
