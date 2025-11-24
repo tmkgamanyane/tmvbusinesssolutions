@@ -23,10 +23,10 @@ DEPLOY_DIR="/tmp/tmv-afrihost-deploy"
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # FTP Configuration (can be overridden with environment variables)
-FTP_HOST="${FTP_HOST:-tmvbusinesssolutions.co.za}"
+FTP_HOST="${FTP_HOST:-ftp.tmvbusinesssolutions.co.za}"
 FTP_PORT="${FTP_PORT:-21}"
-FTP_USER="${FTP_USER:-your_ftp_username}"
-FTP_PASS="${FTP_PASS:-your_ftp_password}"
+FTP_USER="${FTP_USER:-}"
+FTP_PASS="${FTP_PASS:-}"
 FTP_REMOTE_DIR="${FTP_REMOTE_DIR:-/public_html}"
 
 echo -e "${CYAN}╔════════════════════════════════════════════════════════════════╗${NC}"
